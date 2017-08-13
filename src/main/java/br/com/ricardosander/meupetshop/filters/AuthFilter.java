@@ -3,12 +3,10 @@ package br.com.ricardosander.meupetshop.filters;
 import br.com.ricardosander.meupetshop.model.User;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*")
 public class AuthFilter implements Filter {
 
     @Override
@@ -22,7 +20,7 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
         String requestURI = httpServletRequest.getRequestURI();
-        if (requestURI.equals("/login")) {
+        if (requestURI.equals("/login") || requestURI.matches(".*(css|jpg|png|gif|js)")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
