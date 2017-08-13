@@ -1,5 +1,7 @@
 package br.com.ricardosander.meupetshop.controller;
 
+import br.com.ricardosander.meupetshop.http.HttpHandlerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +12,20 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/")
 public class FrontController extends HttpServlet {
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    /**
+     * Fábrica de handlers para as requisições http.
+     */
+    private final HttpHandlerFactory httpHandlerFactory;
 
-        String destino = "WEB-INF/pages/404.jsp";
+    public FrontController() {
+        this.httpHandlerFactory = new HttpHandlerFactory();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String destino = this.httpHandlerFactory.newHttpHandler(req).handler(req, resp);
+
         req.getRequestDispatcher(destino).forward(req, resp);
     }
 
