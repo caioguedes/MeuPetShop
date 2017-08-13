@@ -12,7 +12,7 @@ public class Index implements HttpHandler {
 
     @Override
     public String handler(HttpServletRequest req, HttpServletResponse resp) {
-        return "WEB-INF/index.jsp";;
+        return "WEB-INF/index.jsp";
     }
 
 }
