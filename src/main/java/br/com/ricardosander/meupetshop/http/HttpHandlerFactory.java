@@ -15,7 +15,7 @@ public class HttpHandlerFactory {
      * @param request Requisição a ser processada.
      * @return Handler para a requisição.
      */
-    public HttpHandler newHttpHandler(HttpServletRequest request) {
+    public synchronized HttpHandler newHttpHandler(HttpServletRequest request) {
 
         String requestURI = request.getRequestURI();
         String[] requestUriParts = requestURI.split("/");
