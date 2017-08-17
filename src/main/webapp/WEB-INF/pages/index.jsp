@@ -59,7 +59,10 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="/logout" tabindex="0">Deslogar</a></li>
+                    <li>
+                        <a href="#" id="click-logout" tabindex="0">Deslogar</a>
+                    </li>
+
                 </ul>
             </li>
         </ul>
@@ -75,9 +78,16 @@
         <!-- Inicio Rodapé -->
     </div>
 </div>
+
+<form id="form-logout" action="<c:url value="/logout"/>" method="post"></form>
 </body>
 <script src="<c:url value="/js/jquery.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap-submenu.js"/>" type="text/javascript"></script>
+<script type="text/javascript">
+    $( "#click-logout" ).click(function( event ) {
+        $('#form-logout').submit();
+    });
+</script>
 </html>
 <!-- Fim Rodapé-->
