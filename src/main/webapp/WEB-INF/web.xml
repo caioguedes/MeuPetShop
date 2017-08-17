@@ -36,6 +36,10 @@
         <servlet-name>index</servlet-name>
         <servlet-class>br.com.ricardosander.meupetshop.servlets.Index</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>petList</servlet-name>
+        <servlet-class>br.com.ricardosander.meupetshop.servlets.pets.PetList</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -45,6 +49,11 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>petList</servlet-name>
+        <url-pattern>/pets/list</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
