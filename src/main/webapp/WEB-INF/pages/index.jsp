@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">Pet Shop</a>
+        <a href="<c:url value="/"/>" class="navbar-brand">Pet Shop</a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -33,8 +33,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="/animal/cadastro/" tabindex="0">Cadastrar</a></li>
-                    <li><a href="/animal/lista/" tabindex="0">Listar</a></li>
+                    <li><a href="<c:url value="/pets"/>" tabindex="0">Cadastrar</a></li>
+                    <li><a href="<c:url value="/pets/list"/>" tabindex="0">Listar</a></li>
                 </ul>
             </li>
 
@@ -44,8 +44,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="/cliente/cadastro" tabindex="0">Cadastrar</a></li>
-                    <li><a href="/cliente/lista/" tabindex="0">Listar</a></li>
+                    <li><a href="<c:url value="/client"/>" tabindex="0">Cadastrar</a></li>
+                    <li><a href="<c:url value="/client/list"/>" tabindex="0">Listar</a></li>
                 </ul>
             </li>
         </ul>
