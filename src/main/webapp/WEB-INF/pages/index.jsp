@@ -79,13 +79,13 @@
     </div>
 </div>
 
-<form id="form-logout" action="<c:url value="/logout"/>" method="post"></form>
+<form style="display: none;" id="form-logout" action="<c:url value="/logout"/>" method="post"></form>
 </body>
 <script src="<c:url value="/js/jquery.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap-submenu.js"/>" type="text/javascript"></script>
 <script type="text/javascript">
-    $( "#click-logout" ).click(function( event ) {
+    $("#click-logout").click(function (event) {
         $('#form-logout').submit();
     });
 </script>
