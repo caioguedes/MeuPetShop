@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
-import br.com.ricardosander.meupetshop.model.Owner;
+import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 public class PetList extends HttpServlet {
@@ -18,44 +16,9 @@ public class PetList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Pet> pets = new LinkedList<>();
-        pets.add(new Pet(
-                1,
-                "Piccolo",
-                "Gato",
-                "SRD",
-                "Branco e Preto",
-                "Longa",
-                "Grande",
-                12.4,
-                LocalDate.of(2014, 11, 20),
-                LocalDate.of(2015, 1, 10),
-                true,
-                "Meu gato amado",
-                "Macho",
-                false,
-                (User) req.getSession().getAttribute("loggedUser"),
-                new Owner(1, "Ricardo Sander Lopes")
-        ));
+        User loggedUser = (User) req.getSession().getAttribute("loggedUser");
 
-        pets.add(new Pet(
-                2,
-                "Loki",
-                "Cão",
-                "Pincher",
-                "Marrom",
-                "Curto",
-                "Pequeno",
-                3.4,
-                LocalDate.of(2010, 5, 2),
-                LocalDate.of(2015, 10, 1),
-                false,
-                null,
-                "Macho",
-                false,
-                (User) req.getSession().getAttribute("loggedUser"),
-                new Owner(2, "Scarlet Nedel")
-        ));
+        List<Pet> pets = new PetDAOProvider().newPetDAO().find(loggedUser);
 
         req.setAttribute("pets", pets);
 
