@@ -1,12 +1,12 @@
 package br.com.ricardosander.meupetshop.model;
 
-public class Client {
+public class Owner {
 
     private long id;
 
     private String name;
 
-    public Client(long id, String name) {
+    public Owner(long id, String name) {
         this.id = id;
         this.name = name;
     }

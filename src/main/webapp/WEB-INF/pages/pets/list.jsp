@@ -44,8 +44,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="<c:url value="/client"/>" tabindex="0">Cadastrar</a></li>
-                    <li><a href="<c:url value="/client/list"/>" tabindex="0">Listar</a></li>
+                    <li><a href="<c:url value="/owner"/>" tabindex="0">Cadastrar</a></li>
+                    <li><a href="<c:url value="/owner/list"/>" tabindex="0">Listar</a></li>
                 </ul>
             </li>
         </ul>
@@ -109,7 +109,7 @@
                                     ${pet.name}
                             </td>
                             <td>
-                                <c:if test="${pet.client != null}">${pet.client.name}</c:if>
+                                <c:if test="${pet.owner != null}">${pet.owner.name}</c:if>
                             </td>
                             <td>
                                     ${pet.species}

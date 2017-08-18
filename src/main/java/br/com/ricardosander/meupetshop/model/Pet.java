@@ -83,11 +83,11 @@ public class Pet {
     private User user;
 
     /**
-     * Cliente.
+     * Proprietário.
      */
-    private Client client;
+    private Owner owner;
 
-    public Pet(long id, String name, String species, String breed, String fur, String pelage, String mien, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, String gender, boolean clientPacket, User user, Client client) {
+    public Pet(long id, String name, String species, String breed, String fur, String pelage, String mien, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, String gender, boolean clientPacket, User user, Owner owner) {
         this.id = id;
         this.name = name;
         this.species = species;
@@ -103,7 +103,7 @@ public class Pet {
         this.gender = gender;
         this.clientPacket = clientPacket;
         this.user = user;
-        this.client = client;
+        this.owner = owner;
     }
 
     public long getId() {
@@ -166,8 +166,8 @@ public class Pet {
         return user;
     }
 
-    public Client getClient() {
-        return client;
+    public Owner getOwner() {
+        return owner;
     }
 
 }

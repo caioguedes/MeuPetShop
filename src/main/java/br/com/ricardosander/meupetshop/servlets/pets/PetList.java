@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
-import br.com.ricardosander.meupetshop.model.Client;
+import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -35,7 +35,7 @@ public class PetList extends HttpServlet {
                 "Macho",
                 false,
                 (User) req.getSession().getAttribute("loggedUser"),
-                new Client(1, "Ricardo Sander Lopes")
+                new Owner(1, "Ricardo Sander Lopes")
         ));
 
         pets.add(new Pet(
@@ -54,7 +54,7 @@ public class PetList extends HttpServlet {
                 "Macho",
                 false,
                 (User) req.getSession().getAttribute("loggedUser"),
-                new Client(2, "Scarlet Nedel")
+                new Owner(2, "Scarlet Nedel")
         ));
 
         req.setAttribute("pets", pets);
