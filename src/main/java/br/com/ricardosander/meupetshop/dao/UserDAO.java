@@ -6,8 +6,4 @@ public interface UserDAO {
 
     User find(String email, String senha);
 
-    default UserDAO newUserDAO() {
-        return new StaticUserDAO();
-    }
-
 }
