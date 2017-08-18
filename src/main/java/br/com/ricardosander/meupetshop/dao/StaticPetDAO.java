@@ -21,8 +21,7 @@ public class StaticPetDAO implements PetDAO {
 
     static {
 
-        List<Pet> pets = new LinkedList<>();
-        pets.add(new Pet(
+        PETS.add(new Pet(
                 1,
                 "Piccolo",
                 "Gato",
@@ -41,7 +40,7 @@ public class StaticPetDAO implements PetDAO {
                 new Owner(1, "Ricardo Sander Lopes")
         ));
 
-        pets.add(new Pet(
+        PETS.add(new Pet(
                 2,
                 "Loki",
                 "Cão",
