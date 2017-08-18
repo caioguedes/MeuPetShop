@@ -40,7 +40,7 @@
 
             <li class="dropdown">
                 <a tabindex="0" data-toggle="dropdown" data-submenu="">
-                    Clientes<span class="caret"></span>
+                    Proprietários<span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu">
