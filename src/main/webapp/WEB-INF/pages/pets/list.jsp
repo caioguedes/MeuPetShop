@@ -33,8 +33,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="<c:url value="/pets"/>" tabindex="0">Cadastrar</a></li>
-                    <li><a href="<c:url value="/pets/list"/>" tabindex="0">Listar</a></li>
+                    <li><a href="<c:url value="/pets/register"/>" tabindex="0">Cadastrar</a></li>
+                    <li><a href="<c:url value="/pets"/>" tabindex="0">Listar</a></li>
                 </ul>
             </li>
 
@@ -74,7 +74,7 @@
         <!-- Fim Cabeçalho -->
 
         <div class="col-lg-4">
-            <form method="get" action="<c:url value="/pets/list"/>">
+            <form method="get" action="<c:url value="/pets"/>">
                 <fieldset>
                     <legend>Buscar Animais</legend>
                     <div class="form-group row">
@@ -130,7 +130,7 @@
             <c:if test="${pets.size() < 1}">
                 <p class="text-info">Nenhum animal encontrado!</p>
             </c:if>
-            <a class="btn btn-primary" href="<c:url value="/pets/list"/>">Voltar a lista completa</a>
+            <a class="btn btn-primary" href="<c:url value="/pets"/>">Voltar a lista completa</a>
         </div>
 
         <!-- Inicio Rodapé -->

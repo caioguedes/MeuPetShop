@@ -33,8 +33,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="<c:url value="/pets"/>" tabindex="0">Cadastrar</a></li>
-                    <li><a href="<c:url value="/pets/list"/>" tabindex="0">Listar</a></li>
+                    <li><a href="<c:url value="/pets/register"/>" tabindex="0">Cadastrar</a></li>
+                    <li><a href="<c:url value="/pets"/>" tabindex="0">Listar</a></li>
                 </ul>
             </li>
 
