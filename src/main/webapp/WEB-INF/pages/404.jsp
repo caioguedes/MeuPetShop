@@ -39,5 +39,6 @@
 <script src="<c:url value="/js/jquery.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/bootstrap-submenu.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/js/meupetshop.js"/>" type="text/javascript"></script>
 </html>
 <!-- Fim Rodapé-->
