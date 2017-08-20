@@ -40,6 +40,10 @@
         <servlet-name>petList</servlet-name>
         <servlet-class>br.com.ricardosander.meupetshop.servlets.pets.PetList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>petRegister</servlet-name>
+        <servlet-class>br.com.ricardosander.meupetshop.servlets.pets.PetRegister</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -53,7 +57,12 @@
 
     <servlet-mapping>
         <servlet-name>petList</servlet-name>
-        <url-pattern>/pets/list</url-pattern>
+        <url-pattern>/pets</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>petRegister</servlet-name>
+        <url-pattern>/pets/register</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
