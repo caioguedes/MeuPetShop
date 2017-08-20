@@ -106,6 +106,41 @@ public class Pet {
         this.owner = owner;
     }
 
+    public Pet(String name, String species, String breed, String fur, String pelage, String mien, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, String gender, boolean clientPacket, User user, Owner owner) {
+        this.name = name;
+        this.species = species;
+        this.breed = breed;
+        this.fur = fur;
+        this.pelage = pelage;
+        this.mien = mien;
+        this.weight = weight;
+        this.birth = birth;
+        this.register = register;
+        this.castrated = castrated;
+        this.comments = comments;
+        this.gender = gender;
+        this.clientPacket = clientPacket;
+        this.user = user;
+        this.owner = owner;
+    }
+
+    public Pet(String name, String species, String breed, String fur, String pelage, String mien, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, String gender, boolean clientPacket, User user) {
+        this.name = name;
+        this.species = species;
+        this.breed = breed;
+        this.fur = fur;
+        this.pelage = pelage;
+        this.mien = mien;
+        this.weight = weight;
+        this.birth = birth;
+        this.register = register;
+        this.castrated = castrated;
+        this.comments = comments;
+        this.gender = gender;
+        this.clientPacket = clientPacket;
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }
