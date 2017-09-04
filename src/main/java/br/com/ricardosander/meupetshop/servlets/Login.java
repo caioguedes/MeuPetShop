@@ -5,6 +5,7 @@ import br.com.ricardosander.meupetshop.dao.UserDAOProvider;
 import br.com.ricardosander.meupetshop.model.User;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import java.io.IOException;
 /**
  * Página de login.
  */
+@WebServlet(urlPatterns = "/login")
 public class Login extends HttpServlet {
 
     @Override
