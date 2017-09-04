@@ -71,6 +71,11 @@
 
 <div class="container">
     <div class="principal">
+        <c:if test="${not empty message}">
+            <p class="alert alert-success">
+                ${message}
+            </p>
+        </c:if>
         <!-- Fim Cabeçalho -->
 
         <div class="col-lg-4">
