@@ -3,6 +3,7 @@ package br.com.ricardosander.meupetshop.servlets;
 import br.com.ricardosander.meupetshop.dao.UserDAO;
 import br.com.ricardosander.meupetshop.dao.UserDAOProvider;
 import br.com.ricardosander.meupetshop.model.User;
+import br.com.ricardosander.meupetshop.util.MD5;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.*;
 
 /**
  * Página de login.
@@ -29,6 +32,17 @@ public class Login extends HttpServlet {
         String senha = req.getParameter("senha");
 
         UserDAO userDAO = new UserDAOProvider().newUserDAO();
+
+        try {
+
+            MD5 md5 = new MD5();
+            senha = md5.encrypt(senha);
+
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Erro ao encriptar senha: ");
+            e.printStackTrace();
+        }
+
         User user = userDAO.find(usuario, senha);
 
         if (user != null) {
