@@ -9,7 +9,7 @@ public class PetDAOProvider {
      * @return Retorna uma instância da classe padrão.
      */
     public PetDAO newPetDAO() {
-        return new StaticPetDAO();
+        return new MySQLPetDAO();
     }
 
 }
