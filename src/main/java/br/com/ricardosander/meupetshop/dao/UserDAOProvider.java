@@ -9,7 +9,7 @@ public class UserDAOProvider {
      * @return Retorna uma instância da classe padrão.
      */
     public UserDAO newUserDAO() {
-        return new StaticUserDAO();
+        return new MySQLUserDAO();
     }
 
 }
