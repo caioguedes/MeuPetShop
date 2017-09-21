@@ -54,4 +54,7 @@ public class User {
         return (int) (id ^ (id >>> 32));
     }
 
+    public long getId() {
+        return id;
+    }
 }
