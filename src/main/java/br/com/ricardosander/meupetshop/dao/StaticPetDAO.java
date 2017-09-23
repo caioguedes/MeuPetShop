@@ -67,6 +67,11 @@ public class StaticPetDAO implements PetDAO {
     }
 
     @Override
+    public Pet find(User user, long id) {
+        return PETS.stream().filter(pet -> pet.getUser().equals(user) && pet.getId() == id).findFirst().get();
+    }
+
+    @Override
     public boolean insert(Pet pet) {
         return PETS.add(pet);
     }

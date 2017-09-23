@@ -15,6 +15,13 @@ public interface PetDAO {
     List<Pet> find(User user);
 
     /**
+     * Busca um pet pelo seu identificador.
+     * @param id Identificador do pet.
+     * @return Pet encontrado para o identificador, ou <code>NULL</code> caso o pet não seja encontrado.
+     */
+    Pet find(User user, long id);
+
+    /**
      * Insere um novo pet.
      * @param pet Novo Pet para cadastro.
      * @return Se houve sucesso no cadastro.
