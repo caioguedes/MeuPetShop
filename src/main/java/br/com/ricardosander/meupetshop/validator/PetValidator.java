@@ -2,7 +2,6 @@ package br.com.ricardosander.meupetshop.validator;
 
 import br.com.ricardosander.meupetshop.model.Pet;
 
-import java.io.InvalidObjectException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import java.util.Map;
 public class PetValidator implements Validator<Pet> {
 
     @Override
-    public Map<String, String> validate(Pet pet) throws InvalidObjectException {
+    public Map<String, String> validate(Pet pet) {
 
         Map<String, String> errors = new HashMap<>();
 

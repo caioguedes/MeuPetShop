@@ -1,6 +1,5 @@
 package br.com.ricardosander.meupetshop.validator;
 
-import java.io.InvalidObjectException;
 import java.util.Map;
 
 /**
@@ -9,10 +8,11 @@ import java.util.Map;
 public interface Validator<T> {
 
     /**
-     * Valida um objeto.
+     * Realiza a validação em um objeto T.
      *
-     * @throws InvalidObjectException Indica que o objeto informado não é válido.
+     * @param object Objeto para ser validado.
+     * @return Map com erros encontrados na validação.
      */
-    Map<String, String> validate(T object) throws InvalidObjectException;
+    Map<String, String> validate(T object);
 
 }
