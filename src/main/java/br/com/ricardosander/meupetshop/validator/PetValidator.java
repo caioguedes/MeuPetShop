@@ -3,85 +3,60 @@ package br.com.ricardosander.meupetshop.validator;
 import br.com.ricardosander.meupetshop.model.Pet;
 
 import java.io.InvalidObjectException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * validador de cadastro de Pet.
  */
-public class PetValidator implements Validator {
-
-    /**
-     * Pet para validação.
-     */
-    private final Pet pet;
-
-    /**
-     * Lista de erros.
-     */
-    private final List<String> errors;
-
-    /**
-     * @param pet Pet para validação.
-     */
-    public PetValidator(Pet pet) {
-        this.pet = pet;
-        this.errors = new LinkedList<>();
-    }
+public class PetValidator implements Validator<Pet> {
 
     @Override
-    public void validate() throws InvalidObjectException {
+    public Map<String, String> validate(Pet pet) throws InvalidObjectException {
 
+        Map<String, String> errors = new HashMap<>();
 
-        if (this.pet.getName() == null || this.pet.getName().trim().isEmpty()) {
-            this.errors.add("O campo Nome do pet é de preenchimento obrigatório.");
+        if (pet.getName() == null || pet.getName().trim().isEmpty()) {
+            errors.put("pet_name", "O campo Nome do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getSpecies() == null || this.pet.getSpecies().trim().isEmpty()) {
-            this.errors.add("O campo Espécie do pet é de preenchimento obrigatório.");
+        if (pet.getSpecies() == null || pet.getSpecies().trim().isEmpty()) {
+            errors.put("pet_species", "O campo Espécie do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getBreed() == null || this.pet.getBreed().trim().isEmpty()) {
-            this.errors.add("O campo Raça do pet é de preenchimento obrigatório.");
+        if (pet.getBreed() == null || pet.getBreed().trim().isEmpty()) {
+            errors.put("pet_breed", "O campo Raça do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getFur() == null || this.pet.getFur().trim().isEmpty()) {
-            this.errors.add("O campo Pêlo do pet é de preenchimento obrigatório.");
+        if (pet.getFur() == null || pet.getFur().trim().isEmpty()) {
+            errors.put("pet_fur", "O campo Pêlo do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getPelage() == null || this.pet.getPelage().trim().isEmpty()) {
-            this.errors.add("O campo Pelagem do pet é de preenchimento obrigatório.");
+        if (pet.getPelage() == null || pet.getPelage().trim().isEmpty()) {
+            errors.put("pet_pelage", "O campo Pelagem do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getMien() == null || this.pet.getMien().trim().isEmpty()) {
-            this.errors.add("O campo Porte do pet é de preenchimento obrigatório.");
+        if (pet.getMien() == null || pet.getMien().trim().isEmpty()) {
+            errors.put("pet_mien", "O campo Porte do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getWeight() == 0.0) {
-            this.errors.add("O campo Peso do pet é de preenchimento obrigatório.");
+        if (pet.getWeight() == 0.0) {
+            errors.put("pet_weight", "O campo Peso do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getBirth() == null) {
-            this.errors.add("O campo Nascimento do pet é de preenchimento obrigatório.");
+        if (pet.getBirth() == null) {
+            errors.put("pet_birth", "O campo Nascimento do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getRegister() == null) {
-            this.errors.add("O campo Cadastro do pet é de preenchimento obrigatório.");
+        if (pet.getRegister() == null) {
+            errors.put("pet_register", "O campo Cadastro do pet é de preenchimento obrigatório.");
         }
 
-        if (this.pet.getGender() == null || this.pet.getGender().trim().isEmpty()) {
-            this.errors.add("O campo Nome do pet é de preenchimento obrigatório.");
+        if (pet.getGender() == null || pet.getGender().trim().isEmpty()) {
+            errors.put("pet_gender", "O campo Sexo do pet é de preenchimento obrigatório.");
         }
 
-        if (this.errors.size() > 0) {
-            throw new InvalidObjectException("Objeto inválido.");
-        }
-
-    }
-
-    @Override
-    public List<String> getErrors() {
-        return this.errors;
+        return errors;
     }
 
 }
