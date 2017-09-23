@@ -3,6 +3,7 @@ package br.com.ricardosander.meupetshop.dao;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.User;
 
+import java.beans.PropertyVetoException;
 import java.sql.*;
 
 /**
@@ -16,7 +17,7 @@ public class MySQLUserDAO implements UserDAO {
         String sql = "select id, usuario, senha from usuario where usuario = ? and senha = ?";
 
         try (
-                Connection connection = Database.getConnection();
+                Connection connection = new Database().getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql)
         ) {
 
@@ -35,7 +36,7 @@ public class MySQLUserDAO implements UserDAO {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException |PropertyVetoException e) {
             System.out.println("Erro ao conectar no banco de dados ou realizar query.");
             e.printStackTrace();
         }
