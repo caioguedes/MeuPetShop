@@ -13,11 +13,6 @@ public interface Validator<T> {
      *
      * @throws InvalidObjectException Indica que o objeto informado não é válido.
      */
-    void validate(T object) throws InvalidObjectException;
-
-    /**
-     * @return Erros encontrados na validação do objeto.
-     */
-    Map<String, String> getErrors();
+    Map<String, String> validate(T object) throws InvalidObjectException;
 
 }
