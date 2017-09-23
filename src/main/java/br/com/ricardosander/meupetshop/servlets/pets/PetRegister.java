@@ -14,24 +14,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "/pets/register")
 public class PetRegister extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        User user = (User) req.getSession().getAttribute("loggedUser");
+
+        user.getFlashMessages().forEach(req::setAttribute);
+
         req.getRequestDispatcher("/WEB-INF/pages/pets/register.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<String> errors = new LinkedList<>();
+        Map<String, String> errors = new HashMap<>();
 
         String name = req.getParameter("name");
         String species = req.getParameter("species");
@@ -52,7 +56,7 @@ public class PetRegister extends HttpServlet {
         try {
             weight = Double.parseDouble(weightString.replace(",", "."));
         } catch (Exception exception) {
-            errors.add("O campo Peso deve ser um valor numérico válido.");
+            errors.put("pet_weight", "O campo Peso deve ser um valor numérico válido.");
         }
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -65,7 +69,7 @@ public class PetRegister extends HttpServlet {
             }
 
         } catch (Exception exception) {
-            errors.add("O campo Cadastro é de preenchimento obrigatório.");
+            errors.put("pet_register", "O campo Cadastro é de preenchimento obrigatório.");
         }
 
         LocalDate birth = null;
@@ -76,7 +80,7 @@ public class PetRegister extends HttpServlet {
             }
 
         } catch (Exception exception) {
-            errors.add("O campo Nascimento informado é inválido.");
+            errors.put("pet_birth", "O campo Nascimento informado é inválido.");
         }
 
         boolean castrated = castratedString != null;
@@ -114,24 +118,20 @@ public class PetRegister extends HttpServlet {
                 user
         );
 
-
-        Validator validator = new PetValidator(pet);
-        try {
-            validator.validate();
-        } catch (InvalidObjectException exception) {
-            errors.addAll(validator.getErrors());
-        }
+        Validator validator = new PetValidator();
+        errors.putAll(validator.validate(pet));
 
         if (!errors.isEmpty()) {
-            //TODO add flash message.
+
+            errors.forEach(user::addFlashMessage);
+
             resp.sendRedirect("/pets/register");
             return;
         }
 
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         if (!petDAO.insert(pet)) {
-            //TODO add flash message.
-            errors.add("Houve um erro ao salvar o Pet.");
+            user.addFlashMessage("error", "Houve um erro ao salvar o Pet.");
             resp.sendRedirect("/pets/register");
             return;
         }
