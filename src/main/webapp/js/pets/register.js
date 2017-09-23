@@ -68,6 +68,7 @@ function validaData(sValor) {
 
 function validarCadastroAnimal() {
 
+    return true;
     var oNome       = document.getElementById("name");
     var oEspecie    = document.getElementById("species");
     var oRaca       = document.getElementById("breed");
