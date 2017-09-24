@@ -27,7 +27,7 @@ public class User {
     /**
      * Flash messages para o usuário.
      */
-    private Map<String, String> flashMessage;
+    private Map<String, Object> flashMessage;
 
     /**
      * @param id    Identificador do usuário.
@@ -60,9 +60,9 @@ public class User {
      *
      * @return Flash messages para o usuário.
      */
-    public Map<String, String> getFlashMessages() {
+    public Map<String, Object> getFlashMessages() {
 
-        Map<String, String> flashMessages = Collections.unmodifiableMap(flashMessage);
+        Map<String, Object> flashMessages = Collections.unmodifiableMap(flashMessage);
 
         flashMessage = new HashMap<>();
 
@@ -70,29 +70,29 @@ public class User {
     }
 
     /**
-     * Retorna uma flash message, removendo-a do objeto User.
+     * Retorna um flash object, removendo-a do objeto User.
      *
-     * @param messageName Nome (chave) da mensagem.
-     * @return Texto da flash message.
+     * @param objectName Nome (chave) do objeto.
+     * @return Objeto flash message.
      */
-    public String getFlashMessage(String messageName) {
+    public Object getFlashMessage(String objectName) {
 
-        String flashMessage = this.flashMessage.get(messageName);
-        if (flashMessage != null) {
-            this.flashMessage.remove(messageName);
+        Object flashObject = this.flashMessage.get(objectName);
+        if (flashObject != null) {
+            this.flashMessage.remove(objectName);
         }
 
-        return flashMessage;
+        return flashObject;
     }
 
     /**
-     * Adiciona uma flash message no User.
+     * Adiciona um flash object no User.
      *
      * @param messageName Chave da flash message.
-     * @param message     Texto da flash message.
+     * @param object      Flash object.
      */
-    public void addFlashMessage(String messageName, String message) {
-        this.flashMessage.put(messageName, message);
+    public void addFlashMessage(String messageName, Object object) {
+        this.flashMessage.put(messageName, object);
     }
 
     @Override
