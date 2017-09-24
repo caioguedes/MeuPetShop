@@ -7,6 +7,7 @@ import br.com.ricardosander.meupetshop.model.User;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -74,6 +75,21 @@ public class StaticPetDAO implements PetDAO {
     @Override
     public boolean insert(Pet pet) {
         return PETS.add(pet);
+    }
+
+    @Override
+    public boolean remove(Pet pet) {
+
+        for (Pet p : PETS) {
+
+            if (p.getId() == pet.getId()) {
+                PETS.remove(p);
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 }

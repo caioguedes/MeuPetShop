@@ -224,4 +224,23 @@ public class MySQLPetDAO implements PetDAO {
         return false;
     }
 
+    @Override
+    public boolean remove(Pet pet) {
+
+        String sql = " delete from animal where id = ? ";
+
+        try (PreparedStatement preparedStatement = new Database().getConnection().prepareStatement(sql)) {
+
+            preparedStatement.setLong(1, pet.getId());
+
+            return preparedStatement.executeUpdate() > 0;
+
+        } catch (PropertyVetoException | SQLException e) {
+            System.out.println("Erro ao conectar no banco de dados ou remover pet.");
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

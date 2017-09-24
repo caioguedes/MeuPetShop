@@ -9,6 +9,7 @@ public interface PetDAO {
 
     /**
      * Busca os pets do usuário.
+     *
      * @param user Usuário do cadastro do pet.
      * @return Lista de pets do usuário.
      */
@@ -16,6 +17,7 @@ public interface PetDAO {
 
     /**
      * Busca um pet pelo seu identificador.
+     *
      * @param id Identificador do pet.
      * @return Pet encontrado para o identificador, ou <code>NULL</code> caso o pet não seja encontrado.
      */
@@ -23,9 +25,18 @@ public interface PetDAO {
 
     /**
      * Insere um novo pet.
+     *
      * @param pet Novo Pet para cadastro.
      * @return Se houve sucesso no cadastro.
      */
     boolean insert(Pet pet);
+
+    /**
+     * Remove um pet.
+     *
+     * @param pet Pet para remoção.
+     * @return Se houve sucesso na remoção.
+     */
+    boolean remove(Pet pet);
 
 }
