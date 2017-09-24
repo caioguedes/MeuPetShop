@@ -6,10 +6,7 @@ import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
 import java.beans.PropertyVetoException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -92,7 +89,7 @@ public class MySQLPetDAO implements PetDAO {
 
             }
 
-        } catch (SQLException | PropertyVetoException  e) {
+        } catch (SQLException | PropertyVetoException e) {
             System.out.println("Erro ao conectar no banco de dados ou realizar query.");
             e.printStackTrace();
         }
@@ -180,6 +177,50 @@ public class MySQLPetDAO implements PetDAO {
 
     @Override
     public boolean insert(Pet pet) {
+
+        String sql = new StringBuilder()
+                .append(" insert into animal ")
+                .append(" (nome, especie, raca, pelo, pelagem, porte, peso, nascimento, cadastro, castrado, observacoes, ")
+                .append(" sexo, usuario, cliente_pacote, cliente) ")
+                .append(" values ")
+                .append(" (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ")
+                .toString();
+
+        try (PreparedStatement preparedStatement = new Database().getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            int index = 1;
+            preparedStatement.setString(index++, pet.getName());
+            preparedStatement.setString(index++, pet.getSpecies());
+            preparedStatement.setString(index++, pet.getBreed());
+            preparedStatement.setString(index++, pet.getFur());
+            preparedStatement.setString(index++, pet.getPelage());
+            preparedStatement.setString(index++, pet.getMien());
+            preparedStatement.setDouble(index++, pet.getWeight());
+            preparedStatement.setString(index++, pet.getBirth().format(formatter));
+            preparedStatement.setString(index++, pet.getRegister().format(formatter));
+            preparedStatement.setBoolean(index++, pet.isCastrated());
+            preparedStatement.setString(index++, pet.getComments());
+            preparedStatement.setString(index++, pet.getGender());
+            preparedStatement.setLong(index++, pet.getUser().getId());
+            preparedStatement.setBoolean(index++, pet.isClientPacket());
+            preparedStatement.setLong(index++, pet.getOwner() != null && pet.getOwner().getId() > 0 ? pet.getOwner().getId() : 0);
+
+            if (preparedStatement.executeUpdate() > 0) {
+
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    pet.setId(generatedKeys.getLong(1));
+                    return true;
+                }
+            }
+
+        } catch (PropertyVetoException | SQLException e) {
+            System.out.println("Erro ao conectar no banco de dados ou inserir pet.");
+            e.printStackTrace();
+        }
+
         return false;
     }
 
