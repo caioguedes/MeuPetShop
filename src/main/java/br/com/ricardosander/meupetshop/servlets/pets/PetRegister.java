@@ -27,6 +27,11 @@ public class PetRegister extends HttpServlet {
 
         User user = (User) req.getSession().getAttribute("loggedUser");
 
+        Object pet = user.getFlashMessage("pet");
+        if (pet != null) {
+            req.setAttribute("pet", (Pet) pet);
+        }
+
         user.getFlashMessages().forEach(req::setAttribute);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/register.jsp").forward(req, resp);
@@ -35,7 +40,7 @@ public class PetRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map<String, String> errors = new HashMap<>();
+        Map<String, Object> errors = new HashMap<>();
 
         String name = req.getParameter("name");
         String species = req.getParameter("species");
@@ -123,6 +128,7 @@ public class PetRegister extends HttpServlet {
 
         if (!errors.isEmpty()) {
 
+            errors.put("pet", pet);
             errors.forEach(user::addFlashMessage);
 
             resp.sendRedirect("/pets/register");
@@ -137,7 +143,7 @@ public class PetRegister extends HttpServlet {
         }
 
         user.addFlashMessage("message", "Pet adicionado com sucesso.");
-        resp.sendRedirect("/pets");
+        resp.sendRedirect("/pet?id=" + pet.getId());
     }
 
 }
