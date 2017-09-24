@@ -19,13 +19,13 @@ public class PetList extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
-        String message = loggedUser.getFlashMessage("message");
+        Object message = loggedUser.getFlashMessage("message");
 
         List<Pet> pets = new PetDAOProvider().newPetDAO().find(loggedUser);
 
         req.setAttribute("pets", pets);
 
-        if (message != null && !message.trim().isEmpty()) {
+        if (message != null) {
             req.setAttribute("message", message);
         }
 
