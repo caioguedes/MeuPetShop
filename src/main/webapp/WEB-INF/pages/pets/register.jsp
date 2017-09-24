@@ -3,216 +3,228 @@
 
 <c:import url="../_comum/logged_header.jsp"/>
 
-<fieldset class="form-group">
-    <legend>Cadastro do Pet</legend>
-    <form method="post" action="<c:url value="/pets/register"/>" onsubmit="return validarCadastroAnimal();">
 
-        <input type="hidden" name="owner_id" value=""/>
-        <input type="hidden" name="pet_id" value=""/>
+<form method="post" action="<c:url value="/pets/register"/>" onsubmit="return validarCadastroAnimal();">
 
-        <div class="form-group row">
+    <fieldset class="text-center">
+        <legend>Cadastro de Pet</legend>
+    </fieldset>
+
+    <input type="hidden" name="owner_id" value="" />
+    <input type="hidden" name="pet_id" value="" />
+
+    <!-- Nome -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="name">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Qual o nome do bichinho?"
+                   value='<c:if test="${not empty pet && not empty pet.name}">${pet.name}</c:if>' />
 
             <c:if test="${not empty pet_name}">
                 <div class="text-danger">
-                        ${pet_name}
+                    ${pet_name}
                 </div>
             </c:if>
-            <label for="name" class="col-sm-2 form-control-label">Nome:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="name"
-                       value='<c:if test="${not empty pet && not empty pet.name}">${pet.name}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Espécie -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="species">Espécie</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="species" name="species" placeholder="Qual é a espécie?"
+                   value='<c:if test="${not empty pet && not empty pet.species}">${pet.species}</c:if>' />
 
             <c:if test="${not empty pet_species}">
                 <div class="text-danger">
                         ${pet_species}
                 </div>
             </c:if>
-
-            <label for="species" class="col-sm-2 form-control-label">Espécie:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="species" name="species" placeholder="espécie"
-                       value='<c:if test="${not empty pet && not empty pet.species}">${pet.species}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Raça -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="breed">Raça</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="breed" name="breed" placeholder="Qual a raça?"
+                   value='<c:if test="${not empty pet && not empty pet.breed}">${pet.breed}</c:if>' />
 
             <c:if test="${not empty pet_breed}">
                 <div class="text-danger">
-                        ${pet_breed}
+                    ${pet_breed}
                 </div>
             </c:if>
-            <label for="breed" class="col-sm-2 form-control-label">Raça:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="breed" name="breed" placeholder="raça"
-                       value='<c:if test="${not empty pet && not empty pet.breed}">${pet.breed}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- pêlo -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="fur">Pêlo</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fur" name="fur" placeholder="Qual o pêlo?"
+                   value='<c:if test="${not empty pet && not empty pet.fur}">${pet.fur}</c:if>' />
 
             <c:if test="${not empty pet_fur}">
                 <div class="text-danger">
-                        ${pet_fur}
+                    ${pet_fur}
                 </div>
             </c:if>
-            <label for="fur" class="col-sm-2 form-control-label">Pelo:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="fur" name="fur" placeholder="pêlo"
-                       value='<c:if test="${not empty pet && not empty pet.fur}">${pet.fur}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Pelagem -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="pelage">Pelagem</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pelage" name="pelage" placeholder="Qual a pelagem?"
+                   value='<c:if test="${not empty pet && not empty pet.pelage}">${pet.pelage}</c:if>' />
 
             <c:if test="${not empty pet_pelage}">
                 <div class="text-danger">
-                        ${pet_pelage}
+                    ${pet_pelage}
                 </div>
             </c:if>
-            <label for="pelage" class="col-sm-2 form-control-label">Pelagem:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="pelage" name="pelage" placeholder="pelagem"
-                       value='<c:if test="${not empty pet && not empty pet.pelage}">${pet.pelage}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Porte -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="mien">Porte</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="mien" name="mien" placeholder="Qual o porte do bichinho?"
+                   value='<c:if test="${not empty pet && not empty pet.mien}">${pet.mien}</c:if>' />
 
             <c:if test="${not empty pet_mien}">
                 <div class="text-danger">
-                        ${pet_mien}
+                    ${pet_mien}
                 </div>
             </c:if>
-            <label for="mien" class="col-sm-2 form-control-label">Porte:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="mien" name="mien" placeholder="porte"
-                       value='<c:if test="${not empty pet && not empty pet.mien}">${pet.mien}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Peso -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="weight">Peso</label>
+        <div class="col-sm-10">
+            <input type="number" step="0.5" class="form-control" id="weight" name="weight" placeholder="Quanto o bichinho pesa?"
+                   value='<c:if test="${not empty pet && not empty pet.weight}">${pet.weight}</c:if>' />
 
             <c:if test="${not empty pet_weight}">
                 <div class="text-danger">
-                        ${pet_weight}
+                    ${pet_weight}
                 </div>
             </c:if>
-            <label for="weight" class="col-sm-2 form-control-label">Peso:</label>
-            <div class="col-sm-10">
-                <input type="text" step="any" class="form-control" id="weight" name="weight" placeholder="peso"
-                       value='<c:if test="${not empty pet && not empty pet.weight}">${pet.weight}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Nascimento -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="birth">Nascimento</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="birth" name="birth" placeholder="Quando ele nasceu?"
+                   value='<c:if test="${not empty pet && not empty pet.birth}">${pet.birth}</c:if>'/>
 
             <c:if test="${not empty pet_birth}">
                 <div class="text-danger">
-                        ${pet_birth}
+                    ${pet_birth}
                 </div>
             </c:if>
-            <label for="birth" class="col-sm-2 form-control-label">Nascimento:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="birth" name="birth" placeholder="nascimento"
-                       value='<c:if test="${not empty pet && not empty pet.birth}">${pet.birth}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Cadastro -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="register">Cadastro</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="register" name="register" placeholder="Qual o número do cadastro?"
+                   value='<c:if test="${not empty pet && not empty pet.register}">${pet.register}</c:if>'/>
 
             <c:if test="${not empty pet_register}">
                 <div class="text-danger">
-                        ${pet_register}
+                    ${pet_register}
                 </div>
             </c:if>
-            <label for="register" class="col-sm-2 form-control-label">Cadastro:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="register" name="register" placeholder="cadastro"
-                       value='<c:if test="${not empty pet && not empty pet.register}">${pet.register}</c:if>'/>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
+    <!-- Sexo -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="gender">Sexo</label>
+        <div class="col-sm-10">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" id="genderM" value="m"
+                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == "m"}'>checked="checked"</c:if>
+                    />Macho
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" id="genderF" value="f"
+                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == "f"}'>checked="checked"</c:if>
+                    />Fêmea
+                </label>
+            </div>
+            <c:if test="${not empty pet_gender}">
+                <div class="text-danger">
+                    ${pet_gender}
+                </div>
+            </c:if>
+
+        </div>
+    </div>
+
+    <!-- Observações -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="comments">Observações</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="comments" rows="4" name="comments"><c:if test="${not empty pet && not empty pet.comments}">${pet.comments}</c:if></textarea>
 
             <c:if test="${not empty pet_comments}">
                 <div class="text-danger">
-                        ${pet_comments}
+                    ${pet_comments}
                 </div>
             </c:if>
-            <label for="comments" class="col-sm-2 form-control-label">Observações:</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="comments" name="comments"><c:if test="${not empty pet && not empty pet.comments}">${pet.comments}</c:if></textarea>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group row">
-            <label class="col-sm-2">Opções</label>
-            <div class="col-sm-2">
-
-                <c:if test="${not empty pet_castrated}">
-                    <div class="text-danger">
-                            ${pet_castrated}
-                    </div>
-                </c:if>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="castrated"
-                               <c:if test="${not empty pet && pet.castrated}">checked="checked"</c:if> /> Castrado
-                    </label>
-                </div>
-            </div>
-            <div class="col-sm-2">
-
-                <c:if test="${not empty pet_cliente_packet}">
-                    <div class="text-danger">
-                            ${pet_cliente_packet}
-                    </div>
-                </c:if>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="clientPacket"
-                               <c:if test="${not empty pet && pet.clientPacket}">checked="checked"</c:if> /> Cliente pacote
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-
-            <c:if test="${not empty pet_gender}">
+    <!-- Observações -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="comments">Opções</label>
+        <div class="col-sm-2">
+            <c:if test="${not empty pet_castrated}">
                 <div class="text-danger">
-                        ${pet_gender}
+                    ${pet_castrated}
                 </div>
             </c:if>
-            <label class="col-sm-2">Sexo</label>
-            <div class="col-sm-10">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="gender" id="genderM" value="m"
-                               <c:if test='${not empty pet && not empty pet.gender && pet.gender == "m"}'>checked="checked"</c:if>
-                            />Macho
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="gender" id="genderF" value="f"
-                               <c:if test='${not empty pet && not empty pet.gender && pet.gender == "f"}'>checked="checked"</c:if>
-                        />Fêmea
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="castrated" <c:if test="${not empty pet && pet.castrated}">checked="checked"</c:if> /> Castrado
+                </label>
             </div>
         </div>
+        <div class="col-sm-2">
 
+            <c:if test="${not empty pet_cliente_packet}">
+                <div class="text-danger">
+                    ${pet_cliente_packet}
+                </div>
+            </c:if>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="clientPacket" <c:if test="${not empty pet && pet.clientPacket}">checked="checked"</c:if> /> Cliente pacote
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
         <a href="<c:url value="/pets" />" class="btn btn-default">Voltar</a>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+</form>
 
-    </form>
-</fieldset>
 <script src="<c:url value="/js/pets/register.js"/>" type="text/javascript"></script>
 
 <c:import url="../_comum/footer.jsp"/>
