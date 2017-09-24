@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="pt-BR" />
 
 <c:import url="../_comum/logged_header.jsp"/>
 
@@ -112,7 +115,7 @@
 
             <c:if test="${not empty pet_weight}">
                 <div class="text-danger">
-                    ${pet_weight}
+                    <fmt:formatNumber value="${pet.weight}" minFractionDigits="2" type="number"/>
                 </div>
             </c:if>
         </div>
@@ -123,7 +126,7 @@
         <label class="col-sm-2 col-form-label" for="birth">Nascimento</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="birth" name="birth" placeholder="Quando ele nasceu?"
-                   value='<c:if test="${not empty pet && not empty pet.birth}">${pet.birth}</c:if>'/>
+                   value='<c:if test="${not empty pet && not empty pet.birth}">${pet.birth.format(dateFormatter)}</c:if>'/>
 
             <c:if test="${not empty pet_birth}">
                 <div class="text-danger">
@@ -138,7 +141,7 @@
         <label class="col-sm-2 col-form-label" for="register">Cadastro</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="register" name="register" placeholder="Qual o número do cadastro?"
-                   value='<c:if test="${not empty pet && not empty pet.register}">${pet.register}</c:if>'/>
+                   value='<c:if test="${not empty pet && not empty pet.register}">${pet.register.format(dateFormatter)}</c:if>'/>
 
             <c:if test="${not empty pet_register}">
                 <div class="text-danger">

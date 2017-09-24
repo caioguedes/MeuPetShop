@@ -32,6 +32,8 @@ public class PetRegister extends HttpServlet {
             req.setAttribute("pet", (Pet) pet);
         }
 
+        req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
         user.getFlashMessages().forEach(req::setAttribute);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/register.jsp").forward(req, resp);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(urlPatterns = "/pet")
 public class PetView extends HttpServlet {
@@ -39,6 +40,7 @@ public class PetView extends HttpServlet {
             return;
         }
 
+        req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         req.setAttribute("pet", pet);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/view.jsp").forward(req, resp);

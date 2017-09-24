@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="pt-BR" />
 
 <c:import url="../_comum/logged_header.jsp"/>
 
@@ -45,15 +48,15 @@
         </tr>
         <tr>
             <td>Peso:</td>
-            <td>${pet.weight}</td>
+            <td><fmt:formatNumber value="${pet.weight}" minFractionDigits="2" type="number"/></td>
         </tr>
         <tr>
             <td>Nascimento:</td>
-            <td>${pet.birth}</td>
+            <td>${pet.birth.format(dateFormatter)}</td>
         </tr>
         <tr>
             <td>Cadastro:</td>
-            <td>${pet.register}</td>
+            <td>${pet.register.format(dateFormatter)}</td>
         </tr>
         <tr>
             <td>Observações:</td>
