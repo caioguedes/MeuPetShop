@@ -19,7 +19,8 @@
             </c:if>
             <label for="name" class="col-sm-2 form-control-label">Nome:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="name" value=""/>
+                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                       value='<c:if test="${not empty pet && not empty pet.name}">${pet.name}</c:if>'/>
             </div>
         </div>
 
@@ -34,7 +35,7 @@
             <label for="species" class="col-sm-2 form-control-label">Espécie:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="species" name="species" placeholder="espécie"
-                       value=""/>
+                       value='<c:if test="${not empty pet && not empty pet.species}">${pet.species}</c:if>'/>
             </div>
         </div>
 
@@ -47,7 +48,8 @@
             </c:if>
             <label for="breed" class="col-sm-2 form-control-label">Raça:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="breed" name="breed" placeholder="raça" value=""/>
+                <input type="text" class="form-control" id="breed" name="breed" placeholder="raça"
+                       value='<c:if test="${not empty pet && not empty pet.breed}">${pet.breed}</c:if>'/>
             </div>
         </div>
 
@@ -60,7 +62,8 @@
             </c:if>
             <label for="fur" class="col-sm-2 form-control-label">Pelo:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="fur" name="fur" placeholder="pêlo" value=""/>
+                <input type="text" class="form-control" id="fur" name="fur" placeholder="pêlo"
+                       value='<c:if test="${not empty pet && not empty pet.fur}">${pet.fur}</c:if>'/>
             </div>
         </div>
 
@@ -74,7 +77,7 @@
             <label for="pelage" class="col-sm-2 form-control-label">Pelagem:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="pelage" name="pelage" placeholder="pelagem"
-                       value=""/>
+                       value='<c:if test="${not empty pet && not empty pet.pelage}">${pet.pelage}</c:if>'/>
             </div>
         </div>
 
@@ -87,7 +90,8 @@
             </c:if>
             <label for="mien" class="col-sm-2 form-control-label">Porte:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="mien" name="mien" placeholder="porte" value=""/>
+                <input type="text" class="form-control" id="mien" name="mien" placeholder="porte"
+                       value='<c:if test="${not empty pet && not empty pet.mien}">${pet.mien}</c:if>'/>
             </div>
         </div>
 
@@ -101,7 +105,7 @@
             <label for="weight" class="col-sm-2 form-control-label">Peso:</label>
             <div class="col-sm-10">
                 <input type="text" step="any" class="form-control" id="weight" name="weight" placeholder="peso"
-                       value=""/>
+                       value='<c:if test="${not empty pet && not empty pet.weight}">${pet.weight}</c:if>'/>
             </div>
         </div>
 
@@ -115,7 +119,7 @@
             <label for="birth" class="col-sm-2 form-control-label">Nascimento:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="birth" name="birth" placeholder="nascimento"
-                       value=""/>
+                       value='<c:if test="${not empty pet && not empty pet.birth}">${pet.birth}</c:if>'/>
             </div>
         </div>
 
@@ -129,7 +133,7 @@
             <label for="register" class="col-sm-2 form-control-label">Cadastro:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="register" name="register" placeholder="cadastro"
-                       value=""/>
+                       value='<c:if test="${not empty pet && not empty pet.register}">${pet.register}</c:if>'/>
             </div>
         </div>
 
@@ -142,7 +146,7 @@
             </c:if>
             <label for="comments" class="col-sm-2 form-control-label">Observações:</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="comments" name="comments"></textarea>
+                <textarea class="form-control" id="comments" name="comments"><c:if test="${not empty pet && not empty pet.comments}">${pet.comments}</c:if></textarea>
             </div>
         </div>
 
@@ -157,7 +161,8 @@
                 </c:if>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="castrated"/> Castrado
+                        <input type="checkbox" name="castrated"
+                               <c:if test="${not empty pet && pet.castrated}">checked="checked"</c:if> /> Castrado
                     </label>
                 </div>
             </div>
@@ -170,7 +175,8 @@
                 </c:if>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="clientPacket"/> Cliente pacote
+                        <input type="checkbox" name="clientPacket"
+                               <c:if test="${not empty pet && pet.clientPacket}">checked="checked"</c:if> /> Cliente pacote
                     </label>
                 </div>
             </div>
@@ -187,12 +193,16 @@
             <div class="col-sm-10">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="gender" id="genderM" value="m"/>Macho
+                        <input type="radio" name="gender" id="genderM" value="m"
+                               <c:if test='${not empty pet && not empty pet.gender && pet.gender == "m"}'>checked="checked"</c:if>
+                            />Macho
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="gender" id="genderF" value="f"/>Fêmea
+                        <input type="radio" name="gender" id="genderF" value="f"
+                               <c:if test='${not empty pet && not empty pet.gender && pet.gender == "f"}'>checked="checked"</c:if>
+                        />Fêmea
                     </label>
                 </div>
             </div>
