@@ -205,4 +205,7 @@ public class Pet {
         return owner;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }
