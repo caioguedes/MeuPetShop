@@ -21,6 +21,8 @@ public class AuthFilter implements Filter {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
+        servletRequest.setCharacterEncoding("UTF-8");
+
         String requestURI = httpServletRequest.getRequestURI();
         if (requestURI.equals("/login") || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
             filterChain.doFilter(servletRequest, servletResponse);
