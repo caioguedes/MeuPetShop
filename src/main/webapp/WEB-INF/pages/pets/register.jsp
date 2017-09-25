@@ -27,6 +27,7 @@
                 <div class="text-danger">
                         ${pet_name}
                 </div>
+                <c:remove var="pet_name" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -42,6 +43,7 @@
                 <div class="text-danger">
                         ${pet_species}
                 </div>
+                <c:remove var="pet_species" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -57,6 +59,7 @@
                 <div class="text-danger">
                         ${pet_breed}
                 </div>
+                <c:remove var="pet_breed" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -72,6 +75,7 @@
                 <div class="text-danger">
                         ${pet_fur}
                 </div>
+                <c:remove var="pet_fur" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -87,6 +91,7 @@
                 <div class="text-danger">
                         ${pet_pelage}
                 </div>
+                <c:remove var="pet_pelage" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -98,15 +103,16 @@
             <select class="form-control" id="size" name="size">
                 <option value="0">--selecione--</option>
                 <c:forEach items="${sizes}" var="size">
-                <option value="${size}"
-                        <c:if test="${not empty pet && pet.size == size}">selected="selected"</c:if>
-                >${size}</option>
+                    <option value="${size}"
+                            <c:if test="${not empty pet && pet.size == size}">selected="selected"</c:if>
+                    >${size}</option>
                 </c:forEach>
             </select>
             <c:if test="${not empty pet_size}">
                 <div class="text-danger">
                         ${pet_size}
                 </div>
+                <c:remove var="pet_size" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -117,12 +123,13 @@
         <div class="col-sm-10">
             <input type="number" step="0.5" class="form-control" id="weight" name="weight"
                    placeholder="Quanto o bichinho pesa?"
-                   value='<c:if test="${not empty pet && not empty pet.weight}">${pet.weight}</c:if>'/>
+                   value='<c:if test="${not empty pet && not empty pet.weight}"><fmt:formatNumber value="${pet.weight}" minFractionDigits="2" type="number"/></c:if>'/>
 
             <c:if test="${not empty pet_weight}">
                 <div class="text-danger">
-                    <fmt:formatNumber value="${pet.weight}" minFractionDigits="2" type="number"/>
+                        ${pet_weight}
                 </div>
+                <c:remove var="pet_weight" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -138,6 +145,7 @@
                 <div class="text-danger">
                         ${pet_birth}
                 </div>
+                <c:remove var="pet_birth" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -154,6 +162,7 @@
                 <div class="text-danger">
                         ${pet_register}
                 </div>
+                <c:remove var="pet_register" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -180,6 +189,7 @@
                 <div class="text-danger">
                         ${pet_gender}
                 </div>
+                <c:remove var="pet_gender" scope="session"/>
             </c:if>
 
         </div>
@@ -196,6 +206,7 @@
                 <div class="text-danger">
                         ${pet_comments}
                 </div>
+                <c:remove var="pet_comments" scope="session"/>
             </c:if>
         </div>
     </div>
@@ -208,6 +219,7 @@
                 <div class="text-danger">
                         ${pet_castrated}
                 </div>
+                <c:remove var="pet_castrated" scope="session"/>
             </c:if>
             <div class="checkbox">
                 <label>
@@ -222,6 +234,7 @@
                 <div class="text-danger">
                         ${pet_cliente_packet}
                 </div>
+                <c:remove var="pet_client_packet" scope="session"/>
             </c:if>
             <div class="checkbox">
                 <label>
@@ -237,6 +250,7 @@
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>
+<c:remove var="pet" scope="session"/>
 
 <script src="<c:url value="/js/pets/register.js"/>" type="text/javascript"></script>
 

@@ -27,7 +27,7 @@ public class PetRemove extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
         } catch (Exception exception) {
-            user.addFlashMessage("message", "Pet não informado.");
+            req.getSession().setAttribute("message", "Pet não informado.");
             resp.sendRedirect("/pets");
             return;
         }
@@ -36,7 +36,7 @@ public class PetRemove extends HttpServlet {
         Pet pet = petDAO.find(user, id);
 
         if (pet == null) {
-            user.addFlashMessage("message", "Pet não encontrado.");
+            req.getSession().setAttribute("message", "Pet não encontrado.");
             resp.sendRedirect("/pets");
             return;
         }
@@ -60,7 +60,7 @@ public class PetRemove extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
         } catch (Exception exception) {
-            user.addFlashMessage("message", "Pet não informado.");
+            req.getSession().setAttribute("message", "Pet não informado.");
             resp.sendRedirect("/pets");
             return;
         }
@@ -69,18 +69,18 @@ public class PetRemove extends HttpServlet {
         Pet pet = petDAO.find(user, id);
 
         if (pet == null) {
-            user.addFlashMessage("message", "Pet não encontrado.");
+            req.getSession().setAttribute("message", "Pet não encontrado.");
             resp.sendRedirect("/pets");
             return;
         }
 
         if (!petDAO.remove(pet)) {
-            user.addFlashMessage("message", "Não foi possível remover o pet.");
+            req.getSession().setAttribute("message", "Não foi possível remover o pet.");
             resp.sendRedirect(previouslyPage);
             return;
         }
 
-        user.addFlashMessage("message", "Pet removido com sucesso.");
+        req.getSession().setAttribute("message", "Pet removido com sucesso.");
         resp.sendRedirect("/pets");
     }
 

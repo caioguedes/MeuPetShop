@@ -26,7 +26,7 @@ public class PetView extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
         } catch (Exception exception) {
-            user.addFlashMessage("message", "Pet não informado.");
+            req.getSession().setAttribute("message", "Pet não informado.");
             resp.sendRedirect("/pets");
             return;
         }
@@ -35,7 +35,7 @@ public class PetView extends HttpServlet {
         Pet pet = petDAO.find(user, id);
 
         if (pet == null) {
-            user.addFlashMessage("message", "Pet não encontrado.");
+            req.getSession().setAttribute("message", "Pet não encontrado.");
             resp.sendRedirect("/pets");
             return;
         }

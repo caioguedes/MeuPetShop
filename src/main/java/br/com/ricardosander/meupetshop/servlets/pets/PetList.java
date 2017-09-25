@@ -19,15 +19,10 @@ public class PetList extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
-        Object message = loggedUser.getFlashMessage("message");
 
         List<Pet> pets = new PetDAOProvider().newPetDAO().find(loggedUser);
 
         req.setAttribute("pets", pets);
-
-        if (message != null) {
-            req.setAttribute("message", message);
-        }
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/list.jsp").forward(req, resp);
     }

@@ -32,6 +32,7 @@ public class AuthFilter implements Filter {
         if (loggedUser == null) {
 
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+            servletRequest.setAttribute("message", "Você precisa se logar para ter acesso.");
             httpServletResponse.sendRedirect("/login");
             return;
         }

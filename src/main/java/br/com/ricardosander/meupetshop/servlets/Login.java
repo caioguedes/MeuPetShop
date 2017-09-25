@@ -45,8 +45,10 @@ public class Login extends HttpServlet {
 
         User user = userDAO.find(usuario, senha);
 
+        req.getSession().setAttribute("message", "Login inválido.");
         if (user != null) {
             req.getSession().setAttribute("loggedUser", user);
+            req.getSession().setAttribute("message", "Login realizado com sucesso.");
         }
 
         resp.sendRedirect("/");

@@ -25,17 +25,10 @@ public class PetRegister extends HttpServlet {
 
         User user = (User) req.getSession().getAttribute("loggedUser");
 
-        Object pet = user.getFlashMessage("pet");
-        if (pet != null) {
-            req.setAttribute("pet", (Pet) pet);
-        }
-
         req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         req.setAttribute("M", Gender.M);
         req.setAttribute("F", Gender.F);
         req.setAttribute("sizes", PetSize.values());
-
-        user.getFlashMessages().forEach(req::setAttribute);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/register.jsp").forward(req, resp);
     }
@@ -146,7 +139,7 @@ public class PetRegister extends HttpServlet {
         if (!errors.isEmpty()) {
 
             errors.put("pet", pet);
-            errors.forEach(user::addFlashMessage);
+            errors.forEach(req.getSession()::setAttribute);
 
             resp.sendRedirect("/pets/register");
             return;
@@ -154,12 +147,12 @@ public class PetRegister extends HttpServlet {
 
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         if (!petDAO.insert(pet)) {
-            user.addFlashMessage("error", "Houve um erro ao salvar o Pet.");
+            req.getSession().setAttribute("message", "Houve um erro ao salvar o Pet.");
             resp.sendRedirect("/pets/register");
             return;
         }
 
-        user.addFlashMessage("message", "Pet adicionado com sucesso.");
+        req.getSession().setAttribute("message", "Pet adicionado com sucesso.");
         resp.sendRedirect("/pet?id=" + pet.getId());
     }
 

@@ -78,4 +78,5 @@
     <p class="alert alert-success">
             ${message}
     </p>
+    <c:remove var="message" scope="session"/>
 </c:if>
