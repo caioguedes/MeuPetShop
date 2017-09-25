@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.Gender;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.Pet;
@@ -79,7 +80,7 @@ public class MySQLPetDAO implements PetDAO {
                                     LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                                     resultSet.getBoolean("CASTRADO"),
                                     resultSet.getString("OBSERVACOES"),
-                                    resultSet.getString("SEXO"),
+                                    Gender.value(resultSet.getString("SEXO")),
                                     resultSet.getBoolean("CLIENTE_PACOTE"),
                                     new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                                     new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
@@ -158,7 +159,7 @@ public class MySQLPetDAO implements PetDAO {
                             LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                             resultSet.getBoolean("CASTRADO"),
                             resultSet.getString("OBSERVACOES"),
-                            resultSet.getString("SEXO"),
+                            Gender.value(resultSet.getString("SEXO")),
                             resultSet.getBoolean("CLIENTE_PACOTE"),
                             new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                             new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
@@ -202,7 +203,7 @@ public class MySQLPetDAO implements PetDAO {
             preparedStatement.setString(index++, pet.getRegister().format(formatter));
             preparedStatement.setBoolean(index++, pet.isCastrated());
             preparedStatement.setString(index++, pet.getComments());
-            preparedStatement.setString(index++, pet.getGender());
+            preparedStatement.setString(index++, pet.getGender().toString());
             preparedStatement.setLong(index++, pet.getUser().getId());
             preparedStatement.setBoolean(index++, pet.isClientPacket());
             preparedStatement.setLong(index++, pet.getOwner() != null && pet.getOwner().getId() > 0 ? pet.getOwner().getId() : 0);

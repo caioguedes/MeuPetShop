@@ -51,7 +51,7 @@ public class PetValidator implements Validator<Pet> {
             errors.put("pet_register", "O campo Cadastro do pet é de preenchimento obrigatório.");
         }
 
-        if (pet.getGender() == null || pet.getGender().trim().isEmpty()) {
+        if (pet.getGender() == null) {
             errors.put("pet_gender", "O campo Sexo do pet é de preenchimento obrigatório.");
         }
 

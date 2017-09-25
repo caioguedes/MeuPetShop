@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
+import br.com.ricardosander.meupetshop.Gender;
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
@@ -33,6 +34,8 @@ public class PetRegister extends HttpServlet {
         }
 
         req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        req.setAttribute("M", Gender.M);
+        req.setAttribute("F", Gender.F);
 
         user.getFlashMessages().forEach(req::setAttribute);
 
@@ -120,7 +123,7 @@ public class PetRegister extends HttpServlet {
                 register,
                 castrated,
                 comments,
-                gender,
+                Gender.value(gender),
                 clientPacket,
                 user
         );

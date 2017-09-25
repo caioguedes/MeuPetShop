@@ -157,15 +157,15 @@
         <div class="col-sm-10">
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" id="genderM" value="m"
-                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == "m"}'>checked="checked"</c:if>
+                    <input type="radio" name="gender" id="genderM" value="${M}"
+                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == M}'>checked="checked"</c:if>
                     />Macho
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" id="genderF" value="f"
-                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == "f"}'>checked="checked"</c:if>
+                    <input type="radio" name="gender" id="genderF" value="${F}"
+                           <c:if test='${not empty pet && not empty pet.gender && pet.gender == F}'>checked="checked"</c:if>
                     />Fêmea
                 </label>
             </div>

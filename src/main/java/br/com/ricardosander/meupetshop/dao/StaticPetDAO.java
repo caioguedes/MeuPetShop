@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.Gender;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
@@ -35,7 +36,7 @@ public class StaticPetDAO implements PetDAO {
                 LocalDate.of(2015, 1, 10),
                 true,
                 "Meu gato amado",
-                "Macho",
+                Gender.M,
                 false,
                 new User(1, "rcksander@gmail.com", ""),
                 new Owner(1, "Ricardo Sander Lopes")
@@ -54,7 +55,7 @@ public class StaticPetDAO implements PetDAO {
                 LocalDate.of(2015, 10, 1),
                 false,
                 null,
-                "Macho",
+                Gender.M,
                 false,
                 new User(1, "rcksander@gmail.com", ""),
                 new Owner(2, "Scarlet Nedel")
