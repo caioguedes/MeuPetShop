@@ -1,7 +1,5 @@
 package br.com.ricardosander.meupetshop.model;
 
-import br.com.ricardosander.meupetshop.Gender;
-
 import java.time.LocalDate;
 
 /**

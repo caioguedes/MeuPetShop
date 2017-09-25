@@ -1,10 +1,10 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.Gender;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
+import br.com.ricardosander.meupetshop.model.Gender;
 
 import java.beans.PropertyVetoException;
 import java.sql.*;

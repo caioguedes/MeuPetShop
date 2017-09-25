@@ -1,4 +1,4 @@
-package br.com.ricardosander.meupetshop;
+package br.com.ricardosander.meupetshop.model;
 
 /**
  * Define os gêneros.

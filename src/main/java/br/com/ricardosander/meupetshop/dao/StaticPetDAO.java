@@ -1,14 +1,13 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.Gender;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
+import br.com.ricardosander.meupetshop.model.Gender;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
