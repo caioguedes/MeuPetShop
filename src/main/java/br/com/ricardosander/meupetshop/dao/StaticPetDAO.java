@@ -1,9 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.model.Owner;
-import br.com.ricardosander.meupetshop.model.Pet;
-import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.model.Gender;
+import br.com.ricardosander.meupetshop.model.*;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -29,7 +26,7 @@ public class StaticPetDAO implements PetDAO {
                 "SRD",
                 "Branco e Preto",
                 "Longa",
-                "Grande",
+                PetSize.Grande,
                 12.4,
                 LocalDate.of(2014, 11, 20),
                 LocalDate.of(2015, 1, 10),
@@ -48,7 +45,7 @@ public class StaticPetDAO implements PetDAO {
                 "Pincher",
                 "Marrom",
                 "Curto",
-                "Pequeno",
+                PetSize.Pequeno,
                 3.4,
                 LocalDate.of(2010, 5, 2),
                 LocalDate.of(2015, 10, 1),

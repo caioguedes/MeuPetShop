@@ -1,10 +1,7 @@
 package br.com.ricardosander.meupetshop.dao;
 
 import br.com.ricardosander.meupetshop.database.Database;
-import br.com.ricardosander.meupetshop.model.Owner;
-import br.com.ricardosander.meupetshop.model.Pet;
-import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.model.Gender;
+import br.com.ricardosander.meupetshop.model.*;
 
 import java.beans.PropertyVetoException;
 import java.sql.*;
@@ -23,6 +20,8 @@ public class MySQLPetDAO implements PetDAO {
 
         LinkedList<Pet> pets = new LinkedList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        PetSize petSize;
+        Gender gender;
 
         StringBuilder sqlBuilder = new StringBuilder();
 
@@ -66,6 +65,18 @@ public class MySQLPetDAO implements PetDAO {
                 ResultSet resultSet = preparedStatement.getResultSet();
                 while (resultSet.next()) {
 
+                    try {
+                        petSize = PetSize.valueOf(resultSet.getString("PORTE"));
+                    } catch (Exception exception) {
+                        petSize = null;
+                    }
+
+                    try {
+                        gender = Gender.valueOf(resultSet.getString("SEXO").toUpperCase());
+                    } catch (Exception exception) {
+                        gender = null;
+                    }
+
                     pets.add(
                             new Pet(
                                     resultSet.getLong("ID"),
@@ -74,13 +85,13 @@ public class MySQLPetDAO implements PetDAO {
                                     resultSet.getString("RACA"),
                                     resultSet.getString("PELO"),
                                     resultSet.getString("PELAGEM"),
-                                    resultSet.getString("PORTE"),
+                                    petSize,
                                     resultSet.getDouble("PESO"),
                                     LocalDate.parse(resultSet.getString("NASCIMENTO"), dateTimeFormatter),
                                     LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                                     resultSet.getBoolean("CASTRADO"),
                                     resultSet.getString("OBSERVACOES"),
-                                    Enum.valueOf(Gender.class, resultSet.getString("SEXO").toUpperCase()),
+                                    gender,
                                     resultSet.getBoolean("CLIENTE_PACOTE"),
                                     new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                                     new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
@@ -101,6 +112,8 @@ public class MySQLPetDAO implements PetDAO {
     @Override
     public Pet find(User user, long id) {
 
+        PetSize petSize;
+        Gender gender;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         StringBuilder sqlBuilder = new StringBuilder();
@@ -146,6 +159,18 @@ public class MySQLPetDAO implements PetDAO {
                 ResultSet resultSet = preparedStatement.getResultSet();
                 if (resultSet.next()) {
 
+                    try {
+                        petSize = PetSize.valueOf(resultSet.getString("PORTE"));
+                    } catch (Exception exception) {
+                        petSize = null;
+                    }
+
+                    try {
+                        gender = Gender.valueOf(resultSet.getString("SEXO").toUpperCase());
+                    } catch (Exception exception) {
+                        gender = null;
+                    }
+
                     return new Pet(
                             resultSet.getLong("ID"),
                             resultSet.getString("NOME"),
@@ -153,13 +178,13 @@ public class MySQLPetDAO implements PetDAO {
                             resultSet.getString("RACA"),
                             resultSet.getString("PELO"),
                             resultSet.getString("PELAGEM"),
-                            resultSet.getString("PORTE"),
+                            petSize,
                             resultSet.getDouble("PESO"),
                             LocalDate.parse(resultSet.getString("NASCIMENTO"), dateTimeFormatter),
                             LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                             resultSet.getBoolean("CASTRADO"),
                             resultSet.getString("OBSERVACOES"),
-                            Enum.valueOf(Gender.class, resultSet.getString("SEXO").toUpperCase()),
+                            gender,
                             resultSet.getBoolean("CLIENTE_PACOTE"),
                             new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                             new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
@@ -197,7 +222,7 @@ public class MySQLPetDAO implements PetDAO {
             preparedStatement.setString(index++, pet.getBreed());
             preparedStatement.setString(index++, pet.getFur());
             preparedStatement.setString(index++, pet.getPelage());
-            preparedStatement.setString(index++, pet.getSize());
+            preparedStatement.setString(index++, pet.getSize().toString());
             preparedStatement.setDouble(index++, pet.getWeight());
             preparedStatement.setString(index++, pet.getBirth().format(formatter));
             preparedStatement.setString(index++, pet.getRegister().format(formatter));

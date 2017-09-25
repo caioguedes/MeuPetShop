@@ -40,7 +40,7 @@ public class Pet {
     /**
      * Porte
      */
-    private String size;
+    private PetSize size;
 
     /**
      * Peso.
@@ -87,7 +87,7 @@ public class Pet {
      */
     private Owner owner;
 
-    public Pet(long id, String name, String species, String breed, String fur, String pelage, String size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user, Owner owner) {
+    public Pet(long id, String name, String species, String breed, String fur, String pelage, PetSize size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user, Owner owner) {
         this.id = id;
         this.name = name;
         this.species = species;
@@ -106,7 +106,7 @@ public class Pet {
         this.owner = owner;
     }
 
-    public Pet(String name, String species, String breed, String fur, String pelage, String size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user, Owner owner) {
+    public Pet(String name, String species, String breed, String fur, String pelage, PetSize size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user, Owner owner) {
         this.name = name;
         this.species = species;
         this.breed = breed;
@@ -124,7 +124,7 @@ public class Pet {
         this.owner = owner;
     }
 
-    public Pet(String name, String species, String breed, String fur, String pelage, String size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user) {
+    public Pet(String name, String species, String breed, String fur, String pelage, PetSize size, double weight, LocalDate birth, LocalDate register, boolean castrated, String comments, Gender gender, boolean clientPacket, User user) {
         this.name = name;
         this.species = species;
         this.breed = breed;
@@ -165,7 +165,7 @@ public class Pet {
         return pelage;
     }
 
-    public String getSize() {
+    public PetSize getSize() {
         return size;
     }
 

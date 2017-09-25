@@ -35,7 +35,7 @@ public class PetValidator implements Validator<Pet> {
             errors.put("pet_pelage", "O campo Pelagem do pet é de preenchimento obrigatório.");
         }
 
-        if (pet.getSize() == null || pet.getSize().trim().isEmpty()) {
+        if (pet.getSize() == null) {
             errors.put("pet_size", "O campo Porte do pet é de preenchimento obrigatório.");
         }
 

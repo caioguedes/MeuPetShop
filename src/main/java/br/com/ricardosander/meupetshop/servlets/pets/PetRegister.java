@@ -2,10 +2,7 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
-import br.com.ricardosander.meupetshop.model.Gender;
-import br.com.ricardosander.meupetshop.model.Owner;
-import br.com.ricardosander.meupetshop.model.Pet;
-import br.com.ricardosander.meupetshop.model.User;
+import br.com.ricardosander.meupetshop.model.*;
 import br.com.ricardosander.meupetshop.validator.PetValidator;
 import br.com.ricardosander.meupetshop.validator.Validator;
 
@@ -36,6 +33,7 @@ public class PetRegister extends HttpServlet {
         req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         req.setAttribute("M", Gender.M);
         req.setAttribute("F", Gender.F);
+        req.setAttribute("sizes", PetSize.values());
 
         user.getFlashMessages().forEach(req::setAttribute);
 
@@ -52,10 +50,24 @@ public class PetRegister extends HttpServlet {
         String breed = req.getParameter("breed");
         String fur = req.getParameter("fur");
         String pelage = req.getParameter("pelage");
-        String size = req.getParameter("size");
+
+        PetSize size;
+        try {
+            size = PetSize.valueOf(req.getParameter("size"));
+        } catch (Exception exception) {
+            size = null;
+        }
+
         String weightString = req.getParameter("weight");
         String comments = req.getParameter("comments");
-        String gender = req.getParameter("gender");
+
+        Gender gender;
+        try {
+            gender = Gender.valueOf(req.getParameter("gender"));
+        } catch (Exception exception) {
+            gender = null;
+        }
+
         String registerString = req.getParameter("register");
         String birthString = req.getParameter("birth");
         String castratedString = req.getParameter("castrated");
@@ -123,7 +135,7 @@ public class PetRegister extends HttpServlet {
                 register,
                 castrated,
                 comments,
-                gender != null ? Enum.valueOf(Gender.class, gender.toUpperCase()) : null,
+                gender,
                 clientPacket,
                 user
         );
