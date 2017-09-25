@@ -123,7 +123,7 @@ public class PetRegister extends HttpServlet {
                 register,
                 castrated,
                 comments,
-                Gender.value(gender),
+                gender != null ? Enum.valueOf(Gender.class, gender.toUpperCase()) : null,
                 clientPacket,
                 user
         );

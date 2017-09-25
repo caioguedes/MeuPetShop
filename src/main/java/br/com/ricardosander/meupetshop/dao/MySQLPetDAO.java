@@ -80,7 +80,7 @@ public class MySQLPetDAO implements PetDAO {
                                     LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                                     resultSet.getBoolean("CASTRADO"),
                                     resultSet.getString("OBSERVACOES"),
-                                    Gender.value(resultSet.getString("SEXO")),
+                                    Enum.valueOf(Gender.class, resultSet.getString("SEXO").toUpperCase()),
                                     resultSet.getBoolean("CLIENTE_PACOTE"),
                                     new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                                     new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
@@ -159,7 +159,7 @@ public class MySQLPetDAO implements PetDAO {
                             LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
                             resultSet.getBoolean("CASTRADO"),
                             resultSet.getString("OBSERVACOES"),
-                            Gender.value(resultSet.getString("SEXO")),
+                            Enum.valueOf(Gender.class, resultSet.getString("SEXO").toUpperCase()),
                             resultSet.getBoolean("CLIENTE_PACOTE"),
                             new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
                             new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
