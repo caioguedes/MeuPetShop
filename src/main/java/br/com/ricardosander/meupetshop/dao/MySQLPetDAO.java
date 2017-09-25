@@ -197,7 +197,7 @@ public class MySQLPetDAO implements PetDAO {
             preparedStatement.setString(index++, pet.getBreed());
             preparedStatement.setString(index++, pet.getFur());
             preparedStatement.setString(index++, pet.getPelage());
-            preparedStatement.setString(index++, pet.getMien());
+            preparedStatement.setString(index++, pet.getSize());
             preparedStatement.setDouble(index++, pet.getWeight());
             preparedStatement.setString(index++, pet.getBirth().format(formatter));
             preparedStatement.setString(index++, pet.getRegister().format(formatter));

@@ -52,7 +52,7 @@ public class PetRegister extends HttpServlet {
         String breed = req.getParameter("breed");
         String fur = req.getParameter("fur");
         String pelage = req.getParameter("pelage");
-        String mien = req.getParameter("mien");
+        String size = req.getParameter("size");
         String weightString = req.getParameter("weight");
         String comments = req.getParameter("comments");
         String gender = req.getParameter("gender");
@@ -117,7 +117,7 @@ public class PetRegister extends HttpServlet {
                 breed,
                 fur,
                 pelage,
-                mien,
+                size,
                 weight,
                 birth,
                 register,

@@ -93,14 +93,14 @@
 
     <!-- Porte -->
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="mien">Porte</label>
+        <label class="col-sm-2 col-form-label" for="size">Porte</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="mien" name="mien" placeholder="Qual o porte do bichinho?"
-                   value='<c:if test="${not empty pet && not empty pet.mien}">${pet.mien}</c:if>' />
+            <input type="text" class="form-control" id="size" name="size" placeholder="Qual o porte do bichinho?"
+                   value='<c:if test="${not empty pet && not empty pet.size}">${pet.size}</c:if>' />
 
-            <c:if test="${not empty pet_mien}">
+            <c:if test="${not empty pet_size}">
                 <div class="text-danger">
-                    ${pet_mien}
+                    ${pet_size}
                 </div>
             </c:if>
         </div>

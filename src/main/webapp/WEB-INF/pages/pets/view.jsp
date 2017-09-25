@@ -44,7 +44,7 @@
         </tr>
         <tr>
             <td>Porte:</td>
-            <td>${pet.mien}</td>
+            <td>${pet.size}</td>
         </tr>
         <tr>
             <td>Peso:</td>

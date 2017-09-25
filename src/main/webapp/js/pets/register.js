@@ -74,7 +74,7 @@ function validarCadastroAnimal() {
     var oRaca       = document.getElementById("breed");
     var oPelo       = document.getElementById("fur");
     var oPelagem    = document.getElementById("pelage");
-    var oPorte      = document.getElementById("mien");
+    var oPorte      = document.getElementById("size");
     var oPeso       = document.getElementById("weight");
     var oNascimento = document.getElementById("birth");
     var oCadastro   = document.getElementById("register");
