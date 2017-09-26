@@ -89,4 +89,5 @@ public class StaticPetDAO implements PetDAO {
         return false;
     }
 
+    public boolean update(Pet pet) { return true; }
 }

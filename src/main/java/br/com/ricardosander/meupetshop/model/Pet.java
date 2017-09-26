@@ -208,4 +208,64 @@ public class Pet {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setFur(String fur) {
+        this.fur = fur;
+    }
+
+    public void setPelage(String pelage) {
+        this.pelage = pelage;
+    }
+
+    public void setSize(PetSize size) {
+        this.size = size;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
+    public void setRegister(LocalDate register) {
+        this.register = register;
+    }
+
+    public void setCastrated(boolean castrated) {
+        this.castrated = castrated;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setClientPacket(boolean clientPacket) {
+        this.clientPacket = clientPacket;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 }

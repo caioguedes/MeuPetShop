@@ -269,4 +269,57 @@ public class MySQLPetDAO implements PetDAO {
         return false;
     }
 
+
+    public boolean update(Pet pet) {
+
+        String fields = String.join(", ", new String[] {
+            "nome = ?",
+            "especie = ?",
+            "raca = ?",
+            "pelo = ?",
+            "pelagem = ?",
+            "porte = ?",
+            "peso = ?",
+            "nascimento = ?",
+            "cadastro = ?",
+            "castrado = ?",
+            "observacoes = ?",
+            "sexo = ?",
+            "usuario = ?",
+            "cliente_pacote = ?",
+            "cliente = ?"
+        });
+        String update = "update animal set " + fields + " where id = ?";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try (PreparedStatement preparedStatement = new Database().getConnection().prepareStatement(update)) {
+
+            int index = 1;
+            preparedStatement.setString(index++, pet.getName());
+            preparedStatement.setString(index++, pet.getSpecies());
+            preparedStatement.setString(index++, pet.getBreed());
+            preparedStatement.setString(index++, pet.getFur());
+            preparedStatement.setString(index++, pet.getPelage());
+            preparedStatement.setString(index++, pet.getSize().toString());
+            preparedStatement.setDouble(index++, pet.getWeight());
+            preparedStatement.setString(index++, pet.getBirth().format(formatter));
+            preparedStatement.setString(index++, pet.getRegister().format(formatter));
+            preparedStatement.setBoolean(index++, pet.isCastrated());
+            preparedStatement.setString(index++, pet.getComments());
+            preparedStatement.setString(index++, pet.getGender().toString());
+            preparedStatement.setLong(index++, pet.getUser().getId());
+            preparedStatement.setBoolean(index++, pet.isClientPacket());
+            preparedStatement.setLong(index++, pet.getOwner() != null && pet.getOwner().getId() > 0 ? pet.getOwner().getId() : 0);
+            preparedStatement.setLong(index, pet.getId());
+
+            return preparedStatement.executeUpdate() > 0;
+
+        } catch (PropertyVetoException | SQLException e) {
+            System.out.println("Erro ao conectar no banco de dados ou inserir pet.");
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

@@ -2,19 +2,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="pt-BR"/>
+<fmt:setLocale value="pt-BR" />
 
 <c:import url="../_comum/logged_header.jsp"/>
 
 
-<form method="post" action="<c:url value="/pets/register"/>" onsubmit="return validarCadastroAnimal();">
+<form method="post" action="<c:url value="/pets/edit"/>">
 
     <fieldset class="text-center">
-        <legend>Cadastro de Pet</legend>
+        <legend>Alterar Pet</legend>
     </fieldset>
 
-    <input type="hidden" name="owner_id" value=""/>
-    <input type="hidden" name="pet_id" value=""/>
+    <input type="hidden" name="owner_id" value='<c:if test="${not empty owner_id && not empty owner_id}">${owner_id}</c:if>' />
+    <input type="hidden" name="id" value='<c:if test="${not empty pet && not empty pet.id}">${pet.id}</c:if>' />
 
     <!-- Nome -->
     <div class="form-group row">
@@ -247,11 +247,8 @@
 
     <div class="text-center">
         <a href="<c:url value="/pets" />" class="btn btn-default">Voltar</a>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
 </form>
-<c:remove var="pet" scope="session"/>
-
-<script src="<c:url value="/js/pets/register.js"/>" type="text/javascript"></script>
 
 <c:import url="../_comum/footer.jsp"/>
