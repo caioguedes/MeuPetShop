@@ -89,4 +89,16 @@ public class StaticPetDAO implements PetDAO {
         return false;
     }
 
+    @Override
+    public boolean update(Pet pet) {
+
+        for (Pet p: PETS) {
+            if (p.getId() == pet.getId()) {
+                PETS.set(PETS.indexOf(p), pet);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

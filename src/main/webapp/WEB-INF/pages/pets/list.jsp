@@ -49,7 +49,7 @@
                     </td>
                     <td>
                         <a class="btn btn-success" href="<c:url value="/pet?id=${pet.id}"/>">Ver</a>
-                        <a class="btn btn-primary" href="<c:url value="/pet/edit?id=${pet.id}"/>">Editar</a>
+                        <a class="btn btn-primary" href="<c:url value="/pets/edit?id=${pet.id}"/>">Editar</a>
                         <a class="btn btn-danger" href="<c:url value="/pet/remove?id=${pet.id}"/>">Excluir</a>
                     </td>
                 </tr>

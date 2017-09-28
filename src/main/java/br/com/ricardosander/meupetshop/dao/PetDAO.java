@@ -39,4 +39,10 @@ public interface PetDAO {
      */
     boolean remove(Pet pet);
 
+    /**
+     * Atualiza um pet.
+     * @param pet
+     * @return boolean
+     */
+    boolean update(Pet pet);
 }
