@@ -44,7 +44,6 @@ public class PetEdit extends HttpServlet {
         int petId = Integer.parseInt(req.getParameter("id"));
         if (req.getSession().getAttribute("pet") != null) {
             pet = (Pet) req.getSession().getAttribute("pet");
-            req.getSession().removeAttribute("pet");
         } else {
             pet = new PetDAOProvider().newPetDAO().find(user, petId);
         }
