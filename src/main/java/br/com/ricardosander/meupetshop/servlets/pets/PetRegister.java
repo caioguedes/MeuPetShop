@@ -19,8 +19,7 @@ public class PetRegister extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        req.setAttribute("M", Gender.M);
-        req.setAttribute("F", Gender.F);
+        req.setAttribute("genders", Gender.values());
         req.setAttribute("sizes", PetSize.values());
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/register.jsp").forward(req, resp);

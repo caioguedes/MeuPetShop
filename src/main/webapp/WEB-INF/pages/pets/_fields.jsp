@@ -151,20 +151,14 @@
 <div class="form-group row">
     <label class="col-sm-2 col-form-label" for="gender">Sexo</label>
     <div class="col-sm-10">
-        <div class="radio">
-            <label>
-                <input type="radio" name="gender" id="genderM" value="${M}"
-                       <c:if test='${not empty pet && not empty pet.gender && pet.gender == M}'>checked="checked"</c:if>
-                />Macho
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input type="radio" name="gender" id="genderF" value="${F}"
-                       <c:if test='${not empty pet && not empty pet.gender && pet.gender == F}'>checked="checked"</c:if>
-                />Fêmea
-            </label>
-        </div>
+        <select class="form-control" id="gender" name="gender">
+            <option value="">Selecione</option>
+            <c:forEach items="${genders}" var="gender">
+                <option value="${gender}"
+                        <c:if test="${not empty pet && pet.gender == gender}">selected="selected"</c:if>
+                >${gender.name}</option>
+            </c:forEach>
+        </select>
         <c:if test="${not empty pet_gender}">
             <div class="text-danger">
                     ${pet_gender}

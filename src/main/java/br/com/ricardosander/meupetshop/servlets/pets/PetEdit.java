@@ -55,8 +55,7 @@ public class PetEdit extends HttpServlet {
 
         req.setAttribute("pet", pet);
         req.setAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        req.setAttribute("M", Gender.M);
-        req.setAttribute("F", Gender.F);
+        req.setAttribute("genders", Gender.values());
         req.setAttribute("sizes", PetSize.values());
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/edit.jsp").forward(req, resp);
