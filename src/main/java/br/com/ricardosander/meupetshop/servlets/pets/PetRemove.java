@@ -67,7 +67,10 @@ public class PetRemove extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
         } catch (Exception exception) {
-            req.getSession().setAttribute("message", "Pet não informado.");
+
+            FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+            flashMessage.add("message", "Pet não informado.");
+
             resp.sendRedirect("/pets");
             return;
         }
