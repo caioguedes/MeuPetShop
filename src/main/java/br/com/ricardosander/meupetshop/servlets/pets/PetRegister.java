@@ -33,12 +33,17 @@ public class PetRegister extends HttpServlet {
 
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         if (!petDAO.insert(pet)) {
-            req.getSession().setAttribute("message", "Houve um erro ao salvar o Pet.");
+
+            FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+            flashMessage.add("message", "Houve um erro ao salvar o Pet.");
+
             resp.sendRedirect("/pets/register");
             return;
         }
 
-        req.getSession().setAttribute("message", "Pet adicionado com sucesso.");
+        FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+        flashMessage.add("message", "Pet adicionado com sucesso.");
+
         resp.sendRedirect("/pet?id=" + pet.getId());
     }
 

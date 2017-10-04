@@ -2,6 +2,7 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
+import br.com.ricardosander.meupetshop.model.FlashMessage;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -26,7 +27,10 @@ public class PetView extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
         } catch (Exception exception) {
-            req.getSession().setAttribute("message", "Pet não informado.");
+
+            FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+            flashMessage.add("message", "Pet não informado.");
+
             resp.sendRedirect("/pets");
             return;
         }
@@ -35,7 +39,10 @@ public class PetView extends HttpServlet {
         Pet pet = petDAO.find(user, id);
 
         if (pet == null) {
-            req.getSession().setAttribute("message", "Pet não encontrado.");
+
+            FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+            flashMessage.add("message", "Pet não encontrado.");
+
             resp.sendRedirect("/pets");
             return;
         }

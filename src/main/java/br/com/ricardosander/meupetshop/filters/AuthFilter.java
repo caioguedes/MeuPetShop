@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.filters;
 
+import br.com.ricardosander.meupetshop.model.FlashMessage;
 import br.com.ricardosander.meupetshop.model.User;
 
 import javax.servlet.*;
@@ -31,8 +32,14 @@ public class AuthFilter implements Filter {
 
         if (loggedUser == null) {
 
+            FlashMessage flashMessage = (FlashMessage) httpServletRequest.getSession().getAttribute("flash_message");
+            if (flashMessage == null) {
+                flashMessage = new FlashMessage();
+                httpServletRequest.getSession().setAttribute("flash_message", flashMessage);
+            }
+            flashMessage.add("message", "Você precisa se logar para ter acesso.");
+
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-            servletRequest.setAttribute("message", "Você precisa se logar para ter acesso.");
             httpServletResponse.sendRedirect("/login");
             return;
         }

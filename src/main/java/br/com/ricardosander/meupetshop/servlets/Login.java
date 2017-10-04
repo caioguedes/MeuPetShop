@@ -2,6 +2,7 @@ package br.com.ricardosander.meupetshop.servlets;
 
 import br.com.ricardosander.meupetshop.dao.UserDAO;
 import br.com.ricardosander.meupetshop.dao.UserDAOProvider;
+import br.com.ricardosander.meupetshop.model.FlashMessage;
 import br.com.ricardosander.meupetshop.model.User;
 import br.com.ricardosander.meupetshop.util.MD5;
 
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
 
 /**
  * Página de login.
@@ -48,7 +48,9 @@ public class Login extends HttpServlet {
         req.getSession().setAttribute("message", "Login inválido.");
         if (user != null) {
             req.getSession().setAttribute("loggedUser", user);
-            req.getSession().setAttribute("message", "Login realizado com sucesso.");
+
+            FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+            flashMessage.add("message", "Login realizado com sucesso!");
         }
 
         resp.sendRedirect("/");
