@@ -75,8 +75,17 @@
 <div class="container">
 <div class="principal">
 <c:if test="${not empty message}">
-    <p class="alert alert-success">
+    <p class="alert alert-info">
             ${message}
     </p>
-    <c:remove var="message" scope="session"/>
+</c:if>
+<c:if test="${not empty message_danger}">
+    <p class="alert alert-danger">
+            ${message_danger}
+    </p>
+</c:if>
+<c:if test="${not empty message_success}">
+    <p class="alert alert-success">
+            ${message_success}
+    </p>
 </c:if>
