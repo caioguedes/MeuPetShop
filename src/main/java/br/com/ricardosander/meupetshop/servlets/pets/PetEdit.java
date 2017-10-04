@@ -3,8 +3,6 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.*;
-import br.com.ricardosander.meupetshop.validator.PetValidator;
-import br.com.ricardosander.meupetshop.validator.Validator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/pets/edit")
 public class PetEdit extends HttpServlet {
