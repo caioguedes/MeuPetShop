@@ -30,7 +30,7 @@ public class PetRemove extends HttpServlet {
         } catch (Exception exception) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não informado.");
+            flashMessage.add("message_danger", "Pet não informado.");
 
             resp.sendRedirect("/pets");
             return;
@@ -42,7 +42,7 @@ public class PetRemove extends HttpServlet {
         if (pet == null) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não encontrado.");
+            flashMessage.add("message_danger", "Pet não encontrado.");
 
             resp.sendRedirect("/pets");
             return;
@@ -69,7 +69,7 @@ public class PetRemove extends HttpServlet {
         } catch (Exception exception) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não informado.");
+            flashMessage.add("message_danger", "Pet não informado.");
 
             resp.sendRedirect("/pets");
             return;
@@ -81,7 +81,7 @@ public class PetRemove extends HttpServlet {
         if (pet == null) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não encontrado.");
+            flashMessage.add("message_danger", "Pet não encontrado.");
 
             resp.sendRedirect("/pets");
             return;
@@ -90,14 +90,14 @@ public class PetRemove extends HttpServlet {
         if (!petDAO.remove(pet)) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Não foi possível remover o pet.");
+            flashMessage.add("message_danger", "Não foi possível remover o pet.");
 
             resp.sendRedirect(previouslyPage);
             return;
         }
 
         FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-        flashMessage.add("message", "Pet removido com sucesso.");
+        flashMessage.add("message_success", "Pet removido com sucesso.");
 
         resp.sendRedirect("/pets");
     }

@@ -29,7 +29,7 @@ public class PetView extends HttpServlet {
         } catch (Exception exception) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não informado.");
+            flashMessage.add("message_danger", "Pet não informado.");
 
             resp.sendRedirect("/pets");
             return;
@@ -41,7 +41,7 @@ public class PetView extends HttpServlet {
         if (pet == null) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Pet não encontrado.");
+            flashMessage.add("message_danger", "Pet não encontrado.");
 
             resp.sendRedirect("/pets");
             return;

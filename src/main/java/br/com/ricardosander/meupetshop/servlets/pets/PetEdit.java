@@ -20,7 +20,7 @@ public class PetEdit extends HttpServlet {
         if (req.getParameter("id") == null || req.getParameter("id").isEmpty()) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Ops, não foi possível encontrar o pet selecionado!");
+            flashMessage.add("message_danger", "Ops, não foi possível encontrar o pet selecionado!");
 
             resp.sendRedirect("/pets");
             return false;
@@ -47,7 +47,7 @@ public class PetEdit extends HttpServlet {
         if (pet == null) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Ops, não foi possível encontrar o pet selecionado!");
+            flashMessage.add("message_danger", "Ops, não foi possível encontrar o pet selecionado!");
 
             resp.sendRedirect("/pets");
             return;
@@ -71,14 +71,14 @@ public class PetEdit extends HttpServlet {
         if (!petDAO.update(pet)) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Houve um erro ao salvar o Pet.");
+            flashMessage.add("message_danger", "Houve um erro ao salvar o Pet.");
 
             resp.sendRedirect(req.getHeader("referer"));
             return;
         }
 
         FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-        flashMessage.add("message", "As informações do pet foram atualizadas!");
+        flashMessage.add("message_success", "As informações do pet foram atualizadas!");
 
         resp.sendRedirect("/pet?id=" + pet.getId());
     }

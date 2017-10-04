@@ -46,11 +46,12 @@ public class Login extends HttpServlet {
         User user = userDAO.find(usuario, senha);
 
         FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-        flashMessage.add("message", "Login inválido.");
 
         if (user != null) {
             req.getSession().setAttribute("loggedUser", user);
-            flashMessage.add("message", "Login realizado com sucesso!");
+            flashMessage.add("message_success", "Login realizado com sucesso!");
+        } else {
+            flashMessage.add("message_danger", "Login inválido.");
         }
 
         resp.sendRedirect("/");

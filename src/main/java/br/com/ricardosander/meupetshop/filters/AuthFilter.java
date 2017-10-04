@@ -37,7 +37,7 @@ public class AuthFilter implements Filter {
                 flashMessage = new FlashMessage();
                 httpServletRequest.getSession().setAttribute("flash_message", flashMessage);
             }
-            flashMessage.add("message", "Você precisa se logar para ter acesso.");
+            flashMessage.add("message_danger", "Você precisa se logar para ter acesso.");
 
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.sendRedirect("/login");

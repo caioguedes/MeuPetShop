@@ -16,7 +16,6 @@
             <div class="text-danger">
                     ${pet_name}
             </div>
-            <c:remove var="pet_name" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -32,7 +31,6 @@
             <div class="text-danger">
                     ${pet_species}
             </div>
-            <c:remove var="pet_species" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -48,7 +46,6 @@
             <div class="text-danger">
                     ${pet_breed}
             </div>
-            <c:remove var="pet_breed" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -64,7 +61,6 @@
             <div class="text-danger">
                     ${pet_fur}
             </div>
-            <c:remove var="pet_fur" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -80,7 +76,6 @@
             <div class="text-danger">
                     ${pet_pelage}
             </div>
-            <c:remove var="pet_pelage" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -101,7 +96,6 @@
             <div class="text-danger">
                     ${pet_size}
             </div>
-            <c:remove var="pet_size" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -118,7 +112,6 @@
             <div class="text-danger">
                     ${pet_weight}
             </div>
-            <c:remove var="pet_weight" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -134,7 +127,6 @@
             <div class="text-danger">
                     ${pet_birth}
             </div>
-            <c:remove var="pet_birth" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -151,7 +143,6 @@
             <div class="text-danger">
                     ${pet_register}
             </div>
-            <c:remove var="pet_register" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -178,7 +169,6 @@
             <div class="text-danger">
                     ${pet_gender}
             </div>
-            <c:remove var="pet_gender" scope="session"/>
         </c:if>
 
     </div>
@@ -195,7 +185,6 @@
             <div class="text-danger">
                     ${pet_comments}
             </div>
-            <c:remove var="pet_comments" scope="session"/>
         </c:if>
     </div>
 </div>
@@ -208,7 +197,6 @@
             <div class="text-danger">
                     ${pet_castrated}
             </div>
-            <c:remove var="pet_castrated" scope="session"/>
         </c:if>
         <div class="checkbox">
             <label>
@@ -223,7 +211,6 @@
             <div class="text-danger">
                     ${pet_cliente_packet}
             </div>
-            <c:remove var="pet_client_packet" scope="session"/>
         </c:if>
         <div class="checkbox">
             <label>

@@ -20,6 +20,5 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
 </form>
-<c:remove var="pet" scope="session"/>
 
 <c:import url="../_comum/footer.jsp"/>

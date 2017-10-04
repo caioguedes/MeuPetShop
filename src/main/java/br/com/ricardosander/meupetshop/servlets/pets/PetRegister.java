@@ -35,14 +35,14 @@ public class PetRegister extends HttpServlet {
         if (!petDAO.insert(pet)) {
 
             FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-            flashMessage.add("message", "Houve um erro ao salvar o Pet.");
+            flashMessage.add("message_danger", "Houve um erro ao salvar o Pet.");
 
             resp.sendRedirect("/pets/register");
             return;
         }
 
         FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
-        flashMessage.add("message", "Pet adicionado com sucesso.");
+        flashMessage.add("message_success", "Pet adicionado com sucesso.");
 
         resp.sendRedirect("/pet?id=" + pet.getId());
     }

@@ -20,7 +20,6 @@
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>
-<c:remove var="pet" scope="session"/>
 
 <script src="<c:url value="/js/pets/register.js"/>" type="text/javascript"></script>
 
