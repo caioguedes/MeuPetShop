@@ -4,6 +4,7 @@
 
 <fmt:setLocale value="pt-BR" />
 
+<c:set var="page_title" scope="request" value="#${pet.id} ${pet.name}" />
 <c:import url="../_comum/logged_header.jsp"/>
 
 <div style="text-align: left; padding-bottom: 10px;" xmlns="http://www.w3.org/1999/html">

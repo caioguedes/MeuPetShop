@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<c:set var="page_title" scope="request" value="Login" />
+
 <c:import url="_comum/not_logged_header.jsp"/>
 
         <fieldset>
