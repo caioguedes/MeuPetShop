@@ -9,3 +9,7 @@ body {
 form {
     text-align: left;
 }
+
+li.dropdown > a {
+    cursor: pointer;
+}
