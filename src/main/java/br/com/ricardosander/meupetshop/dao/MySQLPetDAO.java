@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.criteria.PetCriteria;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.*;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class MySQLPetDAO implements PetDAO {
 
     @Override
-    public List<Pet> find(User user) {
+    public List<Pet> find(User user, PetCriteria petCriteria) {
 
         LinkedList<Pet> pets = new LinkedList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -51,6 +52,14 @@ public class MySQLPetDAO implements PetDAO {
                 .append("   LEFT JOIN cliente C ON C.ID = A.CLIENTE ")
                 .append("   WHERE A.USUARIO = ? ");
 
+        if (petCriteria.getName() != null) {
+            sqlBuilder.append(" AND A.NOME LIKE ? ");
+        }
+
+        if (petCriteria.getLimit() != 0) {
+            sqlBuilder.append(" LIMIT ").append(petCriteria.getLimit()).append(" OFFSET ").append(petCriteria.getOffset());
+        }
+
         String sql = sqlBuilder.toString();
 
         try (
@@ -59,6 +68,10 @@ public class MySQLPetDAO implements PetDAO {
         ) {
 
             preparedStatement.setLong(1, user.getId());
+
+            if (petCriteria.getName() != null) {
+                preparedStatement.setString(2, "%" + petCriteria.getName().replaceAll("\\s+", "%") + "%");
+            }
 
             if (preparedStatement.execute()) {
 
@@ -103,95 +116,6 @@ public class MySQLPetDAO implements PetDAO {
 
         } catch (SQLException | PropertyVetoException e) {
             System.out.println("Erro ao conectar no banco de dados ou realizar query.");
-            e.printStackTrace();
-        }
-
-        return pets;
-    }
-
-    @Override
-    public List<Pet> findByName(User user, String name) {
-
-        List<Pet> pets = new LinkedList<>();
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        PetSize petSize;
-        Gender gender;
-
-        String sql = new StringBuilder()
-                .append("   SELECT ")
-                .append("       A.ID ")
-                .append(" ,     A.NOME ")
-                .append(" ,     A.ESPECIE ")
-                .append(" ,     A.RACA ")
-                .append(" ,     A.PELO ")
-                .append(" ,     A.PELAGEM ")
-                .append(" ,     A.PORTE ")
-                .append(" ,     A.PESO ")
-                .append(" ,     A.NASCIMENTO ")
-                .append(" ,     A.CADASTRO ")
-                .append(" ,     A.CASTRADO ")
-                .append(" ,     A.OBSERVACOES ")
-                .append(" ,     A.SEXO ")
-                .append(" ,     A.CLIENTE_PACOTE ")
-                .append(" ,     A.USUARIO USUARIO_ID ")
-                .append(" ,     A.CLIENTE CLIENTE_ID ")
-                .append(" ,     U.USUARIO ")
-                .append(" ,     U.SENHA ")
-                .append(" ,     C.NOME CLIENTE ")
-                .append("  FROM animal A ")
-                .append("   INNER JOIN usuario U ON U.ID = A.USUARIO ")
-                .append("   LEFT JOIN cliente C ON C.ID = A.CLIENTE ")
-                .append("   WHERE A.USUARIO = ? AND A.NOME LIKE ? ")
-                .toString();
-
-        try (
-                Connection connection = new Database().getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql)
-        ) {
-
-            preparedStatement.setLong(1, user.getId());
-            preparedStatement.setString(2, "%" + name.replaceAll("\\s+", "%") + "%");
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-
-                try {
-                    petSize = PetSize.valueOf(resultSet.getString("PORTE"));
-                } catch (Exception exception) {
-                    petSize = null;
-                }
-
-                try {
-                    gender = Gender.valueOf(resultSet.getString("SEXO").toUpperCase());
-                } catch (Exception exception) {
-                    gender = null;
-                }
-
-                pets.add(
-                        new Pet(
-                                resultSet.getLong("ID"),
-                                resultSet.getString("NOME"),
-                                resultSet.getString("ESPECIE"),
-                                resultSet.getString("RACA"),
-                                resultSet.getString("PELO"),
-                                resultSet.getString("PELAGEM"),
-                                petSize,
-                                resultSet.getDouble("PESO"),
-                                LocalDate.parse(resultSet.getString("NASCIMENTO"), dateTimeFormatter),
-                                LocalDate.parse(resultSet.getString("CADASTRO"), dateTimeFormatter),
-                                resultSet.getBoolean("CASTRADO"),
-                                resultSet.getString("OBSERVACOES"),
-                                gender,
-                                resultSet.getBoolean("CLIENTE_PACOTE"),
-                                new User(resultSet.getLong("USUARIO_ID"), resultSet.getString("USUARIO"), resultSet.getString("SENHA")),
-                                new Owner(resultSet.getLong("CLIENTE_ID"), resultSet.getString("CLIENTE"))
-                        )
-                );
-            }
-
-        } catch (PropertyVetoException | SQLException e) {
-            System.out.println("Erro ao executar query no banco de dados.");
             e.printStackTrace();
         }
 
