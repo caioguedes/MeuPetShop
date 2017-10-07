@@ -50,7 +50,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value="/settings" />" id="click-logout">Configurações</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Sair</a></li>
+                        <li><a href="#" id="#click-logout">Sair</a></li>
                     </ul>
                 </li>
             </ul>
