@@ -17,7 +17,7 @@ public class PetCriteriaBuilder {
     }
 
     public PetCriteriaBuilder offset(int offset) {
-        this.offset = offset;
+        this.offset = offset < 0 ? 0 : offset;
         return this;
     }
 
