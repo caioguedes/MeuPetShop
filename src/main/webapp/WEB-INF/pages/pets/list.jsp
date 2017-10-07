@@ -9,13 +9,12 @@
         <fieldset>
             <legend>Buscar Animais</legend>
             <div class="form-group row">
-                <label class="col-sm-2 form-control-label" for="nomeBusca">Nome:</label>
+                <label class="col-sm-2 form-control-label" for="searchName">Nome:</label>
                 <div class="col-sm-10">
-                    <input type="text" name="nomeBusca" id="nomeBusca" class="form-control form-group"
-                           value="${nameSearched}">
+                    <input type="text" name="searchName" id="searchName" class="form-control form-group"
+                           value="${searchName}">
                 </div>
             </div>
-            <input type="hidden" name="busca" value="1"/>
             <button type="submit" class="btn btn-primary">Buscar</button>
         </fieldset>
     </form>

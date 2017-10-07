@@ -16,6 +16,15 @@ public interface PetDAO {
     List<Pet> find(User user);
 
     /**
+     * Busca os pets pelo nome informado.
+     *
+     * @param user Usuário.
+     * @param name Nome para busca.
+     * @return Lista de pet com o nome informado.
+     */
+    List<Pet> findByName(User user, String name);
+
+    /**
      * Busca um pet pelo seu identificador.
      *
      * @param id Identificador do pet.
@@ -41,6 +50,7 @@ public interface PetDAO {
 
     /**
      * Atualiza um pet.
+     *
      * @param pet
      * @return boolean
      */

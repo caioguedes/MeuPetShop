@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
+import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
@@ -19,8 +20,17 @@ public class PetList extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
+        String searchName = req.getParameter("searchName");
 
-        List<Pet> pets = new PetDAOProvider().newPetDAO().find(loggedUser);
+        List<Pet> pets;
+        PetDAO petDAO = new PetDAOProvider().newPetDAO();
+
+        if (searchName != null) {
+            pets = petDAO.findByName(loggedUser, searchName);
+            req.setAttribute("searchName", searchName);
+        } else {
+            pets = petDAO.find(loggedUser);
+        }
 
         req.setAttribute("pets", pets);
 
