@@ -1,6 +1,7 @@
 package br.com.ricardosander.meupetshop.filters;
 
 import br.com.ricardosander.meupetshop.model.*;
+import br.com.ricardosander.meupetshop.util.FlashMessage;
 import br.com.ricardosander.meupetshop.validator.PetValidator;
 import br.com.ricardosander.meupetshop.validator.Validator;
 
