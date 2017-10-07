@@ -1,0 +1,12 @@
+language: java
+jdk:
+    - oraclejdk8
+    - oraclejdk9
+services:
+    - mysql
+env:
+    - DATABASE_NAME=petshop_test ADMIN_USER=admin@admin.com ADMIN_PASS=21232f297a57a5a743894a0e4a801fc3
+before_install:
+    - mysql -e 'create database $DATABASE_NAME;'
+    - mysql '$DATABASE_NAME' < sql.sql
+    - mysql -e 'use $DATABASE_NAME; update usuario set senha = "$ADMIN_PASS" where id = 1;'
