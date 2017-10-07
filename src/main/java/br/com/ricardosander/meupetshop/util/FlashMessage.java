@@ -1,4 +1,4 @@
-package br.com.ricardosander.meupetshop.model;
+package br.com.ricardosander.meupetshop.util;
 
 import java.util.Collections;
 import java.util.HashMap;

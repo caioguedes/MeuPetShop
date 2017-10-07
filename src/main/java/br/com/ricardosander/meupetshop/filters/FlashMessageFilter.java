@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.filters;
 
-import br.com.ricardosander.meupetshop.model.FlashMessage;
+import br.com.ricardosander.meupetshop.util.FlashMessage;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

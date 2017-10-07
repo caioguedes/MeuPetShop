@@ -2,7 +2,7 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
-import br.com.ricardosander.meupetshop.model.FlashMessage;
+import br.com.ricardosander.meupetshop.util.FlashMessage;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 

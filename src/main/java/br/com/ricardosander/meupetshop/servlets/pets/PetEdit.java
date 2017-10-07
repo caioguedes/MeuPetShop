@@ -3,6 +3,7 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.*;
+import br.com.ricardosander.meupetshop.util.FlashMessage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
