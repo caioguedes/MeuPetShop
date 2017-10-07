@@ -1,7 +1,7 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
-import br.com.ricardosander.meupetshop.dao.PetDAO;
-import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
+import br.com.ricardosander.meupetshop.criteria.PetCriteriaBuilder;
+import br.com.ricardosander.meupetshop.dao.MySQLPetDAO;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -22,15 +22,25 @@ public class PetList extends HttpServlet {
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
         String searchName = req.getParameter("searchName");
 
-        List<Pet> pets;
-        PetDAO petDAO = new PetDAOProvider().newPetDAO();
-
-        if (searchName != null) {
-            pets = petDAO.findByName(loggedUser, searchName);
-            req.setAttribute("searchName", searchName);
-        } else {
-            pets = petDAO.find(loggedUser);
+        int page;
+        try {
+            page = Integer.parseInt(req.getParameter("page"));
+        } catch (Exception exception) {
+            page = 1;
         }
+
+        PetCriteriaBuilder petCriteriaBuilder = new PetCriteriaBuilder();
+        if (searchName != null) {
+            petCriteriaBuilder.name(searchName);
+            req.setAttribute("searchName", searchName);
+        }
+
+        int perPage = 20;
+        petCriteriaBuilder
+                .limit(perPage)
+                .offset(--page * perPage);
+
+        List<Pet> pets = new MySQLPetDAO().find(loggedUser, petCriteriaBuilder.build());
 
         req.setAttribute("pets", pets);
 
