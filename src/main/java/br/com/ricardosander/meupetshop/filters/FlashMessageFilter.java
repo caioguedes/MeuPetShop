@@ -23,11 +23,14 @@ public class FlashMessageFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-        FlashMessage flashMessage = (FlashMessage) request.getSession().getAttribute("flash_message");
+        Object flashObject = request.getSession().getAttribute("flash_message");
+        FlashMessage flashMessage;
 
-        if (flashMessage == null) {
+        if (flashObject == null) {
             flashMessage = new FlashMessage();
             request.setAttribute("flash_message", flashMessage);
+        } else {
+            flashMessage = (FlashMessage) flashObject;
         }
 
         (flashMessage.getMessages()).forEach((messageName, messageValue) -> {
