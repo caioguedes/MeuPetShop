@@ -4,6 +4,7 @@
 
 <fmt:setLocale value="pt-BR"/>
 
+<c:set var="page_title" scope="request" value="Cadastrar Pet" />
 <c:import url="../_comum/logged_header.jsp"/>
 
 

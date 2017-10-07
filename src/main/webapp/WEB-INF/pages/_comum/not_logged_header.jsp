@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login - MeuPetShop</title>
+    <title><c:if test="${not empty page_title}">${page_title} | </c:if>MeuPetShop</title>
     <link type="text/css" href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet"/>
     <link type="text/css" href="<c:url value="/css/bootstrap-submenu.css"/>" rel="stylesheet"/>
     <link type="text/css" href="<c:url value="/css/bootstrap-theme.css"/>" rel="stylesheet"/>
