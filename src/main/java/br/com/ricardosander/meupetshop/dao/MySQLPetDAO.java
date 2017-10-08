@@ -17,6 +17,53 @@ import java.util.List;
 public class MySQLPetDAO implements PetDAO {
 
     @Override
+    public int count(User user, PetCriteria petCriteria) {
+
+        int total = 0;
+
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        sqlBuilder
+                .append("   SELECT ")
+                .append("       COUNT(1) AS TOTAL ")
+                .append("  FROM animal A ")
+                .append("   WHERE A.USUARIO = ? ");
+
+        if (petCriteria.getName() != null) {
+            sqlBuilder.append(" AND A.NOME LIKE ? ");
+        }
+
+        String sql = sqlBuilder.toString();
+
+        try (
+                Connection connection = new Database().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+        ) {
+
+            preparedStatement.setLong(1, user.getId());
+
+            if (petCriteria.getName() != null) {
+                preparedStatement.setString(2, "%" + petCriteria.getName().replaceAll("\\s+", "%") + "%");
+            }
+
+            if (preparedStatement.execute()) {
+
+                ResultSet resultSet = preparedStatement.getResultSet();
+                if (resultSet.next()) {
+                    return resultSet.getInt("TOTAL");
+                }
+
+            }
+
+        } catch (SQLException | PropertyVetoException e) {
+            System.out.println("Erro ao conectar no banco de dados ou realizar query.");
+            e.printStackTrace();
+        }
+
+        return total;
+    }
+
+    @Override
     public List<Pet> find(User user, PetCriteria petCriteria) {
 
         LinkedList<Pet> pets = new LinkedList<>();

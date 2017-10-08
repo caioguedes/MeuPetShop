@@ -9,6 +9,15 @@ import java.util.List;
 public interface PetDAO {
 
     /**
+     * Conta a quantidade total de registro para o filtro informado.
+     *
+     * @param user        Usuário do cadastro do pet.
+     * @param petCriteria Critéro de busca.
+     * @return Total de resultados.
+     */
+    int count(User user, PetCriteria petCriteria);
+
+    /**
      * Busca os pets do usuário.
      *
      * @param user        Usuário do cadastro do pet.
