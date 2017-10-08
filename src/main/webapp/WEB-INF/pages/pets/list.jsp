@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:set var="page_title" scope="request" value="Lista de Pets" />
+<c:set var="page_title" scope="request" value="Lista de Pets"/>
 <c:import url="../_comum/logged_header.jsp"/>
 
 <div class="col-lg-4">
@@ -60,7 +60,9 @@
     <c:if test="${pets.size() < 1}">
         <p class="text-info">Nenhum animal encontrado!</p>
     </c:if>
-    <a class="btn btn-primary" href="<c:url value="/pets"/>">Voltar a lista completa</a>
+
+    <c:set var="paginationUrl" scope="request" value="/pets"/>
+    <c:import url="../_comum/_pagination.jsp"/>
 </div>
 
 <c:import url="../_comum/footer.jsp"/>
