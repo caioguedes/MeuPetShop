@@ -84,17 +84,27 @@ public class Paginator {
         if (currentPage < 3) {
             return 1;
         }
+
+        if (currentPage > (this.getLastPage() - 2)) {
+            return currentPage - 2 - (currentPage - (this.getLastPage() - 2));
+        }
+
         return currentPage - 2;
     }
 
     /**
-     * @return ùltima página na listagem.
+     * @return Última página na listagem.
      */
     public int getLastListedPage() {
 
         if (currentPage > (this.getLastPage() - 2)) {
             return this.getLastPage();
         }
+
+        if (currentPage < 3) {
+            return currentPage + 2 + (3 - currentPage);
+        }
+
         return currentPage + 2;
     }
 
@@ -158,5 +168,29 @@ public class Paginator {
      */
     public int getOffSet() {
         return (currentPage - 1) * registersPerPage;
+    }
+
+    /**
+     * @return Página anterior da listagem.
+     */
+    public int getPreviousPage() {
+
+        if (currentPage > this.getFirstPage()) {
+            return currentPage - 1;
+        }
+
+        return this.getFirstPage();
+    }
+
+    /**
+     * @return Pŕoxima página da listagem.
+     */
+    public int getNextPage() {
+
+        if (currentPage < this.getLastPage()) {
+            return currentPage + 1;
+        }
+
+        return this.getLastPage();
     }
 }
