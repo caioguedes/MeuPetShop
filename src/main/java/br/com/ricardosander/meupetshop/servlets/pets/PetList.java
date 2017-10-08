@@ -2,8 +2,11 @@ package br.com.ricardosander.meupetshop.servlets.pets;
 
 import br.com.ricardosander.meupetshop.criteria.PetCriteriaBuilder;
 import br.com.ricardosander.meupetshop.dao.MySQLPetDAO;
+import br.com.ricardosander.meupetshop.dao.PetDAO;
+import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
+import br.com.ricardosander.meupetshop.util.Paginator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,14 +38,19 @@ public class PetList extends HttpServlet {
             req.setAttribute("searchName", searchName);
         }
 
-        int perPage = 20;
+        PetDAO petDAO = new PetDAOProvider().newPetDAO();
+        int totalRegister = petDAO.count(loggedUser, petCriteriaBuilder.build());
+
+        Paginator paginator = new Paginator(page, totalRegister);
+
         petCriteriaBuilder
-                .limit(perPage)
-                .offset(--page * perPage);
+                .limit(paginator.getRegistersPerPage())
+                .offset(paginator.getOffSet());
 
         List<Pet> pets = new MySQLPetDAO().find(loggedUser, petCriteriaBuilder.build());
 
         req.setAttribute("pets", pets);
+        req.setAttribute("paginator", paginator);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/list.jsp").forward(req, resp);
     }
