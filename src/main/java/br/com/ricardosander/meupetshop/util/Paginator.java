@@ -153,4 +153,10 @@ public class Paginator {
         return totalRegister < 0 ? 0 : totalRegister;
     }
 
+    /**
+     * @return Offset, ou seja, deslocador.
+     */
+    public int getOffSet() {
+        return (currentPage - 1) * registersPerPage;
+    }
 }
