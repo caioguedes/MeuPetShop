@@ -56,6 +56,13 @@ public class Paginator {
     }
 
     /**
+     * @return Total de registros por página.
+     */
+    public int getRegistersPerPage() {
+        return registersPerPage;
+    }
+
+    /**
      * @return Página atual.
      */
     public int getCurrentPage() {
