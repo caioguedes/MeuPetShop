@@ -5,18 +5,23 @@
     <p class='text-info'>Página ${paginator.currentPage}/${paginator.pages}</p>
 
     <ul class='pagination'>
-        <li><a href="<c:url value="${paginationUrl}?page=${paginator.firstPage}"/>"><<</a></li>
-        <li><a href="<c:url value="${paginationUrl}?page=${paginator.previousPage}"/>"><</a></li>
+        <li class="${(paginator.currentPage == paginator.firstPage) ? 'disabled' : ''}">
+            <a href="<c:url value="${paginationUrl}?page=${paginator.firstPage}"/>"><<</a>
+        </li>
+        <li class="${(paginator.currentPage == paginator.previousPage) ? 'disabled' : ''}">
+            <a href="<c:url value="${paginationUrl}?page=${paginator.previousPage}"/>"><</a>
+        </li>
         <c:forEach var="page" begin="${paginator.firstListedPage}" end="${paginator.lastListedPage}">
-            <li
-                    <c:if test="${page == paginator.currentPage}">
-                        class='active'
-                    </c:if>
-
-            ><a href="<c:url value="${paginationUrl}?page=${page}"/>">${page}</a></li>
+            <li class="${page == paginator.currentPage ? 'active' : ''}">
+                <a href="<c:url value="${paginationUrl}?page=${page}"/>">${page}</a>
+            </li>
         </c:forEach>
-        <li><a href="<c:url value="${paginationUrl}?page=${paginator.nextPage}"/>">></a></li>
-        <li><a href="<c:url value="${paginationUrl}?page=${paginator.lastPage}"/>">>></a></li>
+        <li class="${(paginator.currentPage == paginator.nextPage) ? 'disabled' : ''}">
+            <a href="<c:url value="${paginationUrl}?page=${paginator.nextPage}"/>">></a>
+        </li>
+        <li class="${(paginator.currentPage == paginator.lastPage) ? 'disabled' : ''}">
+            <a href="<c:url value="${paginationUrl}?page=${paginator.lastPage}"/>">>></a>
+        </li>
     </ul>
     <br>(${paginator.totalRegister} resultados)<br><br>
 </c:if>
