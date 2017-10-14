@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Filtro para colocar todos flash messages da requisição anterior na requisição atual.
  */
-@WebFilter(urlPatterns = "/*")
+@WebFilter(filterName = "flashMessageFilter")
 public class FlashMessageFilter implements Filter {
 
     @Override
