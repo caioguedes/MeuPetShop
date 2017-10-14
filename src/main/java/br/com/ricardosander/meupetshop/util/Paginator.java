@@ -86,7 +86,12 @@ public class Paginator {
         }
 
         if (currentPage > (this.getLastPage() - 2)) {
-            return currentPage - 2 - (currentPage - (this.getLastPage() - 2));
+
+            int firstListedPage = currentPage - 2 - (currentPage - (this.getLastPage() - 2));
+            while (firstListedPage < this.getFirstPage()) {
+                firstListedPage++;
+            }
+            return firstListedPage;
         }
 
         return currentPage - 2;
