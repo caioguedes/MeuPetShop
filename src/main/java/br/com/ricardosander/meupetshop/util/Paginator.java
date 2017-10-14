@@ -102,7 +102,12 @@ public class Paginator {
         }
 
         if (currentPage < 3) {
-            return currentPage + 2 + (3 - currentPage);
+            int lastListedPage = currentPage + 2 + (3 - currentPage);
+
+            while (lastListedPage > this.getLastPage()) {
+                lastListedPage--;
+            }
+            return lastListedPage;
         }
 
         return currentPage + 2;
