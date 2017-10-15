@@ -7,6 +7,30 @@ import static org.junit.Assert.*;
 public class PaginatorTest {
 
     @Test
+    public void test0Register() {
+
+        Paginator paginator = new Paginator(1, 0);
+
+        assertEquals(0, paginator.getTotalRegister());
+        assertEquals(20, paginator.getRegistersPerPage());
+
+        assertEquals(1, paginator.getCurrentPage());
+        assertEquals(1, paginator.getPreviousPage());
+        assertEquals(1, paginator.getNextPage());
+
+        assertEquals(1, paginator.getPages());
+
+        assertEquals(1, paginator.getFirstPage());
+        assertEquals(1, paginator.getLastPage());
+
+        assertEquals(1, paginator.getFirstListedPage());
+        assertEquals(1, paginator.getLastListedPage());
+
+        assertEquals(0, paginator.getOffSet());
+
+    }
+
+    @Test
     public void test77RegisterFirstPage() {
 
         Paginator paginator = new Paginator(1, 77);

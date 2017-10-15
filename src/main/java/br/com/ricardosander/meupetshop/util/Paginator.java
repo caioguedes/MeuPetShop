@@ -137,6 +137,10 @@ public class Paginator {
      */
     public int getPages() {
 
+        if (totalRegister == 0)  {
+            return 1;
+        }
+
         if (totalRegister % registersPerPage != 0) {
             return totalRegister / registersPerPage + 1;
         }
