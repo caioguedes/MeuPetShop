@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.criteria.PetCriteria;
+import br.com.ricardosander.meupetshop.criteria.Criteria;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.*;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class MySQLPetDAO implements PetDAO {
 
     @Override
-    public int count(User user, PetCriteria petCriteria) {
+    public int count(User user, Criteria criteria) {
 
         int total = 0;
 
@@ -29,7 +29,7 @@ public class MySQLPetDAO implements PetDAO {
                 .append("  FROM animal A ")
                 .append("   WHERE A.USUARIO = ? ");
 
-        if (petCriteria.getName() != null) {
+        if (criteria.getName() != null) {
             sqlBuilder.append(" AND A.NOME LIKE ? ");
         }
 
@@ -42,8 +42,8 @@ public class MySQLPetDAO implements PetDAO {
 
             preparedStatement.setLong(1, user.getId());
 
-            if (petCriteria.getName() != null) {
-                preparedStatement.setString(2, "%" + petCriteria.getName().replaceAll("\\s+", "%") + "%");
+            if (criteria.getName() != null) {
+                preparedStatement.setString(2, "%" + criteria.getName().replaceAll("\\s+", "%") + "%");
             }
 
             if (preparedStatement.execute()) {
@@ -64,7 +64,7 @@ public class MySQLPetDAO implements PetDAO {
     }
 
     @Override
-    public List<Pet> find(User user, PetCriteria petCriteria) {
+    public List<Pet> find(User user, Criteria criteria) {
 
         LinkedList<Pet> pets = new LinkedList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -99,12 +99,12 @@ public class MySQLPetDAO implements PetDAO {
                 .append("   LEFT JOIN cliente C ON C.ID = A.CLIENTE ")
                 .append("   WHERE A.USUARIO = ? ");
 
-        if (petCriteria.getName() != null) {
+        if (criteria.getName() != null) {
             sqlBuilder.append(" AND A.NOME LIKE ? ");
         }
 
-        if (petCriteria.getLimit() != 0) {
-            sqlBuilder.append(" LIMIT ").append(petCriteria.getLimit()).append(" OFFSET ").append(petCriteria.getOffset());
+        if (criteria.getLimit() != 0) {
+            sqlBuilder.append(" LIMIT ").append(criteria.getLimit()).append(" OFFSET ").append(criteria.getOffset());
         }
 
         String sql = sqlBuilder.toString();
@@ -116,8 +116,8 @@ public class MySQLPetDAO implements PetDAO {
 
             preparedStatement.setLong(1, user.getId());
 
-            if (petCriteria.getName() != null) {
-                preparedStatement.setString(2, "%" + petCriteria.getName().replaceAll("\\s+", "%") + "%");
+            if (criteria.getName() != null) {
+                preparedStatement.setString(2, "%" + criteria.getName().replaceAll("\\s+", "%") + "%");
             }
 
             if (preparedStatement.execute()) {

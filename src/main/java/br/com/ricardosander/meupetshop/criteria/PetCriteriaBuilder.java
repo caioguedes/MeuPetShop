@@ -26,8 +26,8 @@ public class PetCriteriaBuilder {
         return this;
     }
 
-    public PetCriteria build() {
-        return new PetCriteria(limit, offset, name);
+    public Criteria build() {
+        return new Criteria(limit, offset, name);
     }
 
 }

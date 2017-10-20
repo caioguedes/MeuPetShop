@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.criteria.PetCriteria;
+import br.com.ricardosander.meupetshop.criteria.Criteria;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -12,19 +12,19 @@ public interface OwnerDAO {
      * Conta a quantidade total de registro para o filtro informado.
      *
      * @param user        Usuário do cadastro do proprietário.
-     * @param petCriteria Critéro de busca.
+     * @param criteria Critéro de busca.
      * @return Total de resultados.
      */
-    int count(User user, PetCriteria petCriteria);
+    int count(User user, Criteria criteria);
 
     /**
      * Busca os proprietário do usuário.
      *
      * @param user        Usuário do cadastro do proprietário.
-     * @param petCriteria Critério de busca.
+     * @param criteria Critério de busca.
      * @return Lista de proprietários do usuário.
      */
-    List<Owner> find(User user, PetCriteria petCriteria);
+    List<Owner> find(User user, Criteria criteria);
 
     /**
      * Busca um proprietário pelo seu identificador.

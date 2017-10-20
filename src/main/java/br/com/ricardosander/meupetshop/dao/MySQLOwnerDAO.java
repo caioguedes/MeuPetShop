@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.criteria.PetCriteria;
+import br.com.ricardosander.meupetshop.criteria.Criteria;
 import br.com.ricardosander.meupetshop.database.Database;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
@@ -16,7 +16,7 @@ import java.util.List;
 public class MySQLOwnerDAO implements OwnerDAO {
 
     @Override
-    public int count(User user, PetCriteria petCriteria) {
+    public int count(User user, Criteria criteria) {
 
         String sql = new StringBuilder()
                 .append(" SELECT COUNT(1) AS TOTAL ")
@@ -48,7 +48,7 @@ public class MySQLOwnerDAO implements OwnerDAO {
     }
 
     @Override
-    public List<Owner> find(User user, PetCriteria petCriteria) {
+    public List<Owner> find(User user, Criteria criteria) {
 
         List<Owner> owners = new LinkedList<>();
 
@@ -69,7 +69,7 @@ public class MySQLOwnerDAO implements OwnerDAO {
                 .append(" FROM cliente C ")
                 .append(" WHERE C.usuario = ? ");
 
-        if (petCriteria.getLimit() != 0) {
+        if (criteria.getLimit() != 0) {
             sqlBuilder.append(" LIMIT ? OFFSET ? ");
         }
 
@@ -82,9 +82,9 @@ public class MySQLOwnerDAO implements OwnerDAO {
 
             preparedStatement.setLong(1, user.getId());
 
-            if (petCriteria.getLimit() != 0) {
-                preparedStatement.setInt(2, petCriteria.getLimit());
-                preparedStatement.setInt(3, petCriteria.getOffset());
+            if (criteria.getLimit() != 0) {
+                preparedStatement.setInt(2, criteria.getLimit());
+                preparedStatement.setInt(3, criteria.getOffset());
             }
 
             if (preparedStatement.execute()) {

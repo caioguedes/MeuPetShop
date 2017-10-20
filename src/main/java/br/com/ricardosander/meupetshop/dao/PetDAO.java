@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
-import br.com.ricardosander.meupetshop.criteria.PetCriteria;
+import br.com.ricardosander.meupetshop.criteria.Criteria;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
 
@@ -12,19 +12,19 @@ public interface PetDAO {
      * Conta a quantidade total de registro para o filtro informado.
      *
      * @param user        Usuário do cadastro do pet.
-     * @param petCriteria Critéro de busca.
+     * @param criteria Critéro de busca.
      * @return Total de resultados.
      */
-    int count(User user, PetCriteria petCriteria);
+    int count(User user, Criteria criteria);
 
     /**
      * Busca os pets do usuário.
      *
      * @param user        Usuário do cadastro do pet.
-     * @param petCriteria Critério de busca.
+     * @param criteria Critério de busca.
      * @return Lista de pets do usuário.
      */
-    List<Pet> find(User user, PetCriteria petCriteria);
+    List<Pet> find(User user, Criteria criteria);
 
     /**
      * Busca um pet pelo seu identificador.

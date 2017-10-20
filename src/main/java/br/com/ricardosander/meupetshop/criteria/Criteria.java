@@ -1,9 +1,9 @@
 package br.com.ricardosander.meupetshop.criteria;
 
 /**
- * Padrão critéria para buscas de Pet.
+ * Padrão critéria para buscas.
  */
-public class PetCriteria {
+public class Criteria {
 
     /**
      * Limit da busca.
@@ -25,7 +25,7 @@ public class PetCriteria {
      * @param offset Inicio da busca.
      * @param name   Nome do pet para busca.
      */
-    PetCriteria(int limit, int offset, String name) {
+    Criteria(int limit, int offset, String name) {
         this.limit = limit;
         this.offset = offset;
         this.name = name;
