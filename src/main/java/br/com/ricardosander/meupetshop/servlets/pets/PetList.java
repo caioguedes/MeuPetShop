@@ -1,6 +1,6 @@
 package br.com.ricardosander.meupetshop.servlets.pets;
 
-import br.com.ricardosander.meupetshop.criteria.PetCriteriaBuilder;
+import br.com.ricardosander.meupetshop.criteria.CriteriaBuilder;
 import br.com.ricardosander.meupetshop.dao.MySQLPetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
@@ -32,22 +32,22 @@ public class PetList extends HttpServlet {
             page = 1;
         }
 
-        PetCriteriaBuilder petCriteriaBuilder = new PetCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = new CriteriaBuilder();
         if (searchName != null) {
-            petCriteriaBuilder.name(searchName);
+            criteriaBuilder.name(searchName);
             req.setAttribute("searchName", searchName);
         }
 
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
-        int totalRegister = petDAO.count(loggedUser, petCriteriaBuilder.build());
+        int totalRegister = petDAO.count(loggedUser, criteriaBuilder.build());
 
         Paginator paginator = new Paginator(page, totalRegister);
 
-        petCriteriaBuilder
+        criteriaBuilder
                 .limit(paginator.getRegistersPerPage())
                 .offset(paginator.getOffSet());
 
-        List<Pet> pets = new MySQLPetDAO().find(loggedUser, petCriteriaBuilder.build());
+        List<Pet> pets = new MySQLPetDAO().find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("pets", pets);
         req.setAttribute("paginator", paginator);

@@ -1,9 +1,9 @@
 package br.com.ricardosander.meupetshop.criteria;
 
 /**
- * Builder para criteria de pet.
+ * Builder para criteria .
  */
-public class PetCriteriaBuilder {
+public class CriteriaBuilder {
 
     private int limit;
 
@@ -11,17 +11,17 @@ public class PetCriteriaBuilder {
 
     private String name;
 
-    public PetCriteriaBuilder limit(int limit) {
+    public CriteriaBuilder limit(int limit) {
         this.limit = limit;
         return this;
     }
 
-    public PetCriteriaBuilder offset(int offset) {
+    public CriteriaBuilder offset(int offset) {
         this.offset = offset < 0 ? 0 : offset;
         return this;
     }
 
-    public PetCriteriaBuilder name(String name) {
+    public CriteriaBuilder name(String name) {
         this.name = name;
         return this;
     }
