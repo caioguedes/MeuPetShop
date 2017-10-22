@@ -3,7 +3,7 @@ package br.com.ricardosander.meupetshop.model;
 /**
  * Representa um telefone
  */
-public class Telefone {
+public class Phone {
 
     /**
      * DDD do telefone.
@@ -19,7 +19,7 @@ public class Telefone {
      * @param ddd    DDD do telefone.
      * @param number Número do telefone.
      */
-    public Telefone(int ddd, int number) {
+    public Phone(int ddd, int number) {
         this.ddd = ddd;
         this.number = number;
     }
