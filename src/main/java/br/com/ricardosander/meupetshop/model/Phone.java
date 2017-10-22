@@ -8,18 +8,18 @@ public class Phone {
     /**
      * DDD do telefone.
      */
-    private final int ddd;
+    private final String ddd;
 
     /**
      * Número do telefone.
      */
-    private final int number;
+    private final String number;
 
     /**
      * @param ddd    DDD do telefone.
      * @param number Número do telefone.
      */
-    public Phone(int ddd, int number) {
+    public Phone(String ddd, String number) {
         this.ddd = ddd;
         this.number = number;
     }
@@ -27,14 +27,14 @@ public class Phone {
     /**
      * @return DDD do telefone.
      */
-    public int getDdd() {
+    public String getDdd() {
         return ddd;
     }
 
     /**
      * @return Número do telefone.
      */
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
