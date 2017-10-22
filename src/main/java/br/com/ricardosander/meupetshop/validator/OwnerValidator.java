@@ -33,14 +33,14 @@ public class OwnerValidator implements Validator<Owner> {
 
         PhoneValidator phoneValidator = new PhoneValidator();
         if (owner.getPhone() == null) {
-            errors.put("owner_phone", "O campo Telefone do proprietário é de preenchimento obrigatório.");
+            errors.put("owner_phone_number", "O campo Telefone do proprietário é de preenchimento obrigatório.");
         } else {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone());
             if (!errors.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
-                    errors.put("owner_" + entry.getKey().toString(), entry.getValue().toString());
+                    errors.put("owner_phone_" + entry.getKey().toString(), entry.getValue().toString());
                 }
             }
         }
@@ -51,7 +51,7 @@ public class OwnerValidator implements Validator<Owner> {
             if (!errors.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
-                    errors.put("owner_" + entry.getKey().toString() + "2", entry.getValue().toString());
+                    errors.put("owner_phone_" + entry.getKey().toString() + "2", entry.getValue().toString());
                 }
             }
         }
@@ -62,7 +62,7 @@ public class OwnerValidator implements Validator<Owner> {
             if (!errors.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
-                    errors.put("owner_" + entry.getKey().toString() + "3", entry.getValue().toString());
+                    errors.put("owner_phone_" + entry.getKey().toString() + "3", entry.getValue().toString());
                 }
             }
         }
@@ -73,7 +73,7 @@ public class OwnerValidator implements Validator<Owner> {
             if (!errors.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
-                    errors.put("owner_" + entry.getKey().toString() + "4", entry.getValue().toString());
+                    errors.put("owner_phone_" + entry.getKey().toString() + "4", entry.getValue().toString());
                 }
             }
         }
@@ -84,7 +84,7 @@ public class OwnerValidator implements Validator<Owner> {
             if (!errors.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
-                    errors.put("owner_" + entry.getKey().toString() + "5", entry.getValue().toString());
+                    errors.put("owner_phone_" + entry.getKey().toString() + "5", entry.getValue().toString());
                 }
             }
         }
