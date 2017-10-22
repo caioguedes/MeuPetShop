@@ -38,7 +38,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown">Proprietários <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<c:url value="/owner" />">Cadastrar</a></li>
+                        <li><a href="<c:url value="/owner/register" />">Cadastrar</a></li>
                         <li><a href="<c:url value="/owner/list" />">Listar</a></li>
                     </ul>
                 </li>
