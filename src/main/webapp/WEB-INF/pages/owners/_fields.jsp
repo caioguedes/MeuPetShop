@@ -22,15 +22,15 @@
 
 <!-- Nome Secuntário -->
 <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="secundary_name">Nome Secundário</label>
+    <label class="col-sm-2 col-form-label" for="secondary_name">Nome Secundário</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="secundary_name" name="secundary_name"
+        <input type="text" class="form-control" id="secondary_name" name="secondary_name"
                placeholder="Qual o nome do outro proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.secundaryName}">${owner.secundaryName}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.secondaryName}">${owner.secondaryName}</c:if>'/>
 
-        <c:if test="${not empty owner_secundary_name}">
+        <c:if test="${not empty owner_secondary_name}">
             <div class="text-danger">
-                    ${owner_secundary_name}
+                    ${owner_secondary_name}
             </div>
         </c:if>
     </div>
@@ -73,12 +73,12 @@
     <label class="col-sm-2 col-form-label" for="phone">Telefone</label>
     <div class="col-sm-1">
         <input type="text" class="form-control" id="ddd" name="ddd" placeholder="DDD"
-               value="">
+               value='<c:if test="${not empty owner && not empty owner.phone && not empty owner.phone.ddd}">${owner.phone.ddd}</c:if>'>
     </div>
     <div class="col-sm-9">
         <input type="text" class="form-control" id="phone" name="phone"
                placeholder="Qual o telefone do proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.phone}">${owner.phone}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.phone && not empty owner.phone.number}">${owner.phone.number}</c:if>'/>
 
         <c:if test="${not empty owner_phone_ddd}">
             <div class="text-danger">
@@ -98,12 +98,12 @@
     <label class="col-sm-2 col-form-label" for="phone2">Telefone 2</label>
     <div class="col-sm-1">
         <input type="text" class="form-control" id="ddd2" name="ddd2" placeholder="DDD"
-               value="">
+               value='<c:if test="${not empty owner && not empty owner.phone2 && not empty owner.phone2.ddd}">${owner.phone2.ddd}</c:if>'>
     </div>
     <div class="col-sm-9">
         <input type="text" class="form-control" id="phone2" name="phone2"
                placeholder="Qual o segundo telefone do proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.phone2}">${owner.phone2}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.phone2 && not empty owner.phone2.number}">${owner.phone2.number}</c:if>'/>
 
         <c:if test="${not empty owner_phone_ddd2}">
             <div class="text-danger">
@@ -123,12 +123,12 @@
     <label class="col-sm-2 col-form-label" for="phone3">Telefone 3</label>
     <div class="col-sm-1">
         <input type="text" class="form-control" id="ddd3" name="ddd3" placeholder="DDD"
-               value="">
+               value='<c:if test="${not empty owner && not empty owner.phone3 && not empty owner.phone3.ddd}">${owner.phone3.ddd}</c:if>'>
     </div>
     <div class="col-sm-9">
         <input type="text" class="form-control" id="phone3" name="phone3"
                placeholder="Qual o terceiro telefone do proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.phone3}">${owner.phone3}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.phone3 && not empty owner.phone3.number}">${owner.phone3.number}</c:if>'/>
 
         <c:if test="${not empty owner_phone_ddd3}">
             <div class="text-danger">
@@ -148,12 +148,12 @@
     <label class="col-sm-2 col-form-label" for="phone4">Telefone 4</label>
     <div class="col-sm-1">
         <input type="text" class="form-control" id="ddd4" name="ddd4" placeholder="DDD"
-               value="">
+               value='<c:if test="${not empty owner && not empty owner.phone4 && not empty owner.phone4.ddd}">${owner.phone4.ddd}</c:if>'>
     </div>
     <div class="col-sm-9">
         <input type="text" class="form-control" id="phone4" name="phone4"
                placeholder="Qual o quarto telefone do proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.phone4}">${owner.phone4}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.phone4 && not empty owner.phone4.number}">${owner.phone4.number}</c:if>'/>
 
         <c:if test="${not empty owner_phone_ddd4}">
             <div class="text-danger">
@@ -173,12 +173,12 @@
     <label class="col-sm-2 col-form-label" for="phone5">Telefone 5</label>
     <div class="col-sm-1">
         <input type="text" class="form-control" id="ddd5" name="ddd5" placeholder="DDD"
-               value="">
+               value='<c:if test="${not empty owner && not empty owner.phone5 && not empty owner.phone5.ddd}">${owner.phone5.ddd}</c:if>'>
     </div>
     <div class="col-sm-9">
         <input type="text" class="form-control" id="phone5" name="phone5"
                placeholder="Qual o quinto telefone do proprietário?"
-               value='<c:if test="${not empty owner && not empty owner.phone5}">${owner.phone5}</c:if>'/>
+               value='<c:if test="${not empty owner && not empty owner.phone5 && not empty owner.phone5.number}">${owner.phone5.number}</c:if>'/>
 
         <c:if test="${not empty owner_phone_ddd5}">
             <div class="text-danger">
