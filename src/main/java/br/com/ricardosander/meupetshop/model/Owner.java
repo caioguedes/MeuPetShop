@@ -37,27 +37,27 @@ public class Owner {
     /**
      * Telefone para contato.
      */
-    private String phone;
+    private Phone phone;
 
     /**
      * Segundo telefone para contato.
      */
-    private String phone2;
+    private Phone phone2;
 
     /**
      * Terceiro telefone para contato.
      */
-    private String phone3;
+    private Phone phone3;
 
     /**
      * Quarto telefone para contato.
      */
-    private String phone4;
+    private Phone phone4;
 
     /**
      * Quinto telefone para contato.
      */
-    private String phone5;
+    private Phone phone5;
 
     /**
      * Observações sobre o proprietário.
@@ -171,70 +171,70 @@ public class Owner {
     /**
      * @return Telefone para contato.
      */
-    public String getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
     /**
      * @param phone Telefone para contato.
      */
-    public void setPhone(String phone) {
+    public void setPhone(Phone phone) {
         this.phone = phone;
     }
 
     /**
      * @return Segundo telefone para contato.
      */
-    public String getPhone2() {
+    public Phone getPhone2() {
         return phone2;
     }
 
     /**
      * @param phone2 Segundo telefone para contato.
      */
-    public void setPhone2(String phone2) {
+    public void setPhone2(Phone phone2) {
         this.phone2 = phone2;
     }
 
     /**
      * @return Terciário telefone para contato.
      */
-    public String getPhone3() {
+    public Phone getPhone3() {
         return phone3;
     }
 
     /**
      * @param phone3 Terceiro telefone para contato.
      */
-    public void setPhone3(String phone3) {
+    public void setPhone3(Phone phone3) {
         this.phone3 = phone3;
     }
 
     /**
      * @return Quarto telefone para contato.
      */
-    public String getPhone4() {
+    public Phone getPhone4() {
         return phone4;
     }
 
     /**
      * @param phone4 Quarto telefone para contato.
      */
-    public void setPhone4(String phone4) {
+    public void setPhone4(Phone phone4) {
         this.phone4 = phone4;
     }
 
     /**
      * @return Quinto telefone para contato.
      */
-    public String getPhone5() {
+    public Phone getPhone5() {
         return phone5;
     }
 
     /**
      * @param phone5 Quinto telefone para contato.
      */
-    public void setPhone5(String phone5) {
+    public void setPhone5(Phone phone5) {
         this.phone5 = phone5;
     }
 
