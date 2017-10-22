@@ -39,7 +39,7 @@ public class OwnerFilter implements Filter {
         Map<String, Object> errors = new HashMap<>();
 
         String name = request.getParameter("name");
-        String secundaryName = request.getParameter("secundary_name");
+        String secondaryName = request.getParameter("secondary_name");
         String address = request.getParameter("address");
         String district = request.getParameter("district");
 
@@ -55,18 +55,18 @@ public class OwnerFilter implements Filter {
 
             if ((phones.get(index).getDdd() == null || phones.get(index).getDdd().trim().isEmpty())
                     && (phones.get(index).getNumber() == null || phones.get(index).getNumber().trim().isEmpty())) {
-                phones.add(index, null);
+                phones.set(index, null);
             }
         }
 
         String comments = request.getParameter("comments");
-        double deptor = 0.0;
+        double debtor = 0.0;
 
         try {
 
-            String stringDeptor = request.getParameter("deptor");
-            if (stringDeptor != null && !stringDeptor.trim().isEmpty()) {
-                deptor = Double.parseDouble(stringDeptor);
+            String stringDebtor = request.getParameter("debtor");
+            if (stringDebtor != null && !stringDebtor.trim().isEmpty()) {
+                debtor = Double.parseDouble(stringDebtor.replace(",", "."));
             }
         } catch (Exception e) {
             errors.put("owner_debtor", "O campo Valor Devedor deve ser um valor numérico válido ou vazio.");
@@ -76,7 +76,7 @@ public class OwnerFilter implements Filter {
 
         Owner owner = new Owner();
         owner.setName(name);
-        owner.setSecondaryName(secundaryName);
+        owner.setSecondaryName(secondaryName);
         owner.setAddress(address);
         owner.setDistrict(district);
         owner.setPhone(phones.get(0));
@@ -85,11 +85,11 @@ public class OwnerFilter implements Filter {
         owner.setPhone4(phones.get(3));
         owner.setPhone5(phones.get(4));
         owner.setComments(comments);
-        owner.setDebtor(deptor);
+        owner.setDebtor(debtor);
         owner.setUser(user);
 
         Validator validator = new OwnerValidator();
-        errors.putAll(validator.validate(validator));
+        errors.putAll(validator.validate(owner));
 
         if (!errors.isEmpty()) {
 
