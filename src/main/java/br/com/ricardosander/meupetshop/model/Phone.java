@@ -16,6 +16,26 @@ public class Phone {
     private final String number;
 
     /**
+     * @param phone Telefone completo, com DDD e número.
+     */
+    public Phone(String phone) {
+
+        String ddd;
+        String number;
+
+        try {
+            ddd = phone.substring(0, 2);
+            number = phone.substring(2, 9);
+        } catch (Exception e) {
+            ddd = null;
+            number = null;
+        }
+
+        this.ddd = ddd;
+        this.number = number;
+    }
+
+    /**
      * @param ddd    DDD do telefone.
      * @param number Número do telefone.
      */
