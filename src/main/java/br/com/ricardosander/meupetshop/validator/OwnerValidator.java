@@ -19,11 +19,11 @@ public class OwnerValidator implements Validator<Owner> {
             errors.put("owner_name", "O campo Nome do proprietário é de preenchimento obrigatório.");
         }
 
-        if (owner.getSecondaryName() != null || owner.getSecondaryName().trim().isEmpty()) {
+        if (owner.getSecondaryName() != null && owner.getSecondaryName().trim().isEmpty()) {
             owner.setSecondaryName(null);
         }
 
-        if (owner.getAddress() != null || owner.getAddress().trim().isEmpty()) {
+        if (owner.getAddress() != null && owner.getAddress().trim().isEmpty()) {
             owner.setAddress(null);
         }
 
@@ -37,7 +37,7 @@ public class OwnerValidator implements Validator<Owner> {
         } else {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone());
-            if (!errors.isEmpty()) {
+            if (!phoneErros.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
                     errors.put("owner_phone_" + entry.getKey().toString(), entry.getValue().toString());
@@ -48,7 +48,7 @@ public class OwnerValidator implements Validator<Owner> {
         if (owner.getPhone2() != null) {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone2());
-            if (!errors.isEmpty()) {
+            if (!phoneErros.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
                     errors.put("owner_phone_" + entry.getKey().toString() + "2", entry.getValue().toString());
@@ -59,7 +59,7 @@ public class OwnerValidator implements Validator<Owner> {
         if (owner.getPhone3() != null) {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone3());
-            if (!errors.isEmpty()) {
+            if (!phoneErros.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
                     errors.put("owner_phone_" + entry.getKey().toString() + "3", entry.getValue().toString());
@@ -70,7 +70,7 @@ public class OwnerValidator implements Validator<Owner> {
         if (owner.getPhone4() != null) {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone4());
-            if (!errors.isEmpty()) {
+            if (!phoneErros.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
                     errors.put("owner_phone_" + entry.getKey().toString() + "4", entry.getValue().toString());
@@ -81,7 +81,7 @@ public class OwnerValidator implements Validator<Owner> {
         if (owner.getPhone5() != null) {
 
             Map<String, String> phoneErros = phoneValidator.validate(owner.getPhone5());
-            if (!errors.isEmpty()) {
+            if (!phoneErros.isEmpty()) {
 
                 for (Map.Entry entry : phoneErros.entrySet()) {
                     errors.put("owner_phone_" + entry.getKey().toString() + "5", entry.getValue().toString());
