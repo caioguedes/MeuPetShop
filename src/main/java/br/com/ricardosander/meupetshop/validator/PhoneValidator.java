@@ -23,12 +23,12 @@ public class PhoneValidator implements Validator<Phone> {
         }
 
         if (phone.getDdd() == null || phone.getDdd().trim().isEmpty()) {
-            errors.put("phone", "O campo DDD é de preenchimento obrigatório.");
+            errors.put("ddd", "O campo DDD é de preenchimento obrigatório.");
             isDDDEmpty = true;
         }
 
         if (phone.getNumber() == null || phone.getNumber().trim().isEmpty()) {
-            errors.put("phone", "O campo Telefone é de preenchimento obrigatório.");
+            errors.put("number", "O campo Telefone é de preenchimento obrigatório.");
             isNumberEmpty = true;
         }
 
@@ -37,19 +37,19 @@ public class PhoneValidator implements Validator<Phone> {
         }
 
         if (!isDDDEmpty && !phone.getDdd().matches("[0-9]+")) {
-            errors.put("phone", "O campo DDD deve conter apenas valores numéricos.");
+            errors.put("ddd", "O campo DDD deve conter apenas valores numéricos.");
         }
 
         if (!isNumberEmpty && !phone.getNumber().matches("[0-9]+")) {
-            errors.put("phone", "O campo Telefone deve conter apenas valores numéricos.");
+            errors.put("number", "O campo Telefone deve conter apenas valores numéricos.");
         }
 
         if (!isDDDEmpty && phone.getDdd().trim().length() != 2) {
-            errors.put("phone", "O campo DDD deve conter exatamente 2 caracteres.");
+            errors.put("ddd", "O campo DDD deve conter exatamente 2 caracteres.");
         }
 
         if (!isNumberEmpty && phone.getNumber().trim().length() != 9) {
-            errors.put("phone", "O campo Telefone deve conter exatamente 9 caracteres.");
+            errors.put("number", "O campo Telefone deve conter exatamente 9 caracteres.");
         }
 
         return errors;
