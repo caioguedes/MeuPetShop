@@ -38,6 +38,13 @@ public class OwnerFilter implements Filter {
 
         Map<String, Object> errors = new HashMap<>();
 
+        int ownerId = 0;
+        try {
+            ownerId = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+
+        }
+
         String name = request.getParameter("name");
         String secondaryName = request.getParameter("secondary_name");
         String address = request.getParameter("address");
@@ -75,6 +82,7 @@ public class OwnerFilter implements Filter {
         User user = (User) request.getSession().getAttribute("loggedUser");
 
         Owner owner = new Owner();
+        owner.setId(ownerId);
         owner.setName(name);
         owner.setSecondaryName(secondaryName);
         owner.setAddress(address);
