@@ -25,7 +25,7 @@ public class Phone {
 
         try {
             ddd = phone.substring(0, 2);
-            number = phone.substring(2, 9);
+            number = phone.substring(2, 11);
         } catch (Exception e) {
             ddd = null;
             number = null;
