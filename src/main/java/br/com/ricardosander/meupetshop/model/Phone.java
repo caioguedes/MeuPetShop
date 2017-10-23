@@ -60,7 +60,7 @@ public class Phone {
 
     @Override
     public String toString() {
-        return ddd + "-" + number;
+        return "(" + ddd + ")" + "-" + number;
     }
 
 }
