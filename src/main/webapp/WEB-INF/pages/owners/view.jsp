@@ -9,8 +9,8 @@
 
 <div style="text-align: left; padding-bottom: 10px;" xmlns="http://www.w3.org/1999/html">
     <a class="btn btn-default" href="<c:url value="/owner/list"/>">Voltar</a>
-    <a class="btn btn-primary" href="<c:url value="/owner/edit?id=${pet.id}"/>">Editar</a>
-    <a class="btn btn-danger" href="<c:url value="/owner/remove?id=${pet.id}"/>">Excluir</a>
+    <a class="btn btn-primary" href="<c:url value="/owner/edit?id=${owner.id}"/>">Editar</a>
+    <a class="btn btn-danger" href="<c:url value="/owner/remove?id=${owner.id}"/>">Excluir</a>
 </div>
 <div class="col-lg-4">
     <table class="table">
