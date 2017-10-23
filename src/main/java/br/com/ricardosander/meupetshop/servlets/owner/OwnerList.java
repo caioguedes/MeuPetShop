@@ -30,18 +30,25 @@ public class OwnerList extends HttpServlet {
         }
 
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
+        String searchName = req.getParameter("searchName");
+
+        CriteriaBuilder criteriaBuilder = new CriteriaBuilder();
+
+        if (searchName != null) {
+            criteriaBuilder.name(searchName);
+            req.setAttribute("searchName", searchName);
+        }
 
         OwnerDAO ownerDAO = new OwnerDAOProvider().newOwnerDAO();
-        int totalRegister = ownerDAO.count(loggedUser, new CriteriaBuilder().build());
+        int totalRegister = ownerDAO.count(loggedUser, criteriaBuilder.build());
 
         Paginator paginator = new Paginator(page, totalRegister);
 
-        Criteria criteria = new CriteriaBuilder().
+        criteriaBuilder.
                 limit(paginator.getRegistersPerPage())
-                .offset(paginator.getOffSet())
-                .build();
+                .offset(paginator.getOffSet());
 
-        List<Owner> owners = ownerDAO.find(loggedUser, criteria);
+        List<Owner> owners = ownerDAO.find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("owners", owners);
         req.setAttribute("paginator", paginator);

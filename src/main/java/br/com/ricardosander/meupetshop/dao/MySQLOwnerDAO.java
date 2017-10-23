@@ -19,11 +19,16 @@ public class MySQLOwnerDAO implements OwnerDAO {
     @Override
     public int count(User user, Criteria criteria) {
 
-        String sql = new StringBuilder()
+        StringBuilder sqlBuilder = new StringBuilder()
                 .append(" SELECT COUNT(1) AS TOTAL ")
                 .append(" FROM cliente C ")
-                .append(" WHERE C.usuario = ? ")
-                .toString();
+                .append(" WHERE C.usuario = ? ");
+
+        if (criteria.getName() != null) {
+            sqlBuilder.append(" AND (C.NOME LIKE ?) ");
+        }
+
+        String sql = sqlBuilder.toString();
 
         try (
                 Connection connection = new Database().getConnection();
@@ -31,6 +36,10 @@ public class MySQLOwnerDAO implements OwnerDAO {
         ) {
 
             preparedStatement.setLong(1, user.getId());
+
+            if (criteria.getName() != null) {
+                preparedStatement.setString(2, "%" + criteria.getName() + "%");
+            }
 
             if (preparedStatement.execute()) {
 
@@ -70,6 +79,10 @@ public class MySQLOwnerDAO implements OwnerDAO {
                 .append(" FROM cliente C ")
                 .append(" WHERE C.usuario = ? ");
 
+        if (criteria.getName() != null) {
+            sqlBuilder.append(" AND (C.NOME LIKE ?) ");
+        }
+
         if (criteria.getLimit() != 0) {
             sqlBuilder.append(" LIMIT ? OFFSET ? ");
         }
@@ -81,11 +94,16 @@ public class MySQLOwnerDAO implements OwnerDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ) {
 
-            preparedStatement.setLong(1, user.getId());
+            int index = 1;
+            preparedStatement.setLong(index++, user.getId());
+
+            if (criteria.getName() != null) {
+                preparedStatement.setString(index++, "%" + criteria.getName() + "%");
+            }
 
             if (criteria.getLimit() != 0) {
-                preparedStatement.setInt(2, criteria.getLimit());
-                preparedStatement.setInt(3, criteria.getOffset());
+                preparedStatement.setInt(index++, criteria.getLimit());
+                preparedStatement.setInt(index++, criteria.getOffset());
             }
 
             if (preparedStatement.execute()) {
