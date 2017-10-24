@@ -7,6 +7,7 @@ import br.com.ricardosander.meupetshop.dao.OwnerDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
 import br.com.ricardosander.meupetshop.util.Paginator;
+import br.com.ricardosander.meupetshop.util.PaginatorView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +44,7 @@ public class OwnerList extends HttpServlet {
         int totalRegister = ownerDAO.count(loggedUser, criteriaBuilder.build());
 
         Paginator paginator = new Paginator(page, totalRegister);
+        PaginatorView paginatorView = new PaginatorView(paginator, req);
 
         criteriaBuilder.
                 limit(paginator.getRegistersPerPage())
@@ -51,7 +53,7 @@ public class OwnerList extends HttpServlet {
         List<Owner> owners = ownerDAO.find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("owners", owners);
-        req.setAttribute("paginator", paginator);
+        req.setAttribute("paginatorView", paginatorView);
 
         req.getRequestDispatcher("/WEB-INF/pages/owners/list.jsp").forward(req, resp);
     }
