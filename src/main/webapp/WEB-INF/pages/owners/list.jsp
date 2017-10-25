@@ -58,7 +58,6 @@
         <p class="text-info">Nenhum proprietário encontrado!</p>
     </c:if>
 
-    <c:set var="paginationUrl" scope="request" value="/owner/list"/>
     <c:import url="../_comum/_pagination.jsp"/>
 </div>
 

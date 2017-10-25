@@ -61,7 +61,6 @@
         <p class="text-info">Nenhum animal encontrado!</p>
     </c:if>
 
-    <c:set var="paginationUrl" scope="request" value="/pets"/>
     <c:import url="../_comum/_pagination.jsp"/>
 </div>
 

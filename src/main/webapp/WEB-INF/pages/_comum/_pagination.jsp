@@ -26,5 +26,5 @@
         </li>
     </ul>
     <br>(${paginator.total} resultados)<br><br>
+    <a class="btn btn-primary" href="<c:url value="${paginator.getCompleteList()}"/>">Voltar a lista completa</a>
 </c:if>
-<a class="btn btn-primary" href="<c:url value="${paginationUrl}"/>">Voltar a lista completa</a>

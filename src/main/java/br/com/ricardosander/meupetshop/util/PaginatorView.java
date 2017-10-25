@@ -73,6 +73,10 @@ public class PaginatorView {
         return this.getUri() + this.getParameters(page);
     }
 
+    public String getCompleteList() {
+        return this.getUri();
+    }
+
     public int getTotal() {
         return this.paginator.getTotalRegister();
     }
