@@ -6,7 +6,6 @@ import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.util.Paginator;
 import br.com.ricardosander.meupetshop.util.PaginatorView;
 
 import javax.servlet.ServletException;
@@ -26,13 +25,6 @@ public class PetList extends HttpServlet {
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
         String searchName = req.getParameter("searchName");
 
-        int page;
-        try {
-            page = Integer.parseInt(req.getParameter("page"));
-        } catch (Exception exception) {
-            page = 1;
-        }
-
         CriteriaBuilder criteriaBuilder = new CriteriaBuilder();
         if (searchName != null) {
             criteriaBuilder.name(searchName);
@@ -42,17 +34,16 @@ public class PetList extends HttpServlet {
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         int totalRegister = petDAO.count(loggedUser, criteriaBuilder.build());
 
-        Paginator paginatorCalculator = new Paginator(page, totalRegister);
-        PaginatorView paginatorView = new PaginatorView(paginatorCalculator, req);
+        PaginatorView paginatorView = new PaginatorView(req, totalRegister);
 
         criteriaBuilder
-                .limit(paginatorCalculator.getRegistersPerPage())
-                .offset(paginatorCalculator.getOffSet());
+                .limit(paginatorView.getRegistersPerPage())
+                .offset(paginatorView.getOffSet());
 
         List<Pet> pets = new MySQLPetDAO().find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("pets", pets);
-        req.setAttribute("paginatorView", paginatorView);
+        req.setAttribute("paginator", paginatorView);
 
         req.getRequestDispatcher("/WEB-INF/pages/pets/list.jsp").forward(req, resp);
     }

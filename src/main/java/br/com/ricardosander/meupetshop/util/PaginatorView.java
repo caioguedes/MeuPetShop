@@ -20,26 +20,97 @@ public class PaginatorView {
      */
     private final Paginator paginator;
 
+    private String uri;
+
     /**
      * Construtor.
      */
     private final StringBuilder urlParametersBuilder;
 
     /**
-     * @param paginator Paginador.
-     * @param request   Requisição.
+     * @param request        Requisição.
+     * @param totalRegisters Total de registros para serem paginados.
      */
-    public PaginatorView(Paginator paginator, HttpServletRequest request) {
-        this.paginator = paginator;
+    public PaginatorView(HttpServletRequest request, int totalRegisters) {
+
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        } catch (Exception exception) {
+            currentPage = 1;
+        }
+
+        this.paginator = new Paginator(currentPage, totalRegisters);
         this.request = request;
         urlParametersBuilder = new StringBuilder();
     }
 
-    /**
-     * @return Paginador.
-     */
-    public Paginator getPaginator() {
-        return paginator;
+    private String getUri() {
+
+        if (uri == null) {
+            uri = request.getRequestURI();
+        }
+        return uri;
+    }
+
+    public String getFirstPage() {
+        return this.getUri() + this.getParameters(this.paginator.getFirstPage());
+    }
+
+    public String getLastPage() {
+        return this.getUri() + this.getParameters(this.paginator.getLastPage());
+    }
+
+    public String getPreviousPage() {
+        return this.getUri() + this.getParameters(this.paginator.getPreviousPage());
+    }
+
+    public String getNextPage() {
+        return this.getUri() + this.getParameters(this.paginator.getNextPage());
+    }
+
+    public String getPage(int page) {
+        return this.getUri() + this.getParameters(page);
+    }
+
+    public int getTotal() {
+        return this.paginator.getTotalRegister();
+    }
+
+    public int getCurrentPage() {
+        return this.paginator.getCurrentPage();
+    }
+
+    public int getPages() {
+        return this.paginator.getPages();
+    }
+
+    public boolean isFirstPage() {
+        return this.getCurrentPage() == this.paginator.getFirstPage();
+    }
+
+    public boolean isLastPage() {
+        return this.getCurrentPage() == this.paginator.getLastPage();
+    }
+
+    public boolean isPreviousPage() {
+        return this.getCurrentPage() == this.paginator.getPreviousPage();
+    }
+
+    public boolean isNextPage() {
+        return this.getCurrentPage() == this.paginator.getNextPage();
+    }
+
+    public boolean isPage(int page) {
+        return this.getCurrentPage() == page;
+    }
+
+    public int firstListedPage() {
+        return this.paginator.getFirstListedPage();
+    }
+
+    public int getLastListedPage() {
+        return this.paginator.getLastListedPage();
     }
 
     /**
@@ -65,6 +136,14 @@ public class PaginatorView {
         stringBuilder.append("page").append("=").append(page);
 
         return stringBuilder.toString();
+    }
+
+    public int getRegistersPerPage() {
+        return this.paginator.getRegistersPerPage();
+    }
+
+    public int getOffSet() {
+        return this.paginator.getOffSet();
     }
 
     /**

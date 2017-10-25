@@ -5,7 +5,6 @@ import br.com.ricardosander.meupetshop.dao.OwnerDAO;
 import br.com.ricardosander.meupetshop.dao.OwnerDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.util.Paginator;
 import br.com.ricardosander.meupetshop.util.PaginatorView;
 
 import javax.servlet.ServletException;
@@ -22,13 +21,6 @@ public class OwnerList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int page;
-        try {
-            page = Integer.parseInt(req.getParameter("page"));
-        } catch (Exception exception) {
-            page = 1;
-        }
-
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
         String searchName = req.getParameter("searchName");
 
@@ -42,17 +34,16 @@ public class OwnerList extends HttpServlet {
         OwnerDAO ownerDAO = new OwnerDAOProvider().newOwnerDAO();
         int totalRegister = ownerDAO.count(loggedUser, criteriaBuilder.build());
 
-        Paginator paginator = new Paginator(page, totalRegister);
-        PaginatorView paginatorView = new PaginatorView(paginator, req);
+        PaginatorView paginatorView = new PaginatorView(req, totalRegister);
 
         criteriaBuilder.
-                limit(paginator.getRegistersPerPage())
-                .offset(paginator.getOffSet());
+                limit(paginatorView.getRegistersPerPage())
+                .offset(paginatorView.getOffSet());
 
         List<Owner> owners = ownerDAO.find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("owners", owners);
-        req.setAttribute("paginatorView", paginatorView);
+        req.setAttribute("paginator", paginatorView);
 
         req.getRequestDispatcher("/WEB-INF/pages/owners/list.jsp").forward(req, resp);
     }

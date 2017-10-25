@@ -1,30 +1,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:if test="${not empty paginatorView}">
+<c:if test="${not empty paginator}">
 
-    <p class='text-info'>Página ${paginatorView.paginator.currentPage}/${paginatorView.paginator.pages}</p>
+    <p class='text-info'>Página ${paginator.currentPage}/${paginator.pages}</p>
 
     <ul class='pagination'>
-        <li class="${(paginatorView.paginator.currentPage == paginatorView.paginator.firstPage) ? 'disabled' : ''}">
-            <a href="<c:url value="${paginationUrl}${paginatorView.getParameters(paginatorView.paginator.firstPage)}"/>"><<</a>
+        <li class="${paginator.isFirstPage() ? 'disabled' : ''}">
+            <a href="<c:url value="${paginator.getFirstPage()}"/>"><<</a>
         </li>
-        <li class="${(paginatorView.paginator.currentPage == paginatorView.paginator.previousPage) ? 'disabled' : ''}">
-            <a href="<c:url value="${paginationUrl}${paginatorView.getParameters(paginatorView.paginator.previousPage)}"/>"><</a>
+        <li class="${paginator.isPreviousPage() ? 'disabled' : ''}">
+            <a href="<c:url value="${paginator.getPreviousPage()}"/>"><</a>
         </li>
-        <c:forEach var="page" begin="${paginatorView.paginator.firstListedPage}"
-                   end="${paginatorView.paginator.lastListedPage}">
-            <li class="${page == paginatorView.paginator.currentPage ? 'active' : ''}">
-                <a href="<c:url value="${paginationUrl}${paginatorView.getParameters(page)}"/>">${page}</a>
+        <c:forEach var="page" begin="${paginator.firstListedPage()}"
+                   end="${paginator.getLastListedPage()}">
+            <li class="${paginator.isPage(page) ? 'active' : ''}">
+                <a href="<c:url value="${paginator.getPage(page)}"/>">${page}</a>
             </li>
         </c:forEach>
-        <li class="${(paginatorView.paginator.currentPage == paginatorView.paginator.nextPage) ? 'disabled' : ''}">
-            <a href="<c:url value="${paginationUrl}${paginatorView.getParameters(paginatorView.paginator.nextPage)}"/>">></a>
+        <li class="${paginator.isNextPage() ? 'disabled' : ''}">
+            <a href="<c:url value="${paginator.getNextPage()}"/>">></a>
         </li>
-        <li class="${(paginatorView.paginator.currentPage == paginatorView.paginator.lastPage) ? 'disabled' : ''}">
-            <a href="<c:url value="${paginationUrl}${paginatorView.getParameters(paginatorView.paginator.lastPage)}"/>">>></a>
+        <li class="${paginator.isLastPage() ? 'disabled' : ''}">
+            <a href="<c:url value="${paginator.getLastPage()}"/>">>></a>
         </li>
     </ul>
-    <br>(${paginatorView.paginator.totalRegister} resultados)<br><br>
+    <br>(${paginator.total} resultados)<br><br>
 </c:if>
 <a class="btn btn-primary" href="<c:url value="${paginationUrl}"/>">Voltar a lista completa</a>
