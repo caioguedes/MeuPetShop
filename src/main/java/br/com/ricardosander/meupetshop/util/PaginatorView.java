@@ -20,7 +20,10 @@ public class PaginatorView {
      */
     private final Paginator paginator;
 
-    private String uri;
+    /**
+     * URI da listagem.
+     */
+    private final String uri;
 
     /**
      * Construtor.
@@ -43,78 +46,142 @@ public class PaginatorView {
         this.paginator = new Paginator(currentPage, totalRegisters);
         this.request = request;
         urlParametersBuilder = new StringBuilder();
+        uri = request.getRequestURI();
     }
 
-    private String getUri() {
-
-        if (uri == null) {
-            uri = request.getRequestURI();
-        }
-        return uri;
-    }
-
+    /**
+     * @return URI para a primeira página.
+     */
     public String getFirstPage() {
         return this.getUri() + this.getParameters(this.paginator.getFirstPage());
     }
 
+    /**
+     * @return URI para a última página.
+     */
     public String getLastPage() {
         return this.getUri() + this.getParameters(this.paginator.getLastPage());
     }
 
+    /**
+     * @return URI para a página anterior.
+     */
     public String getPreviousPage() {
         return this.getUri() + this.getParameters(this.paginator.getPreviousPage());
     }
 
+    /**
+     * @return URI para a próxima página.
+     */
     public String getNextPage() {
         return this.getUri() + this.getParameters(this.paginator.getNextPage());
     }
 
+    /**
+     * @param page Número da página para a URI.
+     * @return URI para a página page.
+     */
     public String getPage(int page) {
         return this.getUri() + this.getParameters(page);
     }
 
+    /**
+     * @return URI para a lista completa, na primeira página.
+     */
     public String getCompleteList() {
         return this.getUri();
     }
 
+    /**
+     * @return Total de registros.
+     */
     public int getTotal() {
         return this.paginator.getTotalRegister();
     }
 
+    /**
+     * @return Página atual.
+     */
     public int getCurrentPage() {
         return this.paginator.getCurrentPage();
     }
 
+    /**
+     * @return Total de páginas.
+     */
     public int getPages() {
         return this.paginator.getPages();
     }
 
+    /**
+     * @return Verifica se a página atual é a primeira página.
+     */
     public boolean isFirstPage() {
         return this.getCurrentPage() == this.paginator.getFirstPage();
     }
 
+    /**
+     * @return Verifica se a página atual é a última página.
+     */
     public boolean isLastPage() {
         return this.getCurrentPage() == this.paginator.getLastPage();
     }
 
+    /**
+     * @return Verifica se a página atual é a página anterior.
+     */
     public boolean isPreviousPage() {
         return this.getCurrentPage() == this.paginator.getPreviousPage();
     }
 
+    /**
+     * @return Verifica se a página atual é a próxima página.
+     */
     public boolean isNextPage() {
         return this.getCurrentPage() == this.paginator.getNextPage();
     }
 
+    /**
+     * @param page Página para verificação.
+     * @return Se a página informada é a página atual.
+     */
     public boolean isPage(int page) {
         return this.getCurrentPage() == page;
     }
 
-    public int firstListedPage() {
+    /**
+     * @return Número da primeira página listada nas opções.
+     */
+    public int getFirstListedPage() {
         return this.paginator.getFirstListedPage();
     }
 
+    /**
+     * @return Número da última página listada nas opções.
+     */
     public int getLastListedPage() {
         return this.paginator.getLastListedPage();
+    }
+
+    /**
+     * @return Número de registros por página.
+     */
+    public int getRegistersPerPage() {
+        return this.paginator.getRegistersPerPage();
+    }
+
+    /**
+     * @return Offset/deslocamento.
+     */
+    public int getOffSet() {
+        return this.paginator.getOffSet();
+    }
+
+    /**
+     * @return URI da listagem.
+     */
+    private String getUri() {
+        return uri;
     }
 
     /**
@@ -123,7 +190,7 @@ public class PaginatorView {
      * @param page Página.
      * @return String com todos parâmetros para a página.
      */
-    public String getParameters(int page) {
+    private String getParameters(int page) {
 
         if (urlParametersBuilder.length() == 0) {
             this.process();
@@ -140,14 +207,6 @@ public class PaginatorView {
         stringBuilder.append("page").append("=").append(page);
 
         return stringBuilder.toString();
-    }
-
-    public int getRegistersPerPage() {
-        return this.paginator.getRegistersPerPage();
-    }
-
-    public int getOffSet() {
-        return this.paginator.getOffSet();
     }
 
     /**

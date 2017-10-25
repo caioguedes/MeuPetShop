@@ -12,7 +12,7 @@
         <li class="${paginator.isPreviousPage() ? 'disabled' : ''}">
             <a href="<c:url value="${paginator.getPreviousPage()}"/>"><</a>
         </li>
-        <c:forEach var="page" begin="${paginator.firstListedPage()}"
+        <c:forEach var="page" begin="${paginator.getFirstListedPage()}"
                    end="${paginator.getLastListedPage()}">
             <li class="${paginator.isPage(page) ? 'active' : ''}">
                 <a href="<c:url value="${paginator.getPage(page)}"/>">${page}</a>
