@@ -18,7 +18,7 @@ public class PaginatorView {
     /**
      * Paginador.
      */
-    private final PaginatorCalculator paginatorCalculator;
+    private final Paginator paginator;
 
     /**
      * Construtor.
@@ -26,11 +26,11 @@ public class PaginatorView {
     private final StringBuilder urlParametersBuilder;
 
     /**
-     * @param paginatorCalculator Paginador.
+     * @param paginator Paginador.
      * @param request   Requisição.
      */
-    public PaginatorView(PaginatorCalculator paginatorCalculator, HttpServletRequest request) {
-        this.paginatorCalculator = paginatorCalculator;
+    public PaginatorView(Paginator paginator, HttpServletRequest request) {
+        this.paginator = paginator;
         this.request = request;
         urlParametersBuilder = new StringBuilder();
     }
@@ -38,8 +38,8 @@ public class PaginatorView {
     /**
      * @return Paginador.
      */
-    public PaginatorCalculator getPaginatorCalculator() {
-        return paginatorCalculator;
+    public Paginator getPaginator() {
+        return paginator;
     }
 
     /**

@@ -5,7 +5,7 @@ import br.com.ricardosander.meupetshop.dao.OwnerDAO;
 import br.com.ricardosander.meupetshop.dao.OwnerDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.util.PaginatorCalculator;
+import br.com.ricardosander.meupetshop.util.Paginator;
 import br.com.ricardosander.meupetshop.util.PaginatorView;
 
 import javax.servlet.ServletException;
@@ -42,12 +42,12 @@ public class OwnerList extends HttpServlet {
         OwnerDAO ownerDAO = new OwnerDAOProvider().newOwnerDAO();
         int totalRegister = ownerDAO.count(loggedUser, criteriaBuilder.build());
 
-        PaginatorCalculator paginatorCalculator = new PaginatorCalculator(page, totalRegister);
-        PaginatorView paginatorView = new PaginatorView(paginatorCalculator, req);
+        Paginator paginator = new Paginator(page, totalRegister);
+        PaginatorView paginatorView = new PaginatorView(paginator, req);
 
         criteriaBuilder.
-                limit(paginatorCalculator.getRegistersPerPage())
-                .offset(paginatorCalculator.getOffSet());
+                limit(paginator.getRegistersPerPage())
+                .offset(paginator.getOffSet());
 
         List<Owner> owners = ownerDAO.find(loggedUser, criteriaBuilder.build());
 

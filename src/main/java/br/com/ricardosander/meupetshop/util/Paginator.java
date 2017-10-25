@@ -3,7 +3,7 @@ package br.com.ricardosander.meupetshop.util;
 /**
  * Classe que auxiliar na paginação.
  */
-public class PaginatorCalculator {
+public class Paginator {
 
     /**
      * Valor padrão de registros por páginas.
@@ -28,7 +28,7 @@ public class PaginatorCalculator {
     /**
      * @param totalRegister Total de registros.
      */
-    public PaginatorCalculator(int totalRegister) {
+    public Paginator(int totalRegister) {
         this.currentPage = this.filterCurrentPage(1);
         this.totalRegister = totalRegister;
         this.registersPerPage = DEFAULT_REGISTERS_PER_PAGE;
@@ -38,7 +38,7 @@ public class PaginatorCalculator {
      * @param currentPage   Página atual.
      * @param totalRegister Total de registros.
      */
-    public PaginatorCalculator(int currentPage, int totalRegister) {
+    public Paginator(int currentPage, int totalRegister) {
         this.currentPage = this.filterCurrentPage(currentPage);
         this.totalRegister = this.filterTotalRegister(totalRegister);
         this.registersPerPage = DEFAULT_REGISTERS_PER_PAGE;
@@ -49,7 +49,7 @@ public class PaginatorCalculator {
      * @param totalRegister    Total de registros.
      * @param registersPerPage Registros por página.
      */
-    public PaginatorCalculator(int currentPage, int totalRegister, int registersPerPage) {
+    public Paginator(int currentPage, int totalRegister, int registersPerPage) {
         this.currentPage = this.filterCurrentPage(currentPage);
         this.totalRegister = this.filterTotalRegister(totalRegister);
         this.registersPerPage = this.filterRegisterPerPage(registersPerPage);

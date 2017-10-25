@@ -6,7 +6,7 @@ import br.com.ricardosander.meupetshop.dao.PetDAO;
 import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.util.PaginatorCalculator;
+import br.com.ricardosander.meupetshop.util.Paginator;
 import br.com.ricardosander.meupetshop.util.PaginatorView;
 
 import javax.servlet.ServletException;
@@ -42,7 +42,7 @@ public class PetList extends HttpServlet {
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         int totalRegister = petDAO.count(loggedUser, criteriaBuilder.build());
 
-        PaginatorCalculator paginatorCalculator = new PaginatorCalculator(page, totalRegister);
+        Paginator paginatorCalculator = new Paginator(page, totalRegister);
         PaginatorView paginatorView = new PaginatorView(paginatorCalculator, req);
 
         criteriaBuilder
