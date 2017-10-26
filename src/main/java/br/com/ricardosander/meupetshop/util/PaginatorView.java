@@ -20,6 +20,9 @@ public class PaginatorView {
      */
     private final String uri;
 
+    /**
+     * Parâmetros da listagem.
+     */
     private final String parameters;
 
     public PaginatorView(String uri, String parameters, Paginator paginator) {
@@ -28,6 +31,13 @@ public class PaginatorView {
         this.paginator = paginator;
     }
 
+    /**
+     * Cria uma instância com base no HttpServletRequest.
+     *
+     * @param request        Origem da URI e parâmetros.
+     * @param totalRegisters Total de registros da listagem.
+     * @return Nova instância da classe.
+     */
     public static PaginatorView from(HttpServletRequest request, int totalRegisters) {
 
         int currentPage;
@@ -195,6 +205,12 @@ public class PaginatorView {
         return this.parameters + "&page=" + page;
     }
 
+    /**
+     * Processa o HttpServlerRequest em uma String com parâmetros para a URI.
+     *
+     * @param request Origem dos parâmetros.
+     * @return String contendo os parâmetros da URI (?name1=value1&name2=value2).
+     */
     private static String process(HttpServletRequest request) {
 
         String parameterName;
