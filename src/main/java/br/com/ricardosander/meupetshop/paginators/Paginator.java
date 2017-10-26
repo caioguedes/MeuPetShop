@@ -1,4 +1,4 @@
-package br.com.ricardosander.meupetshop.util;
+package br.com.ricardosander.meupetshop.paginators;
 
 /**
  * Classe que auxiliar na paginação.

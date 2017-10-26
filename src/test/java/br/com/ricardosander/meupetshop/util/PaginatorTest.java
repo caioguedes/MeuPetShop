@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.util;
 
+import br.com.ricardosander.meupetshop.paginators.Paginator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
