@@ -5,7 +5,7 @@ import br.com.ricardosander.meupetshop.dao.OwnerDAO;
 import br.com.ricardosander.meupetshop.dao.OwnerDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
-import br.com.ricardosander.meupetshop.util.PaginatorView;
+import br.com.ricardosander.meupetshop.paginators.PaginatorView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
