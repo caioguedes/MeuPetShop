@@ -34,7 +34,7 @@ public class PetList extends HttpServlet {
         PetDAO petDAO = new PetDAOProvider().newPetDAO();
         int totalRegister = petDAO.count(loggedUser, criteriaBuilder.build());
 
-        PaginatorView paginatorView = new PaginatorView(req, totalRegister);
+        PaginatorView paginatorView = PaginatorView.from(req, totalRegister);
 
         criteriaBuilder
                 .limit(paginatorView.getRegistersPerPage())

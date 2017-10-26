@@ -11,11 +11,6 @@ import java.util.Enumeration;
 public class PaginatorView {
 
     /**
-     * Requisição.
-     */
-    private final HttpServletRequest request;
-
-    /**
      * Paginador.
      */
     private final Paginator paginator;
@@ -25,16 +20,15 @@ public class PaginatorView {
      */
     private final String uri;
 
-    /**
-     * Construtor.
-     */
-    private final StringBuilder urlParametersBuilder;
+    private final String parameters;
 
-    /**
-     * @param request        Requisição.
-     * @param totalRegisters Total de registros para serem paginados.
-     */
-    public PaginatorView(HttpServletRequest request, int totalRegisters) {
+    public PaginatorView(String uri, String parameters, Paginator paginator) {
+        this.uri = uri;
+        this.parameters = parameters;
+        this.paginator = paginator;
+    }
+
+    public static PaginatorView from(HttpServletRequest request, int totalRegisters) {
 
         int currentPage;
         try {
@@ -43,10 +37,12 @@ public class PaginatorView {
             currentPage = 1;
         }
 
-        this.paginator = new Paginator(currentPage, totalRegisters);
-        this.request = request;
-        urlParametersBuilder = new StringBuilder();
-        uri = request.getRequestURI();
+        String uri = request.getRequestURI();
+        String parameters = PaginatorView.process(request);
+
+        Paginator paginator = new Paginator(currentPage, totalRegisters);
+
+        return new PaginatorView(uri, parameters, paginator);
     }
 
     /**
@@ -192,30 +188,20 @@ public class PaginatorView {
      */
     private String getParameters(int page) {
 
-        if (urlParametersBuilder.length() == 0) {
-            this.process();
+        if (this.parameters.length() == 0) {
+            return "?page=" + page;
         }
 
-        StringBuilder stringBuilder = new StringBuilder(urlParametersBuilder.toString());
-
-        if (stringBuilder.length() == 0) {
-            stringBuilder.append("?");
-        } else {
-            stringBuilder.append("&");
-        }
-
-        stringBuilder.append("page").append("=").append(page);
-
-        return stringBuilder.toString();
+        return this.parameters + "&page=" + page;
     }
 
-    /**
-     * Processa os parâmetros da requisição em uma String.
-     */
-    private void process() {
+    private static String process(HttpServletRequest request) {
 
         String parameterName;
         String parameterValue;
+
+        StringBuilder urlParametersBuilder = new StringBuilder();
+
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
 
@@ -245,5 +231,6 @@ public class PaginatorView {
 
         }
 
+        return urlParametersBuilder.toString();
     }
 }

@@ -34,7 +34,7 @@ public class OwnerList extends HttpServlet {
         OwnerDAO ownerDAO = new OwnerDAOProvider().newOwnerDAO();
         int totalRegister = ownerDAO.count(loggedUser, criteriaBuilder.build());
 
-        PaginatorView paginatorView = new PaginatorView(req, totalRegister);
+        PaginatorView paginatorView = PaginatorView.from(req, totalRegister);
 
         criteriaBuilder.
                 limit(paginatorView.getRegistersPerPage())
