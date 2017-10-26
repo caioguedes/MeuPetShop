@@ -25,10 +25,16 @@ public class PaginatorView {
      */
     private final String parameters;
 
-    public PaginatorView(String uri, String parameters, Paginator paginator) {
+    /**
+     * @param uri            URI base.
+     * @param parameters     Parâmetros da URI.
+     * @param currentPage    Página atual.
+     * @param totalRegisters Total de registros.
+     */
+    public PaginatorView(String uri, String parameters, int currentPage, int totalRegisters) {
         this.uri = uri;
         this.parameters = parameters;
-        this.paginator = paginator;
+        this.paginator = new Paginator(currentPage, totalRegisters);
     }
 
     /**
@@ -50,9 +56,7 @@ public class PaginatorView {
         String uri = request.getRequestURI();
         String parameters = PaginatorView.process(request);
 
-        Paginator paginator = new Paginator(currentPage, totalRegisters);
-
-        return new PaginatorView(uri, parameters, paginator);
+        return new PaginatorView(uri, parameters, currentPage, totalRegisters);
     }
 
     /**
