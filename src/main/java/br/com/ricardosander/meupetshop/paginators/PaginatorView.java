@@ -1,9 +1,6 @@
-package br.com.ricardosander.meupetshop.util;
+package br.com.ricardosander.meupetshop.paginators;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Enumeration;
 
 /**
  * Classe responsável pela operações de paginação dentro da view(jsp).
@@ -45,18 +42,7 @@ public class PaginatorView {
      * @return Nova instância da classe.
      */
     public static PaginatorView from(HttpServletRequest request, int totalRegisters) {
-
-        int currentPage;
-        try {
-            currentPage = Integer.parseInt(request.getParameter("page"));
-        } catch (Exception exception) {
-            currentPage = 1;
-        }
-
-        String uri = request.getRequestURI();
-        String parameters = PaginatorView.process(request);
-
-        return new PaginatorView(uri, parameters, currentPage, totalRegisters);
+        return new HttpServletRequestToPaginatorView(request).create(totalRegisters);
     }
 
     /**
@@ -209,48 +195,4 @@ public class PaginatorView {
         return this.parameters + "&page=" + page;
     }
 
-    /**
-     * Processa o HttpServlerRequest em uma String com parâmetros para a URI.
-     *
-     * @param request Origem dos parâmetros.
-     * @return String contendo os parâmetros da URI (?name1=value1&name2=value2).
-     */
-    private static String process(HttpServletRequest request) {
-
-        String parameterName;
-        String parameterValue;
-
-        StringBuilder urlParametersBuilder = new StringBuilder();
-
-        Enumeration<String> parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-
-            parameterName = parameterNames.nextElement();
-
-            if (parameterName.equalsIgnoreCase("page")) {
-                continue;
-            }
-
-            parameterValue = request.getParameter(parameterName);
-
-            if (parameterValue == null) {
-                continue;
-            }
-
-            if (urlParametersBuilder.length() == 0) {
-                urlParametersBuilder.append("?");
-            } else {
-                urlParametersBuilder.append("&");
-            }
-
-            urlParametersBuilder.append(parameterName).append("=");
-            try {
-                urlParametersBuilder.append(URLEncoder.encode(parameterValue, "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-            }
-
-        }
-
-        return urlParametersBuilder.toString();
-    }
 }
