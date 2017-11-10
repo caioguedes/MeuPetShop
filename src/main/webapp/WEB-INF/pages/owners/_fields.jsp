@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<input type="hidden" name="pet_id" value='<c:if test="${not empty pet_id && not empty pet_id}">${pet_id}</c:if>'/>
+<input type="hidden" name="petId" value='<c:if test="${not empty petId && not empty petId}">${petId}</c:if>'/>
 <input type="hidden" name="id" value='<c:if test="${not empty owner && not empty owner.id}">${owner.id}</c:if>'/>
 
 <!-- Nome -->
