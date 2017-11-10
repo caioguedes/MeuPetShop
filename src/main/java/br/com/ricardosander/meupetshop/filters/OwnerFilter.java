@@ -1,6 +1,9 @@
 package br.com.ricardosander.meupetshop.filters;
 
+import br.com.ricardosander.meupetshop.dao.PetDAO;
+import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
+import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.model.Phone;
 import br.com.ricardosander.meupetshop.model.User;
 import br.com.ricardosander.meupetshop.util.FlashMessage;
@@ -31,12 +34,32 @@ public class OwnerFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
+        User user = (User) request.getSession().getAttribute("loggedUser");
+
         if (!request.getMethod().equalsIgnoreCase("POST")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
 
         Map<String, Object> errors = new HashMap<>();
+
+        int petId;
+        try {
+            petId = Integer.parseInt(request.getParameter("petId"));
+        } catch (Exception e) {
+            petId = 0;
+        }
+
+        Pet pet = null;
+        if (petId > 0) {
+
+            PetDAO petDAO = new PetDAOProvider().newPetDAO();
+            pet = petDAO.find(user, petId);
+            if (pet == null) {
+                errors.put("pet", "Não foi possível encontrar o Pet informado.");
+            }
+
+        }
 
         int ownerId = 0;
         try {
@@ -79,8 +102,6 @@ public class OwnerFilter implements Filter {
             errors.put("owner_debtor", "O campo Valor Devedor deve ser um valor numérico válido ou vazio.");
         }
 
-        User user = (User) request.getSession().getAttribute("loggedUser");
-
         Owner owner = new Owner();
         owner.setId(ownerId);
         owner.setName(name);
@@ -117,6 +138,9 @@ public class OwnerFilter implements Filter {
         }
 
         servletRequest.setAttribute("owner", owner);
+        if (pet != null) {
+            servletRequest.setAttribute("pet", pet);
+        }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
