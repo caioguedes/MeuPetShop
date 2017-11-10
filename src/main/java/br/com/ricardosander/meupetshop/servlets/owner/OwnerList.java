@@ -51,7 +51,10 @@ public class OwnerList extends HttpServlet {
 
         req.setAttribute("owners", owners);
         req.setAttribute("paginator", paginatorView);
-        req.setAttribute("petId", petId);
+
+        if (petId > 0) {
+            req.setAttribute("petId", petId);
+        }
 
         req.getRequestDispatcher("/WEB-INF/pages/owners/list.jsp").forward(req, resp);
     }
