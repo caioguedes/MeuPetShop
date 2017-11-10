@@ -24,6 +24,13 @@ public class OwnerList extends HttpServlet {
         User loggedUser = (User) req.getSession().getAttribute("loggedUser");
         String searchName = req.getParameter("searchName");
 
+        int petId;
+        try {
+            petId = Integer.parseInt(req.getParameter("petId"));
+        } catch (Exception e) {
+            petId = 0;
+        }
+
         CriteriaBuilder criteriaBuilder = new CriteriaBuilder();
 
         if (searchName != null) {
@@ -44,6 +51,7 @@ public class OwnerList extends HttpServlet {
 
         req.setAttribute("owners", owners);
         req.setAttribute("paginator", paginatorView);
+        req.setAttribute("petId", petId);
 
         req.getRequestDispatcher("/WEB-INF/pages/owners/list.jsp").forward(req, resp);
     }
