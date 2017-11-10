@@ -2,7 +2,10 @@ package br.com.ricardosander.meupetshop.servlets.owner;
 
 import br.com.ricardosander.meupetshop.dao.OwnerDAO;
 import br.com.ricardosander.meupetshop.dao.OwnerDAOProvider;
+import br.com.ricardosander.meupetshop.dao.PetDAO;
+import br.com.ricardosander.meupetshop.dao.PetDAOProvider;
 import br.com.ricardosander.meupetshop.model.Owner;
+import br.com.ricardosander.meupetshop.model.Pet;
 import br.com.ricardosander.meupetshop.util.FlashMessage;
 
 import javax.servlet.ServletException;
@@ -18,6 +21,11 @@ public class OwnerRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String petId = req.getParameter("petId");
+        if (petId != null && !petId.trim().isEmpty()) {
+            req.setAttribute("petId", petId);
+        }
+
         req.getRequestDispatcher("/WEB-INF/pages/owners/register.jsp").forward(req, resp);
     }
 
@@ -25,6 +33,7 @@ public class OwnerRegister extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Owner owner = (Owner) req.getAttribute("owner");
+        Pet pet = (Pet) req.getAttribute("pet");
 
         OwnerDAO ownerDAO = new OwnerDAOProvider().newOwnerDAO();
         if (!ownerDAO.insert(owner)) {
@@ -35,6 +44,19 @@ public class OwnerRegister extends HttpServlet {
             resp.sendRedirect("/owner/register");
             return;
         }
+
+        if (pet != null) {
+            pet.setOwner(owner);
+
+            PetDAO petDAO = new PetDAOProvider().newPetDAO();
+            if (!petDAO.update(pet)) {
+
+                FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
+                flashMessage.add("message_danger", "Houve um erro ao víncular o proprietário ao pet.");
+
+            }
+        }
+
 
         FlashMessage flashMessage = (FlashMessage) req.getSession().getAttribute("flash_message");
         flashMessage.add("message_success", "Proprietário adicionado com sucesso.");
