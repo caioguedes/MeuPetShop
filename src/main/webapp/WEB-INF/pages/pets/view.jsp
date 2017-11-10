@@ -2,9 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="pt-BR" />
+<fmt:setLocale value="pt-BR"/>
 
-<c:set var="page_title" scope="request" value="#${pet.id} ${pet.name}" />
+<c:set var="page_title" scope="request" value="#${pet.id} ${pet.name}"/>
 <c:import url="../_comum/logged_header.jsp"/>
 
 <div style="text-align: left; padding-bottom: 10px;" xmlns="http://www.w3.org/1999/html">
@@ -89,10 +89,9 @@
             <tr>
                 <td>
                     <span class="text-danger">Sem cliente cadastrado</span><br>
-                    <a href="/cliente/cadastro?animal=${pet.id}" class="btn btn-primary">Cadastrar
-                        Novo</a><br>
-                    <a href="/cliente/selecionar/animal/${pet.id}"
-                       class="btn btn-default">Selecionar </a>
+                    <a href="<c:url value="/owner/register?petId=${pet.id}"/>" class="btn btn-default">Cadastrar
+                        Novo</a>
+                    <a href="<c:url value="/owner/list?petId=${pet.id}"/>" class="btn btn-default">Selecionar</a>
                 </td>
             </tr>
         </c:if>
@@ -117,8 +116,10 @@
                 <td colspan="2">
                     <a class="btn btn-primary" href="/cliente/ver/${pet.owner.id}">Ver
                         Cliente</a>
-                    <a href="/cliente/selecionar/animal/${pet.id}" class="btn btn-default">Alterar
-                        Cliente </a>
+
+                    <a href="<c:url value="/owner?id=${pet.owner.id}"/>" class="btn btn-default">Ver Cliente </a>
+
+                    <a href="<c:url value="/owner/list?petId=${pet.id}"/>" class="btn btn-default">Alterar Cliente </a>
                 </td>
             </tr>
         </c:if>
