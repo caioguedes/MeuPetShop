@@ -40,7 +40,7 @@ public class PetList extends HttpServlet {
                 .limit(paginatorView.getRegistersPerPage())
                 .offset(paginatorView.getOffSet());
 
-        List<Pet> pets = new MySQLPetDAO().find(loggedUser, criteriaBuilder.build());
+        List<Pet> pets = new PetDAOProvider().newPetDAO().find(loggedUser, criteriaBuilder.build());
 
         req.setAttribute("pets", pets);
         req.setAttribute("paginator", paginatorView);
