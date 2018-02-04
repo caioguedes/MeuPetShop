@@ -1,15 +1,17 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.database.DatabaseMongoDB;
+
 /**
- * Provider para PetDAO.
+ * PetDAO's provider .
  */
 public class PetDAOProvider {
 
     /**
-     * @return Retorna uma instância da classe padrão.
+     * @return Returns a instance for PetDAO.
      */
     public PetDAO newPetDAO() {
-        return new MySQLPetDAO();
+        return new MongoDBPetDAO(DatabaseMongoDB.getInstance());
     }
 
 }

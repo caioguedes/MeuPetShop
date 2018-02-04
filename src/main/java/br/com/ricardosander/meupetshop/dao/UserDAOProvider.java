@@ -1,15 +1,17 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.database.DatabaseMongoDB;
+
 /**
- * Provider para UserDAO.
+ * UserDAO's provider.
  */
 public class UserDAOProvider {
 
     /**
-     * @return Retorna uma instância da classe padrão.
+     * @return Returns a UserDAO instance.
      */
     public UserDAO newUserDAO() {
-        return new MySQLUserDAO();
+        return new MongoDBUserDAO(DatabaseMongoDB.getInstance());
     }
 
 }
