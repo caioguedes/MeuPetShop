@@ -15,7 +15,7 @@
 
     <dependencies>
 
-        <!-- API de Servlets -->
+        <!-- Servlets API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -23,28 +23,35 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- API jstl -->
+        <!-- jstl API -->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
-        <!-- Driver MySQL -->
+        <!-- MySQL Driver -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.44</version>
         </dependency>
 
-        <!-- Biblioteca para gerenciamento de Pool de conexões. -->
+        <!-- MongoDB Driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+        <!-- Connection pool manager lib-->
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
 
-        <!-- junit, para testes -->
+        <!-- junit, for testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
