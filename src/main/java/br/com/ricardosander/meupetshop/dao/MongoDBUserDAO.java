@@ -5,12 +5,24 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+/**
+ * Mongo DAO for User.
+ */
 public class MongoDBUserDAO implements UserDAO {
 
+    /**
+     * Collection's name.
+     */
     private static String collectionName = "users";
 
+    /**
+     * Collection's connection.
+     */
     private MongoCollection<Document> collection;
 
+    /**
+     * @param database Database connection.
+     */
     MongoDBUserDAO(MongoDatabase database) {
         collection = database.getCollection(collectionName);
     }
