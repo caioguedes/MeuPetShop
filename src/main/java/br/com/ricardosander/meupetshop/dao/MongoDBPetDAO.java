@@ -18,19 +18,34 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Mongo DAO for Pet.
+ */
 public class MongoDBPetDAO implements PetDAO {
 
+    /**
+     * Collection name.
+     */
     private static String collectionName = "pets";
 
+    /**
+     * Collection connection.
+     */
     private MongoCollection<Document> collection;
 
+    /**
+     * @param database Database connection.
+     */
     MongoDBPetDAO(MongoDatabase database) {
         collection = database.getCollection(collectionName);
     }
 
     @Override
     public int count(User user, Criteria criteria) {
-        return (int) collection.count();
+
+        Document query = createQuery(user, criteria);
+
+        return (int) collection.count(query);
     }
 
     @Override
@@ -38,7 +53,12 @@ public class MongoDBPetDAO implements PetDAO {
 
         List<Pet> pets = new LinkedList<>();
 
-        FindIterable<Document> documents = collection.find();
+        Document query = createQuery(user, criteria);
+
+        FindIterable<Document> documents = collection
+                .find(query)
+                .skip(criteria.getOffset())
+                .limit(criteria.getLimit());
 
         for (Document document : documents) {
             pets.add(new Pet(
@@ -56,7 +76,7 @@ public class MongoDBPetDAO implements PetDAO {
                     document.getString("comments"),
                     Gender.valueOf(document.getString("gender").charAt(0) + ""),
                     document.getBoolean("clientPacket"),
-                    null,
+                    user,
                     null
             ));
         }
@@ -67,7 +87,7 @@ public class MongoDBPetDAO implements PetDAO {
     @Override
     public Pet find(User user, long id) {
 
-        Document query = new Document("_id", id);
+        Document query = new Document("_id", id).append("user", user.getId());
 
         Document first = collection.find(query).first();
 
@@ -90,7 +110,7 @@ public class MongoDBPetDAO implements PetDAO {
                 first.getString("comments"),
                 Gender.valueOf(first.getString("gender")),
                 first.getBoolean("clientPacket"),
-                null,
+                user,
                 null);
     }
 
@@ -114,7 +134,7 @@ public class MongoDBPetDAO implements PetDAO {
                 .append("comments", pet.getComments())
                 .append("gender", pet.getGender().name())
                 .append("clientPacket", pet.isClientPacket())
-                .append("user", null)
+                .append("user", pet.getUser().getId())
                 .append("owner", null);
 
         collection.insertOne(document);
@@ -125,7 +145,7 @@ public class MongoDBPetDAO implements PetDAO {
     @Override
     public boolean remove(Pet pet) {
 
-        Document query = new Document("_id", pet.getId());
+        Document query = new Document("_id", pet.getId()).append("user", pet.getUser().getId());
 
         DeleteResult deleteResult = collection.deleteOne(query);
 
@@ -135,7 +155,7 @@ public class MongoDBPetDAO implements PetDAO {
     @Override
     public boolean update(Pet pet) {
 
-        Document query = new Document("_id", pet.getId());
+        Document query = new Document("_id", pet.getId()).append("user", pet.getUser().getId());
 
         Document document = new Document("name", pet.getName())
                 .append("species", pet.getSpecies())
@@ -150,12 +170,28 @@ public class MongoDBPetDAO implements PetDAO {
                 .append("comments", pet.getComments())
                 .append("gender", pet.getGender().name())
                 .append("clientPacket", pet.isClientPacket())
-                .append("user", null)
                 .append("owner", null);
 
         UpdateResult updateResult = collection.updateOne(query, new Document("$set", document));
 
         return updateResult.getModifiedCount() == 1;
+    }
+
+    /**
+     * Creates a query based on user and criteria.
+     *
+     * @param user     User used as filter.
+     * @param criteria Criteria with filters.
+     * @return Query based on parameters.
+     */
+    private Document createQuery(User user, Criteria criteria) {
+
+        Document query = new Document("user", user.getId());
+        if (criteria.getName() != null && !criteria.getName().isEmpty()) {
+            query = query.append("name", new Document("$regex", criteria.getName()));
+        }
+
+        return query;
     }
 
 }
