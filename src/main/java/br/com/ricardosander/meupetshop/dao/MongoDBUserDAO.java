@@ -27,7 +27,7 @@ public class MongoDBUserDAO implements UserDAO {
         }
 
         return new User(
-                firstFind.getObjectId("_id").getTimestamp(),
+                firstFind.getLong("_id"),
                 firstFind.getString("username"),
                 firstFind.getString("password")
         );
