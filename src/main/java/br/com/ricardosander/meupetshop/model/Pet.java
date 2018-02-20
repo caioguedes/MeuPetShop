@@ -213,4 +213,32 @@ public class Pet {
         this.owner = owner;
     }
 
+    /**
+     * Creates a Pet based on all fields, including id.
+     *
+     * @param id           Pet's identifier.
+     * @param name         Pet's name.
+     * @param species      Pet's species.
+     * @param breed        Pet's breed.
+     * @param fur          Pet's fur.
+     * @param pelage       Pet's pelage.
+     * @param size         Pet's size.
+     * @param weight       Pet's weight.
+     * @param birth        Pet's birth date.
+     * @param register     Pet's register date.
+     * @param castrated    If the Pet is castrated.
+     * @param comments     Comments about the Pet.
+     * @param gender       Pet's gender.
+     * @param clientPacket If the Pet is a client with packet.
+     * @param user         Pet's user.
+     * @param owner        Pet's owner.
+     * @return A instance of Pet with the given parameters.
+     */
+    public static Pet createPetWithId(long id, String name, String species, String breed, String fur, String pelage,
+                                      PetSize size, double weight, LocalDate birth, LocalDate register,
+                                      boolean castrated, String comments, Gender gender, boolean clientPacket,
+                                      User user, Owner owner) {
+        return new Pet(id, name, species, breed, fur, pelage, size, weight, birth, register, castrated, comments,
+                gender, clientPacket, user, owner);
+    }
 }
