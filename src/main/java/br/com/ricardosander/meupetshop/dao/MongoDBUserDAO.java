@@ -1,5 +1,6 @@
 package br.com.ricardosander.meupetshop.dao;
 
+import br.com.ricardosander.meupetshop.conveter.DocumentToUserConverter;
 import br.com.ricardosander.meupetshop.model.User;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -38,11 +39,7 @@ public class MongoDBUserDAO implements UserDAO {
             return null;
         }
 
-        return new User(
-                firstFind.getLong("_id"),
-                firstFind.getString("username"),
-                firstFind.getString("password")
-        );
+        return new DocumentToUserConverter().convert(firstFind);
     }
 
 }
