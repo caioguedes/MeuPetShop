@@ -1,7 +1,9 @@
 package br.com.ricardosander.meupetshop.dao;
 
 import br.com.ricardosander.meupetshop.conveter.DocumentToOwnerConverter;
+import br.com.ricardosander.meupetshop.conveter.InsertOwnerToDocumentConverter;
 import br.com.ricardosander.meupetshop.criteria.Criteria;
+import br.com.ricardosander.meupetshop.database.DatabaseMongoDB;
 import br.com.ricardosander.meupetshop.model.Owner;
 import br.com.ricardosander.meupetshop.model.User;
 import com.mongodb.client.FindIterable;
@@ -64,12 +66,31 @@ public class MongoDBOwnerDAO implements OwnerDAO {
 
     @Override
     public Owner find(User user, long id) {
-        return null;
+
+        Document query = new Document("_id", id).append("user", user.getId());
+
+        Document first = collection.find(query).first();
+
+        if (first == null) {
+            return null;
+        }
+
+        DocumentToOwnerConverter converter = new DocumentToOwnerConverter(user);
+
+        return converter.convert(first);
     }
 
     @Override
     public boolean insert(Owner owner) {
-        return false;
+
+        InsertOwnerToDocumentConverter converter = new InsertOwnerToDocumentConverter();
+
+        MongoDatabase database = DatabaseMongoDB.getInstance();
+        owner.setId(new MongoDBSequenceDAO(database).nextValue(collectionName));
+
+        collection.insertOne(converter.convert(owner));
+
+        return true;
     }
 
     @Override
