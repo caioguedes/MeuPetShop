@@ -2,6 +2,7 @@ package br.com.ricardosander.meupetshop.dao;
 
 import br.com.ricardosander.meupetshop.conveter.DocumentToOwnerConverter;
 import br.com.ricardosander.meupetshop.conveter.InsertOwnerToDocumentConverter;
+import br.com.ricardosander.meupetshop.conveter.UpdateOwnerToDocumentConverter;
 import br.com.ricardosander.meupetshop.criteria.Criteria;
 import br.com.ricardosander.meupetshop.database.DatabaseMongoDB;
 import br.com.ricardosander.meupetshop.model.Owner;
@@ -10,6 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
 import java.util.LinkedList;
@@ -106,7 +108,14 @@ public class MongoDBOwnerDAO implements OwnerDAO {
 
     @Override
     public boolean update(Owner owner) {
-        return false;
+
+        UpdateOwnerToDocumentConverter converter = new UpdateOwnerToDocumentConverter();
+
+        Document query = new Document("_id", owner.getId()).append("user", owner.getUser().getId());
+
+        UpdateResult updateResult = collection.updateOne(query, converter.convert(owner));
+
+        return updateResult.getModifiedCount() == 1;
     }
 
     /**
