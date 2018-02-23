@@ -9,6 +9,7 @@ import br.com.ricardosander.meupetshop.model.User;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 
 import java.util.LinkedList;
@@ -95,7 +96,12 @@ public class MongoDBOwnerDAO implements OwnerDAO {
 
     @Override
     public boolean remove(Owner owner) {
-        return false;
+
+        Document query = new Document("_id", owner.getId()).append("user", owner.getUser().getId());
+
+        DeleteResult deleteResult = collection.deleteOne(query);
+
+        return deleteResult.getDeletedCount() == 1;
     }
 
     @Override
